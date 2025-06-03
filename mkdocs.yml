@@ -211,7 +211,14 @@ nav:
     - Socket & Server:  Operating System/Socket & Server.md
   # - 数据结构:
   - 📕 Database: 
-    - MySQL: ./Database/MySQL/MySQL.md
+    - MySQL: 
+      - 概述: ./Database/MySQL/Intro.md
+      - 事务: ./Database/MySQL/trx.md
+      - 索引: ./Database/MySQL/index.md
+      - 锁: ./Database/MySQL/lock.md
+      - 存储引擎: ./Database/MySQL/engine.md
+      - 日志: ./Database/MySQL/log.md
+      - 优化: ./Database/MySQL/optimization.md
     - Redis: ./Database/Redis/Redis.md
   - 🎒 Docker:
     - ./Docker/Docker.md
