@@ -44,6 +44,8 @@ body::before {
 
 ### [移动零](https://leetcode.cn/problems/move-zeroes/description/?envType=study-plan-v2&envId=top-100-liked)
 
+将数组中的所有零移动到末尾，同时保持非零元素的相对顺序不变。要求在原地操作，不额外开辟空间，并尽可能减少操作次数。
+
 ```C++
 #define itn int
 #define nit int
@@ -102,6 +104,8 @@ int main()
 
 ### [盛最多水的容器](https://leetcode.cn/problems/container-with-most-water/description/?envType=study-plan-v2&envId=top-100-liked)
 
+给定一个表示每个柱子高度的数组，求两个柱子与横轴围成的容器的最大容量。使用双指针从两端向中间逼近，找出最大值。
+
 ```C++
 #define itn int
 #define nit int
@@ -159,6 +163,8 @@ int main()
 ```
 
 ### [三数之和](https://leetcode.cn/problems/3sum/description/?envType=study-plan-v2&envId=top-100-liked)
+
+在数组中找出所有不重复的三元组，使得三数之和为零。先排序数组，再通过双指针在每个固定元素右侧寻找符合条件的两个数。
 
 ```C++
 #define itn int
@@ -242,6 +248,8 @@ int main()
 ```
 
 ### [接雨水](https://leetcode.cn/problems/trapping-rain-water/description/?envType=study-plan-v2&envId=top-100-liked)
+
+计算柱状图中能够接住的雨水总量。使用双指针从两侧向中间遍历，同时维护左右的最大高度，依据较小的一侧决定当前可接的水量。
 
 ```C++
 #define itn int
