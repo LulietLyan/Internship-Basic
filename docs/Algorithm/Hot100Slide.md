@@ -84,13 +84,19 @@ int main()
     cin.tie(0);
     cout.tie(0);
 
+    string s;
+    cin >> s;
+
+    Solution sol;
+    cout << sol.lengthOfLongestSubstring(s) << '\n';
+
     return 0;
 }
 ```
 
 ## [找到字符串中所有字母异位词](https://leetcode.cn/problems/find-all-anagrams-in-a-string/description/?envType=study-plan-v2&envId=top-100-liked)
 
-在字符串 `s` 中查找所有 `p` 的异位词（字母重排）在 `s` 中的起始索引位置。通过滑动窗口维护一个固定长度的窗口，并比较每个窗口的字符计数是否与 `p` 相同。
+在字符串 `s` 中查找所有 `p` 的异位词(字母重排)在 `s` 中的起始索引位置。通过滑动窗口维护一个固定长度的窗口，并比较每个窗口的字符计数是否与 `p` 相同。
 
 ```C++
 #define itn int

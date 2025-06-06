@@ -86,11 +86,11 @@ int main()
     cin.tie(0);
     cout.tie(0);
 
-    itn n, k;
+    int n, k;
     cin >> n >> k;
 
     vector<int> nums(n);
-    for (itn i = 0; i < n; ++i)
+    for (int i = 0; i < n; ++i)
         cin >> nums[i];
 
     Solution sol;
@@ -164,7 +164,7 @@ int main()
 
 ## [最小覆盖子串](https://leetcode.cn/problems/minimum-window-substring/description/?envType=study-plan-v2&envId=top-100-liked)
 
-给定两个字符串 s 和 t，在字符串 s 中找出包含 t 所有字符的最小子串（连续子字符串）。如果不存在符合条件的子串，返回空字符串。要求时间复杂度为 O(n)。
+给定两个字符串 s 和 t，在字符串 s 中找出包含 t 所有字符的最小子串(连续子字符串)。如果不存在符合条件的子串，返回空字符串。要求时间复杂度为 O(n)。
 
 **自信之作——时空复杂度击败 100% 用户，个中手段无所不用其极，臭不要脸优化**：
 

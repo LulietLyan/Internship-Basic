@@ -394,7 +394,7 @@ Upgrade: WebSocket
 Sec-WebSocket-Key: YOUR_WEBSOCKET_KEY
 ```
 
-上述报文指浏览器希望 **升级为 WebSocket协议（Connection: Upgrade）**，同时带上一段 **随机生成的 Base64 码（Sec-WebSocket-Key）** 发给服务器。如果服务器正好支持升级成 WebSocket 协议。就会走 WebSocket 握手流程，同时根据客户端生成的 Base64 码，用某个 **公开的** 算法变成另一段字符串，放在 HTTP 响应的 `Sec-WebSocket-Accept` 的同时带上 `101 状态码` 发回给浏览器。HTTP 的响应如下：
+上述报文指浏览器希望 **升级为 WebSocket协议(Connection: Upgrade)**，同时带上一段 **随机生成的 Base64 码(Sec-WebSocket-Key)** 发给服务器。如果服务器正好支持升级成 WebSocket 协议。就会走 WebSocket 握手流程，同时根据客户端生成的 Base64 码，用某个 **公开的** 算法变成另一段字符串，放在 HTTP 响应的 `Sec-WebSocket-Accept` 的同时带上 `101 状态码` 发回给浏览器。HTTP 的响应如下：
 
 ```http
 HTTP/1.1 101 Switching Protocols\r\n
@@ -410,12 +410,12 @@ Connection: Upgrade\r\n
 数据包在 WebSocket 中被叫做 **帧**，主要有以下字段：
 
 - **opcode**：标志这数据帧类型
-    - 等于 1：指 text 类型（`string`）的数据包
-    - 等于 2：二进制数据类型（`[]byte`）的数据包
+    - 等于 1：指 text 类型(`string`)的数据包
+    - 等于 2：二进制数据类型(`[]byte`)的数据包
     - 等于 8：关闭连接的信号
 - **payload**：存放传输的数据的长度，单位是字节
 - **payload data**：实际传输的数据，根据 payload 长度截取对应的数据
 
 ### WebSocket 的使用场景
 
-WebSocket 完美继承了 TCP 协议的 **全双工** 能力，并且提供了解决粘包的方案。它适用于 **需要服务器和客户端（浏览器）频繁交互** 的大部分场景，比如网页/小程序游戏，网页聊天室，以及一些类似飞书这样的网页协同办公软件。在使用 WebSocket 协议的网页游戏里，怪物移动以及攻击玩家的行为是 **服务器逻辑** 产生的，对玩家产生的伤害等数据，都需要由 **服务器主动发送给客户端**，客户端获得数据后展示对应的效果。
+WebSocket 完美继承了 TCP 协议的 **全双工** 能力，并且提供了解决粘包的方案。它适用于 **需要服务器和客户端(浏览器)频繁交互** 的大部分场景，比如网页/小程序游戏，网页聊天室，以及一些类似飞书这样的网页协同办公软件。在使用 WebSocket 协议的网页游戏里，怪物移动以及攻击玩家的行为是 **服务器逻辑** 产生的，对玩家产生的伤害等数据，都需要由 **服务器主动发送给客户端**，客户端获得数据后展示对应的效果。
