@@ -41,3 +41,188 @@ body::before {
 # LeetCode Hot100
 
 ## 子串
+
+### [和为 K 的子数组](https://leetcode.cn/problems/subarray-sum-equals-k/description/?envType=study-plan-v2&envId=top-100-liked)
+
+```C++
+#define itn int
+#define nit int
+#define nti int
+#define tin int
+#define tni int
+#define retrun return
+#define reutrn return
+#define rutren return
+#define INF 0x3f3f3f3f
+#include <bits/stdc++.h>
+using namespace std;
+typedef pair<int, int> PII;
+typedef long long LL;
+
+class Solution
+{
+public:
+    int subarraySum(vector<int> &nums, int &k)
+    {
+        unordered_map<int, int> mp;
+        mp[0] = 1;
+        int count = 0, pre = 0;
+        for (auto &x : nums)
+        {
+            pre += x;
+            if (mp.find(pre - k) != mp.end())
+            {
+                count += mp[pre - k];
+            }
+            mp[pre]++;
+        }
+        return count;
+    }
+};
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+
+    itn n, k;
+    cin >> n >> k;
+
+    vector<int> nums(n);
+    for (itn i = 0; i < n; ++i)
+        cin >> nums[i];
+
+    Solution sol;
+    cout << sol.subarraySum(nums, k) << '\n';
+
+    return 0;
+}
+```
+
+### [滑动窗口最大值](https://leetcode.cn/problems/sliding-window-maximum/description/?envType=study-plan-v2&envId=top-100-liked)
+
+```C++
+#define itn int
+#define nit int
+#define nti int
+#define tin int
+#define tni int
+#define retrun return
+#define reutrn return
+#define rutren return
+#define INF 0x3f3f3f3f
+#include <bits/stdc++.h>
+using namespace std;
+typedef pair<int, int> PII;
+typedef long long LL;
+
+class Solution {
+public:
+    vector<int> maxSlidingWindow(vector<int>& nums, int& k) {
+        deque<int> q;
+        vector<int> ans;
+
+        for (int i = 0; i < nums.size(); i++) {
+            while (!q.empty() && q.back() < nums[i]) q.pop_back();
+            q.push_back(nums[i]);
+
+            if (i - k >= 0 && q.front() == nums[i - k]) q.pop_front();
+            if (i - k + 1 >= 0) ans.push_back(q.front());
+        }
+
+        return ans;
+    }
+};
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+
+    int n, k;
+    cin >> n >> k;
+
+    vector<int> nums(n);
+    for (int i = 0; i < n; ++i) {
+        cin >> nums[i];
+    }
+
+    Solution sol;
+    vector<int> res = sol.maxSlidingWindow(nums, k);
+
+    for (int x : res)
+        cout << x << ' ';
+    cout << '\n';
+
+    return 0;
+}
+```
+
+### [最小覆盖子串](https://leetcode.cn/problems/minimum-window-substring/description/?envType=study-plan-v2&envId=top-100-liked)
+
+自信之作——时空复杂度击败 100% 用户，个中手段无所不用其极，臭不要脸优化：
+
+```C++
+#define itn int
+#define nit int
+#define nti int
+#define tin int
+#define tni int
+#define retrun return
+#define reutrn return
+#define rutren return
+#define INF 0x3f3f3f3f
+#include <bits/stdc++.h>
+using namespace std;
+typedef pair<int, int> PII;
+typedef long long LL;
+
+class Solution {
+public:
+    string minWindow(string& s, string& t) {
+        int ans_l = -1, ans_r = s.size();
+        int less = 0;
+        vector<int> cnt(128, 0);
+
+        for (auto& c : t) {
+            if (!cnt[c])
+                less++;
+            cnt[c]++;
+        }
+
+        for(int l = 0, r = 0; r < s.size(); r++)
+        {
+            cnt[s[r]]--;
+            if(!cnt[s[r]]) less--;
+
+            while(!less)
+            {
+                if(r - l < ans_r - ans_l) ans_r = r, ans_l = l;
+
+                if(!cnt[s[l]]) less++;
+                cnt[s[l]]++;
+                l++;
+            }
+        }
+
+        return ans_l < 0 ? "" : s.substr(ans_l, ans_r - ans_l + 1);
+    }
+};
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+
+    string s, t;
+    cin >> s >> t;
+
+    Solution sol;
+    cout << sol.minWindow(s, t) << '\n';
+
+    return 0;
+}
+```
