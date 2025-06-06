@@ -38,6 +38,4 @@ body::before {
 }
 </style>
 
-# LeetCode Hot100
-
-## 多维动态规划
+# 多维动态规划

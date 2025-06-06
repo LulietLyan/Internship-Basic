@@ -38,6 +38,4 @@ body::before {
 }
 </style>
 
-# LeetCode Hot100
-
-## 矩阵
+# 矩阵

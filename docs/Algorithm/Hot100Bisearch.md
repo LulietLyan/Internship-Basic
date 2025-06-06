@@ -38,7 +38,5 @@ body::before {
 }
 </style>
 
-# LeetCode Hot100
-
-## 二分查找
+# 二分查找
 

@@ -38,6 +38,4 @@ body::before {
 }
 </style>
 
-# LeetCode Hot100
-
-## 动态规划
+# 动态规划

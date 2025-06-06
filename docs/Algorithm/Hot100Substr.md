@@ -38,11 +38,9 @@ body::before {
 }
 </style>
 
-# LeetCode Hot100
+# 子串
 
-## 子串
-
-### [和为 K 的子数组](https://leetcode.cn/problems/subarray-sum-equals-k/description/?envType=study-plan-v2&envId=top-100-liked)
+## [和为 K 的子数组](https://leetcode.cn/problems/subarray-sum-equals-k/description/?envType=study-plan-v2&envId=top-100-liked)
 
 给定一个整数数组 nums 和一个整数 k，统计该数组中连续子数组的和恰好等于 k 的个数。
 
@@ -102,7 +100,7 @@ int main()
 }
 ```
 
-### [滑动窗口最大值](https://leetcode.cn/problems/sliding-window-maximum/description/?envType=study-plan-v2&envId=top-100-liked)
+## [滑动窗口最大值](https://leetcode.cn/problems/sliding-window-maximum/description/?envType=study-plan-v2&envId=top-100-liked)
 
 给定一个整数数组 nums 和一个整数 k，有一个大小为 k 的滑动窗口从数组最左侧移动到最右侧。每次移动窗口时返回窗口内的最大值，最终返回所有移动过程中窗口最大值组成的数组。
 
@@ -164,7 +162,7 @@ int main()
 }
 ```
 
-### [最小覆盖子串](https://leetcode.cn/problems/minimum-window-substring/description/?envType=study-plan-v2&envId=top-100-liked)
+## [最小覆盖子串](https://leetcode.cn/problems/minimum-window-substring/description/?envType=study-plan-v2&envId=top-100-liked)
 
 给定两个字符串 s 和 t，在字符串 s 中找出包含 t 所有字符的最小子串（连续子字符串）。如果不存在符合条件的子串，返回空字符串。要求时间复杂度为 O(n)。
 

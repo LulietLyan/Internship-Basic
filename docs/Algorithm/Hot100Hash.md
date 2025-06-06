@@ -38,11 +38,9 @@ body::before {
 }
 </style>
 
-# LeetCode Hot100
+# 哈希
 
-## 哈希
-
-### [两数之和](https://leetcode.cn/problems/two-sum/?envType=study-plan-v2&envId=top-100-liked)
+## [两数之和](https://leetcode.cn/problems/two-sum/?envType=study-plan-v2&envId=top-100-liked)
 
 给定一个整数数组 nums 和一个整数目标值 target，在该数组中找出和为目标值 target 的两个整数，并返回它们的数组下标。假设每种输入只会对应一个答案，且数组中同一个元素在答案里不能重复出现。可以按任意顺序返回答案。
 
@@ -105,7 +103,7 @@ int main()
 }
 ```
 
-### [字母异位词分组](https://leetcode.cn/problems/group-anagrams/description/?envType=study-plan-v2&envId=top-100-liked)
+## [字母异位词分组](https://leetcode.cn/problems/group-anagrams/description/?envType=study-plan-v2&envId=top-100-liked)
 
 给定一个字符串数组 strs，将字母异位词组合在一起。字母异位词指字母相同但排列不同的字符串。可以按任意顺序返回结果列表。
 
@@ -176,7 +174,7 @@ int main()
 }
 ```
 
-### [最长连续序列](https://leetcode.cn/problems/longest-consecutive-sequence/description/?envType=study-plan-v2&envId=top-100-liked)
+## [最长连续序列](https://leetcode.cn/problems/longest-consecutive-sequence/description/?envType=study-plan-v2&envId=top-100-liked)
 
 给定一个未排序的整数数组 nums，找出数字连续的最长序列（不要求序列元素在原数组中连续）的长度。要求设计时间复杂度为 O(n) 的算法解决此问题。
 
