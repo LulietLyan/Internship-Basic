@@ -223,8 +223,24 @@ nav:
   - 🎒 Docker:
     - ./Docker/Docker.md
   - 💡 Algorithm:
-    - 关于算法题: ./Algorithm/Template.md
-    - LeetCode Hot100: ./Algorithm/LeetCode Hot100.md
+    - ACM 模式的算法题: ./Algorithm/Template.md
+    - LeetCode Hot100: 
+      - 哈希: ./Algorithm/Hot100Hash.md
+      - 双指针: ./Algorithm/Hot100DoublePtr.md
+      - 滑动窗口: ./Algorithm/Hot100Slide.md
+      - 子串: ./Algorithm/Hot100Substr.md
+      - 普通数组: ./Algorithm/Hot100Array.md
+      - 矩阵: ./Algorithm/Hot100Matrix.md
+      - 链表: ./Algorithm/Hot100List.md
+      - 图论: ./Algorithm/Hot100Graph.md
+      - 回溯: ./Algorithm/Hot100Backtracking.md
+      - 二分查找: ./Algorithm/Hot100Bisearch.md
+      - 栈: ./Algorithm/Hot100Stack.md
+      - 堆: ./Algorithm/Hot100Heap.md
+      - 贪心算法: ./Algorithm/Hot100Greedy.md
+      - 动态规划: ./Algorithm/Hot100DP.md
+      - 多维动态规划: ./Algorithm/Hot100MultiDP.md
+      - 技巧: ./Algorithm/Hot100Trick.md
   - ✏ Design Pattern:
     - 单例模式: ./DesignPattern/1-单例模式.md
     - 工厂方法模式: ./DesignPattern/2-工厂方法模式.md
