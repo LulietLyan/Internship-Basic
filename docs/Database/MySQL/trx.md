@@ -10,7 +10,7 @@ body {
 
 body::before {
   --size: 35px; /* 调整网格单元大小 */
-  --line: color-mix(in hsl, canvasText, transparent 80%); /* 调整线条透明度 */
+  --line: color-mix(in hsl, canvasText, transparent 60%); /* 调整线条透明度 */
   content: '';
   height: 100vh;
   width: 100%;
@@ -23,8 +23,8 @@ body::before {
       50% 50% / var(--size) var(--size),
     linear-gradient(var(--line) 1px, transparent 1px var(--size)) 50% 50% /
       var(--size) var(--size);
-  -webkit-mask: linear-gradient(-20deg, transparent 50%, white);
-          mask: linear-gradient(-20deg, transparent 50%, white);
+  -webkit-mask: linear-gradient(-20deg, transparent 30%, white 80%);
+          mask: linear-gradient(-20deg, transparent 30%, white 80%);
   top: 0;
   transform-style: flat;
   pointer-events: none;
