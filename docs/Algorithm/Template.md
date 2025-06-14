@@ -111,20 +111,43 @@ public:
     }
 };
 
-int main() {
-    // 创建链表节点
-    ListNode* node1 = new ListNode(1);
-    ListNode* node2 = new ListNode(2);
-    ListNode* node3 = new ListNode(3);
+// 构造链表
+ListNode* buildList(int n)
+{
+    if (n == 0) return nullptr;
+    int x;
+    cin >> x;
+    ListNode* head = new ListNode(x);
+    ListNode* tail = head;
+    for (int i = 1; i < n; ++i)
+    {
+        cin >> x;
+        tail->next = new ListNode(x);
+        tail = tail->next;
+    }
+    return head;
+}
 
-    // 连接链表节点
-    node1->next = node2;
-    node2->next = node3;
+// 打印链表
+void printList(ListNode* head)
+{
+    while (head)
+    {
+        cout << head->val << (head->next ? " " : "\n");
+        head = head->next;
+    }
+}
+
+int main() 
+{
+    int n;
+    cin >> n;
+    ListNode* head = buildList(n);
 
     Solution solution;
     ListNode* res = solution.function(node1);
 
-    // Your_Code_Here
+    printList(reversed);
 
     return 0;
 }
