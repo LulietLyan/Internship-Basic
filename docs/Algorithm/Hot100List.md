@@ -42,7 +42,48 @@ body::before {
 
 ## [相交链表](https://leetcode.cn/problems/intersection-of-two-linked-lists/description/?envType=study-plan-v2&envId=top-100-liked)
 
-给定两个单链表 headA 和 headB，找出它们的第一个公共节点，如果没有交点则返回 nullptr。
+**题目描述：**
+
+给你两个单链表的头节点 `headA` 和 `headB`，请你找出并返回两个单链表相交的起始节点。如果两个链表没有交点，返回 `null`。
+
+**示例：**
+```
+输入：intersectVal = 8, listA = [4,1,8,4,5], listB = [5,6,1,8,4,5], skipA = 2, skipB = 3
+输出：Intersected at '8'
+解释：相交节点的值为 8 （注意，如果两个链表相交则不能为 0）。
+从各自的表头开始算起，链表 A 为 [4,1,8,4,5]，链表 B 为 [5,6,1,8,4,5]。
+在 A 中，相交节点前有 2 个节点；在 B 中，相交节点前有 3 个节点。
+```
+
+**说明：**
+- listA 中节点数目为 m
+- listB 中节点数目为 n
+- 1 <= m, n <= 3 * 10^4
+- 1 <= Node.val <= 10^5
+- 0 <= skipA <= m
+- 0 <= skipB <= n
+- 如果 listA 和 listB 没有交点，intersectVal 为 0
+- 如果 listA 和 listB 有交点，intersectVal == listA[skipA] == listB[skipB]
+
+**算法解析：**
+
+这道题使用**双指针法**找到相交节点：
+
+1. **核心思想**：先计算两个链表的长度差，然后让较长的链表先走差值步数，最后两个指针同时移动直到相遇
+
+2. **算法步骤**：
+   - 计算链表A和链表B的长度
+   - 计算长度差
+   - 让较长的链表先走差值步数
+   - 两个指针同时移动，直到相遇或到达末尾
+
+3. **具体实现**：
+   - 使用两个指针分别遍历两个链表计算长度
+   - 根据长度差调整起始位置
+   - 同时移动两个指针直到相遇
+
+4. **时间复杂度**：O(m + n) - m和n分别为两个链表的长度
+5. **空间复杂度**：O(1) - 只使用常数额外空间
 
 ```C++
 #define itn int
