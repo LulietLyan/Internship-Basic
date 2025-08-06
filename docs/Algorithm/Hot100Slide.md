@@ -42,7 +42,58 @@ body::before {
 
 ## [无重复字符的最长子串](https://leetcode.cn/problems/longest-substring-without-repeating-characters/description/?envType=study-plan-v2&envId=top-100-liked)
 
-给定一个字符串，找出其中不含重复字符的最长子串的长度。通过滑动窗口动态维护一个无重复字符的子串，遇到重复字符时移动左指针直至无重复。
+**题目描述：**
+
+给定一个字符串，找出其中不含重复字符的最长子串的长度。
+
+**示例：**
+```
+输入：s = "abcabcbb"
+输出：3
+解释：因为无重复字符的最长子串是 "abc"，所以其长度为 3
+
+输入：s = "bbbbb"
+输出：1
+解释：因为无重复字符的最长子串是 "b"，所以其长度为 1
+
+输入：s = "pwwkew"
+输出：3
+解释：因为无重复字符的最长子串是 "wke"，所以其长度为 3
+```
+
+**说明：**
+
+
+- 0 <= s.length <= 5 * 10^4
+- s 由英文字母、数字、符号和空格组成
+
+**算法解析：**
+
+这道题使用 **滑动窗口** 技术：
+
+1. **核心思想** ：维护一个无重复字符的滑动窗口，遇到重复字符时移动左指针
+
+2. **算法步骤** ：
+
+   - 使用双指针i和j维护滑动窗口
+
+   - 使用数组sum记录每个字符的出现次数
+
+   - 当遇到重复字符时，移动左指针直到无重复
+
+3. **具体实现** ：
+
+   - 初始化sum数组为0，记录字符出现次数
+
+   - 右指针i向右移动，增加字符计数
+
+   - 当字符计数大于1时，移动左指针j减少计数
+
+   - 更新最大长度
+
+4. **时间复杂度** ：O(n) - 每个字符最多被访问两次
+
+5. **空间复杂度** ：O(1) - 使用固定大小的数组
 
 ```C++
 #define itn int
@@ -84,11 +135,14 @@ int main()
     cin.tie(0);
     cout.tie(0);
 
-    string s;
-    cin >> s;
+    // 构造测试用例：s = "abcabcbb"
+    string s = "abcabcbb";
 
     Solution sol;
-    cout << sol.lengthOfLongestSubstring(s) << '\n';
+    int result = sol.lengthOfLongestSubstring(s);
+    
+    cout << "字符串: " << s << endl;
+    cout << "无重复字符的最长子串长度: " << result << endl;
 
     return 0;
 }
@@ -96,7 +150,57 @@ int main()
 
 ## [找到字符串中所有字母异位词](https://leetcode.cn/problems/find-all-anagrams-in-a-string/description/?envType=study-plan-v2&envId=top-100-liked)
 
-在字符串 `s` 中查找所有 `p` 的异位词(字母重排)在 `s` 中的起始索引位置。通过滑动窗口维护一个固定长度的窗口，并比较每个窗口的字符计数是否与 `p` 相同。
+**题目描述：**
+
+在字符串 `s` 中查找所有 `p` 的异位词(字母重排)在 `s` 中的起始索引位置。
+
+**示例：**
+```
+输入：s = "cbaebabacd", p = "abc"
+输出：[0,6]
+解释：
+起始索引等于 0 的子串是 "cba", 它是 "abc" 的异位词。
+起始索引等于 6 的子串是 "bac", 它是 "abc" 的异位词。
+
+输入：s = "abab", p = "ab"
+输出：[0,1,2]
+解释：
+起始索引等于 0 的子串是 "ab", 它是 "ab" 的异位词。
+起始索引等于 1 的子串是 "ba", 它是 "ab" 的异位词。
+起始索引等于 2 的子串是 "ab", 它是 "ab" 的异位词。
+```
+
+**说明：**
+
+
+- 1 <= s.length, p.length <= 3 * 10^4
+- s 和 p 仅包含小写字母
+
+**算法解析：**
+
+这道题使用 **滑动窗口** 技术：
+
+1. **核心思想** ：维护一个固定长度的滑动窗口，比较窗口内字符计数是否与目标字符串相同
+
+2. **算法步骤** ：
+
+   - 统计目标字符串p的字符频率
+
+   - 使用滑动窗口遍历字符串s
+
+   - 比较窗口内字符频率是否与p相同
+
+3. **具体实现** ：
+
+   - 使用字符串表示字符频率数组
+
+   - 维护窗口大小等于p的长度
+
+   - 当窗口内字符频率与p相同时，记录起始位置
+
+4. **时间复杂度** ：O(n) - n为字符串s的长度
+
+5. **空间复杂度** ：O(1) - 使用固定大小的字符频率数组
 
 ```C++
 #define itn int
@@ -146,15 +250,19 @@ int main()
     cin.tie(0);
     cout.tie(0);
 
-    string s, p;
-    cin >> s >> p;
+    // 构造测试用例：s = "cbaebabacd", p = "abc"
+    string s = "cbaebabacd";
+    string p = "abc";
 
     Solution sol;
     vector<int> res = sol.findAnagrams(s, p);
 
+    cout << "字符串s: " << s << endl;
+    cout << "字符串p: " << p << endl;
+    cout << "异位词起始索引: ";
     for (int idx : res)
         cout << idx << ' ';
-    cout << '\n';
+    cout << endl;
 
     return 0;
 }

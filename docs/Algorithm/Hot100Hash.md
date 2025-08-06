@@ -42,7 +42,58 @@ body::before {
 
 ## [两数之和](https://leetcode.cn/problems/two-sum/?envType=study-plan-v2&envId=top-100-liked)
 
-给定一个整数数组 nums 和一个整数目标值 target，在该数组中找出和为目标值 target 的两个整数，并返回它们的数组下标。假设每种输入只会对应一个答案，且数组中同一个元素在答案里不能重复出现。可以按任意顺序返回答案。
+**题目描述：**
+
+给定一个整数数组 `nums` 和一个整数目标值 `target`，在该数组中找出和为目标值 `target` 的两个整数，并返回它们的数组下标。假设每种输入只会对应一个答案，且数组中同一个元素在答案里不能重复出现。可以按任意顺序返回答案。
+
+**示例：**
+```
+输入：nums = [2,7,11,15], target = 9
+输出：[0,1]
+解释：因为 nums[0] + nums[1] == 9，返回 [0, 1]
+
+输入：nums = [3,2,4], target = 6
+输出：[1,2]
+
+输入：nums = [3,3], target = 6
+输出：[0,1]
+```
+
+**说明：**
+
+
+- 2 <= nums.length <= 10^4
+- -10^9 <= nums[i] <= 10^9
+- -10^9 <= target <= 10^9
+- 只会存在一个有效答案
+
+**算法解析：**
+
+这道题使用 **哈希表** 来优化查找：
+
+1. **核心思想** ：对于每个元素，检查target减去该元素的值是否在哈希表中
+
+2. **算法步骤** ：
+
+   - 遍历数组，对于每个元素nums[i]
+
+   - 检查target - nums[i]是否在哈希表中
+
+   - 如果存在，返回当前索引和哈希表中的索引
+
+   - 否则将当前元素和索引加入哈希表
+
+3. **具体实现** ：
+
+   - 使用unordered_map存储元素值和索引的映射
+
+   - 遍历数组，查找补数
+
+   - 找到后立即返回结果
+
+4. **时间复杂度** ：O(n) - 只需要遍历一次数组
+
+5. **空间复杂度** ：O(n) - 哈希表最多存储n个元素
 
 ```C++
 #define itn int
@@ -82,22 +133,24 @@ int main()
     cin.tie(0);
     cout.tie(0);
 
-    int n, target;
-    vector<int> nums;
-    cin >> n >> target;
-    while(n--)
-    {
-        int x;
-        cin >> x;
-        nums.push_back(x);
-    }
+    // 构造测试用例：nums = [2,7,11,15], target = 9
+    vector<int> nums = {2, 7, 11, 15};
+    int target = 9;
 
     Solution solve;
-
     vector<int> ans = solve.twoSum(nums, target);
 
+    cout << "数组: ";
+    for (int num : nums) {
+        cout << num << " ";
+    }
+    cout << endl;
+    
+    cout << "目标和: " << target << endl;
+    cout << "结果: ";
     for (auto i : ans)
         cout << i << ' ';
+    cout << endl;
 
     return 0;
 }

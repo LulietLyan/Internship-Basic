@@ -42,7 +42,52 @@ body::before {
 
 ## [矩阵置零](https://leetcode.cn/problems/set-matrix-zeroes/description/?envType=study-plan-v2&envId=top-100-liked)
 
-给定一个 m x n 的矩阵，如果一个元素为 0，则将其所在行和列的所有元素都设为 0。
+**题目描述：**
+
+给定一个 `m x n` 的矩阵，如果一个元素为 `0`，则将其所在行和列的所有元素都设为 `0`。
+
+**示例：**
+```
+输入：matrix = [[1,1,1],[1,0,1],[1,1,1]]
+输出：[[1,0,1],[0,0,0],[1,0,1]]
+
+输入：matrix = [[0,1,2,0],[3,4,5,2],[1,3,1,5]]
+输出：[[0,0,0,0],[0,4,5,0],[0,3,1,0]]
+```
+
+**说明：**
+
+
+- m == matrix.length
+- n == matrix[0].length
+- 1 <= m, n <= 200
+- -2^31 <= matrix[i][j] <= 2^31 - 1
+
+**算法解析：**
+
+这道题使用 **原地算法** 来节省空间：
+
+1. **核心思想** ：利用矩阵的第一行和第一列来记录需要置零的行和列
+
+2. **算法步骤** ：
+
+   - 遍历矩阵，找到所有0元素
+
+   - 将0元素所在行的第一个元素和所在列的第一个元素设为0
+
+   - 再次遍历矩阵，根据第一行和第一列的标记置零
+
+3. **具体实现** ：
+
+   - 使用flag_col0标记第一列是否需要置零
+
+   - 从第二列开始遍历，将0元素的行首和列首标记为0
+
+   - 从下往上、从右往左遍历，根据标记置零
+
+4. **时间复杂度** ：O(mn) - 需要遍历矩阵两次
+
+5. **空间复杂度** ：O(1) - 只使用常数额外空间
 
 ```C++
 #define itn int
@@ -94,19 +139,27 @@ int main()
     cin.tie(0);
     cout.tie(0);
 
-    int m, n;
-    cin >> m >> n;
-    vector<vector<int>> matrix(m, vector<int>(n));
-    for (auto &row : matrix)
-        for (auto &val : row)
-            cin >> val;
+    // 构造测试用例：matrix = [[1,1,1],[1,0,1],[1,1,1]]
+    vector<vector<int>> matrix = {
+        {1, 1, 1},
+        {1, 0, 1},
+        {1, 1, 1}
+    };
 
-    Solution().setZeroes(matrix);
-
+    cout << "原始矩阵：" << endl;
     for (const auto &row : matrix) {
         for (int val : row)
             cout << val << ' ';
-        cout << '\n';
+        cout << endl;
+    }
+
+    Solution().setZeroes(matrix);
+
+    cout << "置零后的矩阵：" << endl;
+    for (const auto &row : matrix) {
+        for (int val : row)
+            cout << val << ' ';
+        cout << endl;
     }
 
     return 0;
@@ -115,7 +168,52 @@ int main()
 
 ## [螺旋矩阵](https://leetcode.cn/problems/spiral-matrix/description/?envType=study-plan-v2&envId=top-100-liked)
 
-给你一个 m x n 的矩阵，请按照顺时针螺旋顺序，返回矩阵中的所有元素。
+**题目描述：**
+
+给你一个 `m x n` 的矩阵，请按照顺时针螺旋顺序，返回矩阵中的所有元素。
+
+**示例：**
+```
+输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]
+输出：[1,2,3,6,9,8,7,4,5]
+
+输入：matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
+输出：[1,2,3,4,8,12,11,10,9,5,6,7]
+```
+
+**说明：**
+
+
+- m == matrix.length
+- n == matrix[i].length
+- 1 <= m, n <= 10
+- -100 <= matrix[i][j] <= 100
+
+**算法解析：**
+
+这道题使用 **模拟法** 按照螺旋路径遍历矩阵：
+
+1. **核心思想** ：模拟螺旋遍历的过程，按照右、下、左、上的顺序移动
+
+2. **算法步骤** ：
+
+   - 定义四个方向：右(0,1)、下(1,0)、左(0,-1)、上(-1,0)
+
+   - 按照螺旋顺序遍历矩阵
+
+   - 遇到边界或已访问元素时改变方向
+
+3. **具体实现** ：
+
+   - 使用dx、dy表示当前移动方向
+
+   - 访问当前位置后标记为已访问(-101)
+
+   - 检查下一个位置是否有效，无效则改变方向
+
+4. **时间复杂度** ：O(mn) - 需要访问矩阵中的每个元素
+
+5. **空间复杂度** ：O(1) - 只使用常数额外空间（不考虑输出数组）
 
 ```C++
 #define itn int
@@ -160,17 +258,26 @@ int main()
     cin.tie(0);
     cout.tie(0);
 
-    int m, n;
-    cin >> m >> n;
-    vector<vector<int>> matrix(m, vector<int>(n));
-    for (auto &row : matrix)
-        for (auto &val : row)
-            cin >> val;
+    // 构造测试用例：matrix = [[1,2,3],[4,5,6],[7,8,9]]
+    vector<vector<int>> matrix = {
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9}
+    };
+
+    cout << "原始矩阵：" << endl;
+    for (const auto &row : matrix) {
+        for (int val : row)
+            cout << val << ' ';
+        cout << endl;
+    }
 
     vector<int> res = Solution().spiralOrder(matrix);
+    
+    cout << "螺旋遍历结果: ";
     for (int val : res)
         cout << val << ' ';
-    cout << '\n';
+    cout << endl;
 
     return 0;
 }

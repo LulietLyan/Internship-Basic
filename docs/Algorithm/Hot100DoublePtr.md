@@ -42,7 +42,50 @@ body::before {
 
 ## [移动零](https://leetcode.cn/problems/move-zeroes/description/?envType=study-plan-v2&envId=top-100-liked)
 
+**题目描述：**
+
 将数组中的所有零移动到末尾，同时保持非零元素的相对顺序不变。要求在原地操作，不额外开辟空间，并尽可能减少操作次数。
+
+**示例：**
+```
+输入：nums = [0,1,0,3,12]
+输出：[1,3,12,0,0]
+
+输入：nums = [0]
+输出：[0]
+```
+
+**说明：**
+
+
+- 1 <= nums.length <= 10^4
+- -2^31 <= nums[i] <= 2^31 - 1
+
+**算法解析：**
+
+这道题使用 **双指针** 技术：
+
+1. **核心思想** ：使用两个指针，一个指向非零元素应该放置的位置，另一个遍历数组
+
+2. **算法步骤** ：
+
+   - 使用指针i指向非零元素应该放置的位置
+
+   - 使用指针j遍历数组寻找非零元素
+
+   - 当j找到非零元素时，与i位置交换，i向前移动
+
+3. **具体实现** ：
+
+   - 初始化i=0，j=0
+
+   - 当nums[j]不为0时，交换nums[i]和nums[j]，i++
+
+   - j始终向前移动
+
+4. **时间复杂度** ：O(n) - 只需要遍历一次数组
+
+5. **空间复杂度** ：O(1) - 只使用常数额外空间
 
 ```C++
 #define itn int
@@ -78,23 +121,21 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(0), cout.tie(0);
 
-    int n;
-    vector<int> nums;
+    // 构造测试用例：nums = [0,1,0,3,12]
+    vector<int> nums = {0, 1, 0, 3, 12};
 
-    cin >> n;
-    while (n--)
-    {
-        int x;
-        cin >> x;
-        nums.push_back(x);
-    }
-
-    Solution solve;
-
-    solve.moveZeroes(nums);
-
+    cout << "原始数组: ";
     for (auto num : nums)
         cout << num << ' ';
+    cout << endl;
+
+    Solution solve;
+    solve.moveZeroes(nums);
+
+    cout << "移动零后: ";
+    for (auto num : nums)
+        cout << num << ' ';
+    cout << endl;
 
     return 0;
 }

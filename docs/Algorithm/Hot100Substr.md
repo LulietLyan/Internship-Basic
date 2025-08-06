@@ -42,7 +42,57 @@ body::before {
 
 ## [和为 K 的子数组](https://leetcode.cn/problems/subarray-sum-equals-k/description/?envType=study-plan-v2&envId=top-100-liked)
 
-给定一个整数数组 nums 和一个整数 k，统计该数组中连续子数组的和恰好等于 k 的个数。
+**题目描述：**
+
+给定一个整数数组 `nums` 和一个整数 `k`，统计该数组中连续子数组的和恰好等于 `k` 的个数。
+
+**示例：**
+```
+输入：nums = [1,1,1], k = 2
+输出：2
+解释：连续子数组 [1,1] 和 [1,1] 的和为 2
+
+输入：nums = [1,2,3], k = 3
+输出：2
+解释：连续子数组 [1,2] 和 [3] 的和为 3
+```
+
+**说明：**
+
+
+- 1 <= nums.length <= 2 * 10^4
+- -1000 <= nums[i] <= 1000
+- -10^7 <= k <= 10^7
+
+**算法解析：**
+
+这道题使用 **前缀和 + 哈希表** 的方法：
+
+1. **核心思想** ：利用前缀和的性质，如果两个前缀和的差值为k，那么这两个位置之间的子数组和为k
+
+2. **算法步骤** ：
+
+   - 维护一个前缀和变量pre和哈希表mp
+
+   - 遍历数组，计算当前前缀和
+
+   - 检查是否存在前缀和为pre-k的位置
+
+   - 更新哈希表中当前前缀和的出现次数
+
+3. **具体实现** ：
+
+   - 初始化哈希表mp[0] = 1，表示空数组的前缀和为0
+
+   - 遍历数组，累加得到当前前缀和pre
+
+   - 如果mp中存在pre-k，说明找到了和为k的子数组
+
+   - 将当前前缀和加入哈希表
+
+4. **时间复杂度** ：O(n) - 只需要遍历一次数组
+
+5. **空间复杂度** ：O(n) - 哈希表最多存储n个不同的前缀和
 
 ```C++
 #define itn int
@@ -86,15 +136,14 @@ int main()
     cin.tie(0);
     cout.tie(0);
 
-    int n, k;
-    cin >> n >> k;
-
-    vector<int> nums(n);
-    for (int i = 0; i < n; ++i)
-        cin >> nums[i];
+    // 构造测试用例：nums = [1,1,1], k = 2
+    vector<int> nums = {1, 1, 1};
+    int k = 2;
 
     Solution sol;
-    cout << sol.subarraySum(nums, k) << '\n';
+    int result = sol.subarraySum(nums, k);
+    
+    cout << "和为 " << k << " 的子数组个数: " << result << endl;
 
     return 0;
 }
