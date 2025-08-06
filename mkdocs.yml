@@ -2,8 +2,8 @@ site_name: ✨ SYSU-CS-Basic
 site_description: 博学 审问 慎思 明辨 笃行
 site_url: https://lulietlyan.github.io/Internship-Basic
 repo_url: https://github.com/LulietLyan/Internship-Basic
-repo_name: SYSU-CS-Basic      # 右上角的名字
-edit_uri: https://github.com/LulietLyan/Internship-Basic/edit/main/docs     # 编辑按钮的url
+repo_name: SYSU-CS-Basic # 右上角的名字
+edit_uri: https://github.com/LulietLyan/Internship-Basic/edit/main/docs # 编辑按钮的url
 
 theme:
   name: material
@@ -11,18 +11,18 @@ theme:
   font:
     text: LXGW WenKai Screen GB Screen # Share Tech
     code: JetBrains Mono
-  features: 
+  features:
     - navigation.tabs.sticky
     - navigation.sections
     - navigation.expand
     - navigation.path
     - navigation.instant
     - navigation.tracking
-    - navigation.tabs       # 使用 Tab 来进行分类
-    - navigation.top        # 返回顶部的按钮 在上滑时出现
-    - navigation.indexes    # Tab 会有一个 index.md 而不是在打开 Tab 时打开第一篇文章
-    - search.suggest        # 搜索输入一些字母时推荐补全整个单词
-    - search.highlight      # 搜索出的文章关键词加入高亮
+    - navigation.tabs # 使用 Tab 来进行分类
+    - navigation.top # 返回顶部的按钮 在上滑时出现
+    - navigation.indexes # Tab 会有一个 index.md 而不是在打开 Tab 时打开第一篇文章
+    - search.suggest # 搜索输入一些字母时推荐补全整个单词
+    - search.highlight # 搜索出的文章关键词加入高亮
     - search.share
     - content.action.edit # 编辑此页
     - content.action.view # 查看源码
@@ -32,9 +32,9 @@ theme:
     - content.tooltips
     - content.footnote.tooltips
     - content.tabs.link
-    - toc.follow    
+    - toc.follow
     - header.autohide
-  language: zh              # 一些提示性的文字会变成中文
+  language: zh # 一些提示性的文字会变成中文
   favicon: Figures/README/SYSU.svg
   icon:
     logo: material/library
@@ -67,8 +67,8 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
   custom_colors:
-    primary: "#B8F2FA"  # 自定义淡蓝色
-    accent: "#D7F6FA"   # 自定义更浅的蓝色
+    primary: '#B8F2FA' # 自定义淡蓝色
+    accent: '#D7F6FA' # 自定义更浅的蓝色
 
 extra_javascript:
   - javascripts/katex.js
@@ -147,9 +147,9 @@ markdown_extensions:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
   - pymdownx.pathconverter:
-      base_path: 'docs/Figures'               # 设置基础路径为你的 PDF 文件所在目录
-      absolute: false                         # 将路径转换为绝对路径
-      tags: 'a script img link object embed'  # 需要转换路径的 HTML 标签 
+      base_path: 'docs/Figures' # 设置基础路径为你的 PDF 文件所在目录
+      absolute: false # 将路径转换为绝对路径
+      tags: 'a script img link object embed' # 需要转换路径的 HTML 标签
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tabbed:
@@ -175,12 +175,12 @@ markdown_extensions:
   - pymdownx.magiclink
   - pymdownx.tilde
   - pymdownx.snippets
-  - pymdownx.superfences: 
-      custom_fences: 
+  - pymdownx.superfences:
+      custom_fences:
         - name: mermaid
           class: mermaid
           format: !!python/name:mermaid2.fence_mermaid_custom
-  - toc: 
+  - toc:
       permalink: true
   - tables
 
@@ -196,72 +196,73 @@ validation:
 
 nav:
   - 🔯 Portal: index.md
-  - 🕸 Computer Network: 
-    - Network Model: Computer Network/Intro.md
-    - HTTP & HTTPs: Computer Network/HTTP & HTTPs.md
-    - TCP & UDP: Computer Network/TCP & UDP.md
-    - IP: Computer Network/IP.md
-    # - PDF: 
-  - 💻 Operating System: 
-    - System Basic: Operating System/Intro.md
-    - Concurrency:  Operating System/Concurrency.md
-    - Memory:  Operating System/Memory.md
-    - Process & Thread:  Operating System/Process & Thread.md
-    - File System:  Operating System/File System.md
-    - Socket & Server:  Operating System/Socket & Server.md
+  - 🕸 Computer Network:
+      - Network Model: Computer Network/Intro.md
+      - HTTP & HTTPs: Computer Network/HTTP & HTTPs.md
+      - TCP & UDP: Computer Network/TCP & UDP.md
+      - IP: Computer Network/IP.md
+    # - PDF:
+  - 💻 Operating System:
+      - System Basic: Operating System/Intro.md
+      - Concurrency: Operating System/Concurrency.md
+      - Memory: Operating System/Memory.md
+      - Process & Thread: Operating System/Process & Thread.md
+      - File System: Operating System/File System.md
+      - Socket & Server: Operating System/Socket & Server.md
   # - 数据结构:
-  - 📕 Database: 
-    - MySQL: 
-      - 概述: ./Database/MySQL/Intro.md
-      - 事务: ./Database/MySQL/trx.md
-      - 索引: ./Database/MySQL/index.md
-      - 锁: ./Database/MySQL/lock.md
-      - 存储引擎: ./Database/MySQL/engine.md
-      - 日志: ./Database/MySQL/log.md
-      - 优化: ./Database/MySQL/optimization.md
-    - Redis: ./Database/Redis/Redis.md
+  - 📕 Database:
+      - MySQL:
+          - 概述: ./Database/MySQL/Intro.md
+          - 事务: ./Database/MySQL/trx.md
+          - 索引: ./Database/MySQL/index.md
+          - 锁: ./Database/MySQL/lock.md
+          - 存储引擎: ./Database/MySQL/engine.md
+          - 日志: ./Database/MySQL/log.md
+          - 优化: ./Database/MySQL/optimization.md
+      - Redis: ./Database/Redis/Redis.md
   - 🎒 Docker:
-    - ./Docker/Docker.md
+      - ./Docker/Docker.md
   - 💡 Algorithm:
-    - ACM 模式的算法题: ./Algorithm/Template.md
-    - LeetCode Hot100: 
-      - 哈希: ./Algorithm/Hot100Hash.md
-      - 双指针: ./Algorithm/Hot100DoublePtr.md
-      - 滑动窗口: ./Algorithm/Hot100Slide.md
-      - 子串: ./Algorithm/Hot100Substr.md
-      - 普通数组: ./Algorithm/Hot100Array.md
-      - 矩阵: ./Algorithm/Hot100Matrix.md
-      - 链表: ./Algorithm/Hot100List.md
-      - 图论: ./Algorithm/Hot100Graph.md
-      - 回溯: ./Algorithm/Hot100Backtracking.md
-      - 二分查找: ./Algorithm/Hot100Bisearch.md
-      - 栈: ./Algorithm/Hot100Stack.md
-      - 堆: ./Algorithm/Hot100Heap.md
-      - 贪心算法: ./Algorithm/Hot100Greedy.md
-      - 动态规划: ./Algorithm/Hot100DP.md
-      - 多维动态规划: ./Algorithm/Hot100MultiDP.md
-      - 技巧: ./Algorithm/Hot100Trick.md
+      - ACM 模式的算法题: ./Algorithm/Template.md
+      - LeetCode Hot100:
+          - 哈希: ./Algorithm/Hot100Hash.md
+          - 双指针: ./Algorithm/Hot100DoublePtr.md
+          - 滑动窗口: ./Algorithm/Hot100Slide.md
+          - 子串: ./Algorithm/Hot100Substr.md
+          - 普通数组: ./Algorithm/Hot100Array.md
+          - 矩阵: ./Algorithm/Hot100Matrix.md
+          - 链表: ./Algorithm/Hot100List.md
+          - 二叉树: ./Algorithm/Hot100Bitree.md
+          - 图论: ./Algorithm/Hot100Graph.md
+          - 回溯: ./Algorithm/Hot100Backtracking.md
+          - 二分查找: ./Algorithm/Hot100Bisearch.md
+          - 栈: ./Algorithm/Hot100Stack.md
+          - 堆: ./Algorithm/Hot100Heap.md
+          - 贪心算法: ./Algorithm/Hot100Greedy.md
+          - 动态规划: ./Algorithm/Hot100DP.md
+          - 多维动态规划: ./Algorithm/Hot100MultiDP.md
+          - 技巧: ./Algorithm/Hot100Trick.md
   - ✏ Design Pattern:
-    - 单例模式: ./DesignPattern/1-单例模式.md
-    - 工厂方法模式: ./DesignPattern/2-工厂方法模式.md
-    - 抽象工厂模式: ./DesignPattern/3-抽象工厂模式.md
-    - 建造者模式: ./DesignPattern/4-建造者模式.md
-    - 原型模式: ./DesignPattern/5-原型模式.md
-    - 适配器模式: ./DesignPattern/6-适配器模式.md
-    - 代理模式: ./DesignPattern/7-代理模式.md
-    - 装饰模式: ./DesignPattern/8-装饰模式.md
-    - 外观模式: ./DesignPattern/9-外观模式.md
-    - 桥接模式: ./DesignPattern/10-桥接模式.md
-    - 组合模式: ./DesignPattern/11-组合模式.md
-    - 享元模式: ./DesignPattern/12-享元模式.md
-    - 观察者模式: ./DesignPattern/13-观察者模式.md
-    - 策略模式: ./DesignPattern/14-策略模式.md
-    - 命令模式: ./DesignPattern/15-命令模式.md
-    - 中介者模式: ./DesignPattern/16-中介者模式.md
-    - 备忘录模式: ./DesignPattern/17-备忘录模式.md
-    - 模板方法模式: ./DesignPattern/18-模板方法模式.md
-    - 迭代器模式: ./DesignPattern/19-迭代器模式.md
-    - 状态模式: ./DesignPattern/20-状态模式.md
-    - 责任链模式: ./DesignPattern/21-责任链模式.md
-    - 解释器模式: ./DesignPattern/22-解释器模式.md
-    - 访问者模式: ./DesignPattern/23-访问者模式.md
+      - 单例模式: ./DesignPattern/1-单例模式.md
+      - 工厂方法模式: ./DesignPattern/2-工厂方法模式.md
+      - 抽象工厂模式: ./DesignPattern/3-抽象工厂模式.md
+      - 建造者模式: ./DesignPattern/4-建造者模式.md
+      - 原型模式: ./DesignPattern/5-原型模式.md
+      - 适配器模式: ./DesignPattern/6-适配器模式.md
+      - 代理模式: ./DesignPattern/7-代理模式.md
+      - 装饰模式: ./DesignPattern/8-装饰模式.md
+      - 外观模式: ./DesignPattern/9-外观模式.md
+      - 桥接模式: ./DesignPattern/10-桥接模式.md
+      - 组合模式: ./DesignPattern/11-组合模式.md
+      - 享元模式: ./DesignPattern/12-享元模式.md
+      - 观察者模式: ./DesignPattern/13-观察者模式.md
+      - 策略模式: ./DesignPattern/14-策略模式.md
+      - 命令模式: ./DesignPattern/15-命令模式.md
+      - 中介者模式: ./DesignPattern/16-中介者模式.md
+      - 备忘录模式: ./DesignPattern/17-备忘录模式.md
+      - 模板方法模式: ./DesignPattern/18-模板方法模式.md
+      - 迭代器模式: ./DesignPattern/19-迭代器模式.md
+      - 状态模式: ./DesignPattern/20-状态模式.md
+      - 责任链模式: ./DesignPattern/21-责任链模式.md
+      - 解释器模式: ./DesignPattern/22-解释器模式.md
+      - 访问者模式: ./DesignPattern/23-访问者模式.md
