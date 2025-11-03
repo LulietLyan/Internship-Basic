@@ -227,14 +227,14 @@ ONBUILD RUN npm install
 
 一些指令（`RUN`、`CMD`以及`ENTRYPOINT`）能够接受shell和exec这两种格式。
 
-**Exec格式**：使用JSON数组（例如，`["executable","param1","param2"]`），其中第一个元素是一个可执行文件，其他元素是它执行时所使用的参数。
+**Exec格式**： 使用JSON数组（例如，`["executable","param1","param2"]`），其中第一个元素是一个可执行文件，其他元素是它执行时所使用的参数。
 
 ```dockerfile
 CMD ["python", "app.py"]
 RUN ["/bin/bash", "-c", "echo hello"]
 ```
 
-**Shell格式**：使用自由形式的字符串，字符串会传给`/bin/sh -c`执行。
+**Shell格式**： 使用自由形式的字符串，字符串会传给`/bin/sh -c`执行。
 
 ```dockerfile
 CMD python app.py

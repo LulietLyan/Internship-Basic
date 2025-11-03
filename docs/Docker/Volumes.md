@@ -57,25 +57,25 @@ body::before {
 
 由Docker管理的卷，存储在Docker的存储目录中。
 
-**创建命名卷：**
+**创建命名卷**：
 
 ```bash
 $ docker volume create mydata
 ```
 
-**查看所有卷：**
+**查看所有卷**：
 
 ```bash
 $ docker volume ls
 ```
 
-**查看卷详细信息：**
+**查看卷详细信息**：
 
 ```bash
 $ docker volume inspect mydata
 ```
 
-**使用命名卷：**
+**使用命名卷**：
 
 ```bash
 $ docker run -d -v mydata:/data --name container1 nginx
@@ -87,7 +87,7 @@ $ docker run -d -v mydata:/data --name container2 nginx
 
 直接挂载主机文件系统上的目录或文件到容器中。
 
-**使用绑定挂载：**
+**使用绑定挂载**：
 
 ```bash
 # 挂载主机目录到容器

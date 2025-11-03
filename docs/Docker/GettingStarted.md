@@ -48,14 +48,14 @@ body::before {
 $ docker run debian echo "Hello World"
 ```
 
-**这个命令的执行过程：**
+**这个命令的执行过程**：
 
-1. **检查本地镜像**：输出结果的第一行告诉我们**本地没有Debian镜像**
-2. **自动下载镜像**：Docker会在Docker Hub进行**在线搜索**并下载Debian最新版本的镜像
-3. **创建并运行容器**：镜像下载后Docker将它**转成容器并运行**
-4. **执行命令**：然后在容器中执行我们指定的命令——`echo "Hello World"`。命令的结果则显示在输出内容的**最后一行**
+1. **检查本地镜像**：输出结果的第一行告诉我们 **本地没有Debian镜像**
+2. **自动下载镜像**：Docker会在Docker Hub进行 **在线搜索** 并下载Debian最新版本的镜像
+3. **创建并运行容器**：镜像下载后Docker将它 **转成容器并运行**
+4. **执行命令**：然后在容器中执行我们指定的命令——`echo "Hello World"`。命令的结果则显示在输出内容的 **最后一行**
 
-**预期输出：**
+**预期输出**：
 ```
 Unable to find image 'debian:latest' locally
 latest: Pulling from library/debian
@@ -89,7 +89,7 @@ exit
 
 ### 1. Docker 运行
 
-要在Docker中**运行容器**，可以使用以下命令：
+要在Docker中 **运行容器**，可以使用以下命令：
 
 ```bash
 docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
@@ -112,7 +112,7 @@ docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 
 ### 2. Docker 构建
 
-要**构建自己的Docker镜像**，可以使用以下命令：
+要 **构建自己的Docker镜像**，可以使用以下命令：
 
 ```bash
 docker build [OPTIONS] PATH | URL | -
@@ -128,7 +128,7 @@ $ docker build -t myimage:1.0 .
 
 ### 3. Docker pull
 
-要从Docker仓库中**拉取现有的镜像**，可以使用以下命令：
+要从Docker仓库中 **拉取现有的镜像**，可以使用以下命令：
 
 ```bash
 docker pull [OPTIONS] NAME[:TAG|@DIGEST]
@@ -140,7 +140,7 @@ $ docker pull ubuntu:20.04
 
 ### 4. Docker push
 
-要将本地的镜像**推送到Docker仓库**，可以使用以下命令：
+要将本地的镜像 **推送到Docker仓库**，可以使用以下命令：
 
 ```bash
 docker push [OPTIONS] NAME[:TAG]
@@ -148,7 +148,7 @@ docker push [OPTIONS] NAME[:TAG]
 
 ### 5. Docker images
 
-要**列出本地所有的镜像**，可以使用以下命令：
+要 **列出本地所有的镜像**，可以使用以下命令：
 
 ```bash
 docker images [OPTIONS] [REPOSITORY[:TAG]]
@@ -156,7 +156,7 @@ docker images [OPTIONS] [REPOSITORY[:TAG]]
 
 ### 6. Docker ps
 
-要**列出正在运行的容器**，可以使用以下命令：
+要 **列出正在运行的容器**，可以使用以下命令：
 
 ```bash
 docker ps [OPTIONS]
@@ -167,7 +167,7 @@ docker ps [OPTIONS]
 
 ### 7. Docker stop
 
-要**停止正在运行的容器**，可以使用以下命令：
+要 **停止正在运行的容器**，可以使用以下命令：
 
 ```bash
 docker stop [OPTIONS] CONTAINER [CONTAINER...]
@@ -175,7 +175,7 @@ docker stop [OPTIONS] CONTAINER [CONTAINER...]
 
 ### 8. Docker start
 
-要**启动已停止的容器**，可以使用以下命令：
+要 **启动已停止的容器**，可以使用以下命令：
 
 ```bash
 docker start [OPTIONS] CONTAINER [CONTAINER...]
@@ -183,7 +183,7 @@ docker start [OPTIONS] CONTAINER [CONTAINER...]
 
 ### 9. Docker restart
 
-要**重启正在运行的容器**，可以使用以下命令：
+要 **重启正在运行的容器**，可以使用以下命令：
 
 ```bash
 docker restart [OPTIONS] CONTAINER [CONTAINER...]
@@ -191,7 +191,7 @@ docker restart [OPTIONS] CONTAINER [CONTAINER...]
 
 ### 10. Docker kill
 
-要**强制终止**正在运行的容器，可以使用以下命令：
+要 **强制终止** 正在运行的容器，可以使用以下命令：
 
 ```bash
 docker kill [OPTIONS] CONTAINER [CONTAINER...]
@@ -199,7 +199,7 @@ docker kill [OPTIONS] CONTAINER [CONTAINER...]
 
 ### 11. Docker rm/docker rmi
 
-要**删除已停止的容器或镜像**，可以使用以下命令：
+要 **删除已停止的容器或镜像**，可以使用以下命令：
 
 ```bash
 docker rm [OPTIONS] CONTAINER [CONTAINER...]
@@ -208,7 +208,7 @@ docker rmi [OPTIONS] IMAGE [IMAGE...]
 
 ### 12. Docker exec
 
-要在运行中的**容器内执行命令**，可以使用以下命令：
+要在运行中的 **容器内执行命令**，可以使用以下命令：
 
 ```bash
 docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
@@ -222,7 +222,7 @@ $ docker exec -it mycontainer /bin/bash
 
 ### 13. Docker logs
 
-要**查看容器的日志**输出，可以使用以下命令：
+要 **查看容器的日志** 输出，可以使用以下命令：
 
 ```bash
 docker logs [OPTIONS] CONTAINER
@@ -236,7 +236,7 @@ docker logs [OPTIONS] CONTAINER
 
 ### 14. Docker inspect
 
-要获取容器或镜像的**详细信息**，可以使用以下命令：
+要获取容器或镜像的 **详细信息**，可以使用以下命令：
 
 ```bash
 docker inspect [OPTIONS] NAME|ID [NAME|ID...]
@@ -244,7 +244,7 @@ docker inspect [OPTIONS] NAME|ID [NAME|ID...]
 
 ### 15. Docker cp
 
-要在容器和主机之间**复制文件或目录**，可以使用以下命令：
+要在容器和主机之间 **复制文件或目录**，可以使用以下命令：
 
 ```bash
 docker cp [OPTIONS] CONTAINER:SRC_PATH DEST_PATH
@@ -253,7 +253,7 @@ docker cp [OPTIONS] SRC_PATH CONTAINER:DEST_PATH
 
 ### 16. Docker system prune
 
-要**清理**不再使用的镜像、容器和其他资源，可以使用以下命令：
+要 **清理** 不再使用的镜像、容器和其他资源，可以使用以下命令：
 
 ```bash
 docker system prune [OPTIONS]
@@ -261,7 +261,7 @@ docker system prune [OPTIONS]
 
 ### 17. Docker network
 
-**Docker网络**允许容器之间进行通信和连接到外部网络。以下是一些与Docker网络相关的常用命令：
+**Docker网络** 允许容器之间进行通信和连接到外部网络。以下是一些与Docker网络相关的常用命令：
 
 - `docker network ls`：列出所有的Docker网络
 - `docker network create`：创建一个新的Docker网络
@@ -270,7 +270,7 @@ docker system prune [OPTIONS]
 
 ### 18. Docker volume
 
-**Docker卷**用于在容器和主机之间持久化存储数据。以下是一些与Docker卷相关的常用命令：
+**Docker卷** 用于在容器和主机之间持久化存储数据。以下是一些与Docker卷相关的常用命令：
 
 - `docker volume ls`：列出所有的Docker卷
 - `docker volume create`：创建一个新的Docker卷
@@ -312,7 +312,7 @@ docker system prune [OPTIONS]
 
 ### 22. Docker 登录和认证
 
-要**登录到Docker仓库或私有镜像仓库**，可以使用以下命令：
+要 **登录到Docker仓库或私有镜像仓库**，可以使用以下命令：
 
 ```bash
 docker login
@@ -323,7 +323,7 @@ docker logout
 
 ### 23. Docker 容器日志管理
 
-除了使用`docker logs`命令查看容器日志外，还可以使用以下命令**对容器日志进行管理**：
+除了使用`docker logs`命令查看容器日志外，还可以使用以下命令 **对容器日志进行管理**：
 
 - `docker logs --tail`：只显示最后几行的日志
 - `docker logs --follow`：实时跟踪容器的日志输出

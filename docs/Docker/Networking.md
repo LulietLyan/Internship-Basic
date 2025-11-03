@@ -67,12 +67,12 @@ $ docker network inspect bridge
 
 这是Docker的默认网络模式。当你创建一个容器且未指定网络时，它会连接到默认的`bridge`网络。
 
-**特点：**
+**特点**：
 - 容器之间可以相互通信
 - 容器与主机网络隔离
 - 需要通过端口映射才能从主机访问容器
 
-**示例：**
+**示例**：
 
 ```bash
 # 运行容器（自动连接到bridge网络）
@@ -87,12 +87,12 @@ $ docker exec web1 ping web2
 
 容器直接使用主机的网络栈，没有网络隔离。
 
-**特点：**
+**特点**：
 - 容器直接使用主机的IP地址
 - 不需要端口映射
 - 性能最好，但安全性较低
 
-**示例：**
+**示例**：
 
 ```bash
 $ docker run --network host nginx
@@ -106,11 +106,11 @@ $ docker run --network host nginx
 
 容器没有网络连接，完全隔离。
 
-**使用场景：**
+**使用场景**：
 - 需要完全网络隔离的容器
 - 仅需要本地文件系统访问的应用
 
-**示例：**
+**示例**：
 
 ```bash
 $ docker run --network none alpine
