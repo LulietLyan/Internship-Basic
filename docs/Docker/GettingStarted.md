@@ -42,18 +42,48 @@ body::before {
 
 ## Hello World
 
-我们尝试执行下面的命令：
+让我们从一个最简单的例子开始。尝试执行下面的命令：
 
 ```bash
 $ docker run debian echo "Hello World"
 ```
 
-这个命令的作用：
+**这个命令的执行过程：**
 
-- 输出结果的第一行告诉我们**本地没有Debian镜像**
-- Docker会在Docker Hub进行**在线搜索**并下载Debian最新版本的镜像
-- 镜像下载后Docker将它**转成容器并运行**
-- 然后在容器中执行我们指定的命令——`echo "Hello World"`。命令的结果则显示在输出内容的**最后一行**
+1. **检查本地镜像**：输出结果的第一行告诉我们**本地没有Debian镜像**
+2. **自动下载镜像**：Docker会在Docker Hub进行**在线搜索**并下载Debian最新版本的镜像
+3. **创建并运行容器**：镜像下载后Docker将它**转成容器并运行**
+4. **执行命令**：然后在容器中执行我们指定的命令——`echo "Hello World"`。命令的结果则显示在输出内容的**最后一行**
+
+**预期输出：**
+```
+Unable to find image 'debian:latest' locally
+latest: Pulling from library/debian
+...
+Status: Downloaded newer image for debian:latest
+Hello World
+```
+
+如果再次执行同一命令，那就无需再下载镜像了，容器会立即启动。而整个命令的运行时间大概只需一秒，要是想象一下它背后所做的一切事情，就会觉得这个速度十分惊人：Docker部署并启动了我们的容器，执行我们指定的echo命令，最后把容器关掉。类似的工作如果用传统的虚拟机执行，所需时间将会是好几秒，甚至是好几分钟。
+
+## 进入容器的命令行
+
+我们可以用以下命令，请求Docker提供一个容器中的shell：
+
+```bash
+$ docker run -i -t debian /bin/bash
+root@622ac5689680:/# echo "Hello from Container-land!"
+Hello from Container-land!
+root@622ac5689680:/# exit
+exit
+```
+
+这样你就可以进入容器中的命令行了，和使用ssh进入远程机器很相似。当中的`-i`和`-t`参数表示我们想要一个附有tty的交互会话（interactive session），`/bin/bash`参数表示你想获得一个bash shell。当你退出shell时，容器就会停止——主进程运行多久，容器就运行多久。
+
+!!! tip "参数说明"
+    - `-i, --interactive`：保持stdin打开（即使没有连接）
+    - `-t, --tty`：分配一个伪终端（pseudo-TTY）
+    - 通常这两个参数一起使用（`-it`）来启动交互式容器
 
 ## Docker 的基本命令
 

@@ -227,9 +227,17 @@
     "created": "2025-11-03T10:43:15.788930",
     "modified": "2025-11-03T10:44:26.294904"
   },
+  "Docker\\BestPractices.md": {
+    "created": "2025-11-03T11:00:40.199425",
+    "modified": "2025-11-03T11:00:40.349585"
+  },
   "Docker\\Docker.md": {
     "created": "2025-05-31T02:19:14.428169",
     "modified": "2025-05-31T15:55:00.374140"
+  },
+  "Docker\\DockerCompose.md": {
+    "created": "2025-11-03T10:58:17.953212",
+    "modified": "2025-11-03T10:58:18.151266"
   },
   "Docker\\Dockerfile.md": {
     "created": "2025-11-03T10:43:56.973519",
@@ -237,7 +245,11 @@
   },
   "Docker\\GettingStarted.md": {
     "created": "2025-11-03T10:42:38.448035",
-    "modified": "2025-11-03T10:44:26.303012"
+    "modified": "2025-11-03T10:56:34.555988"
+  },
+  "Docker\\ImageRegistry.md": {
+    "created": "2025-11-03T11:01:23.128652",
+    "modified": "2025-11-03T11:01:23.289896"
   },
   "Docker\\Installation.md": {
     "created": "2025-11-03T10:41:56.963871",
@@ -246,6 +258,18 @@
   "Docker\\Intro.md": {
     "created": "2025-11-03T10:41:32.323993",
     "modified": "2025-11-03T10:44:26.294904"
+  },
+  "Docker\\Networking.md": {
+    "created": "2025-11-03T10:59:02.735125",
+    "modified": "2025-11-03T10:59:02.868624"
+  },
+  "Docker\\PracticalExamples.md": {
+    "created": "2025-11-03T10:57:25.237073",
+    "modified": "2025-11-03T10:57:25.360222"
+  },
+  "Docker\\Volumes.md": {
+    "created": "2025-11-03T10:59:42.154105",
+    "modified": "2025-11-03T10:59:42.316809"
   },
   "logs\\1_date.md": {
     "created": "2025-05-31T22:02:40.511967",

@@ -226,6 +226,12 @@ nav:
       - 快速开始: ./Docker/GettingStarted.md
       - 基本概念: ./Docker/BasicConcepts.md
       - Dockerfile: ./Docker/Dockerfile.md
+      - 实战案例: ./Docker/PracticalExamples.md
+      - Docker Compose: ./Docker/DockerCompose.md
+      - 网络: ./Docker/Networking.md
+      - 数据卷: ./Docker/Volumes.md
+      - 镜像仓库: ./Docker/ImageRegistry.md
+      - 最佳实践: ./Docker/BestPractices.md
   - 💡 Algorithm:
       - ACM 模式的算法题: ./Algorithm/Template.md
       - LeetCode Hot100:
