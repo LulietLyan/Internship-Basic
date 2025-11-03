@@ -42,11 +42,11 @@ body::before {
 
 ## [无重复字符的最长子串](https://leetcode.cn/problems/longest-substring-without-repeating-characters/description/?envType=study-plan-v2&envId=top-100-liked)
 
-**题目描述：**
+**题目描述**：
 
 给定一个字符串，找出其中不含重复字符的最长子串的长度。
 
-**示例：**
+**示例**：
 ```
 输入：s = "abcabcbb"
 输出：3
@@ -61,13 +61,13 @@ body::before {
 解释：因为无重复字符的最长子串是 "wke"，所以其长度为 3
 ```
 
-**说明：**
+**说明**：
 
 
 - 0 <= s.length <= 5 * 10^4
 - s 由英文字母、数字、符号和空格组成
 
-**算法解析：**
+**算法解析**：
 
 这道题使用 **滑动窗口** 技术：
 
@@ -150,11 +150,11 @@ int main()
 
 ## [找到字符串中所有字母异位词](https://leetcode.cn/problems/find-all-anagrams-in-a-string/description/?envType=study-plan-v2&envId=top-100-liked)
 
-**题目描述：**
+**题目描述**：
 
 在字符串 `s` 中查找所有 `p` 的异位词(字母重排)在 `s` 中的起始索引位置。
 
-**示例：**
+**示例**：
 ```
 输入：s = "cbaebabacd", p = "abc"
 输出：[0,6]
@@ -170,13 +170,13 @@ int main()
 起始索引等于 2 的子串是 "ab", 它是 "ab" 的异位词。
 ```
 
-**说明：**
+**说明**：
 
 
 - 1 <= s.length, p.length <= 3 * 10^4
 - s 和 p 仅包含小写字母
 
-**算法解析：**
+**算法解析**：
 
 这道题使用 **滑动窗口** 技术：
 

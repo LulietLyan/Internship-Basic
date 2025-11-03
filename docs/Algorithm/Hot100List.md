@@ -42,11 +42,11 @@ body::before {
 
 ## [相交链表](https://leetcode.cn/problems/intersection-of-two-linked-lists/description/?envType=study-plan-v2&envId=top-100-liked)
 
-**题目描述：**
+**题目描述**：
 
 给你两个单链表的头节点 `headA` 和 `headB`，请你找出并返回两个单链表相交的起始节点。如果两个链表没有交点，返回 `null`。
 
-**示例：**
+**示例**：
 ```
 输入：intersectVal = 8, listA = [4,1,8,4,5], listB = [5,6,1,8,4,5], skipA = 2, skipB = 3
 输出：Intersected at '8'
@@ -55,7 +55,7 @@ body::before {
 在 A 中，相交节点前有 2 个节点；在 B 中，相交节点前有 3 个节点。
 ```
 
-**说明：**
+**说明**：
 
 
 - listA 中节点数目为 m
@@ -74,7 +74,7 @@ body::before {
 
 - 如果 listA 和 listB 有交点，intersectVal == listA[skipA] == listB[skipB]
 
-**算法解析：**
+**算法解析**：
 
 这道题使用 **双指针法** 找到相交节点：
 
