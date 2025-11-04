@@ -38,7 +38,7 @@ body::before {
 }
 </style>
 
-# 🔵 Socker & Server
+# 🔵 Socket & Server
 
 ## select poll epoll 的区别与联系？
 
