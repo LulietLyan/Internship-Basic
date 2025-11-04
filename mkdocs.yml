@@ -219,7 +219,12 @@ nav:
           - 存储引擎: ./Database/MySQL/engine.md
           - 日志: ./Database/MySQL/log.md
           - 优化: ./Database/MySQL/optimization.md
-      - Redis: ./Database/Redis/Redis.md
+      - Redis:
+          - 概述: ./Database/Redis/Intro.md
+          - 数据结构: ./Database/Redis/DataStructure.md
+          - 持久化: ./Database/Redis/Persistence.md
+          - 应用: ./Database/Redis/Application.md
+          - 集群: ./Database/Redis/Cluster.md
   - 🎒 Docker:
       - 概述: ./Docker/Intro.md
       - 安装: ./Docker/Installation.md
