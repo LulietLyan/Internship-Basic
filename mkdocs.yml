@@ -225,6 +225,17 @@ nav:
           - 持久化: ./Database/Redis/Persistence.md
           - 应用: ./Database/Redis/Application.md
           - 集群: ./Database/Redis/Cluster.md
+  - 💻 Programming Language:
+      - GoLang:
+          - 概述: ./Programming Language/GoLang/Intro.md
+          - GMP调度: ./Programming Language/GoLang/GMP.md
+          - Channel: ./Programming Language/GoLang/Channel.md
+          - 同步原语: ./Programming Language/GoLang/Sync.md
+          - 数据结构: ./Programming Language/GoLang/DataStructure.md
+          - 内存管理: ./Programming Language/GoLang/Memory.md
+          - Context: ./Programming Language/GoLang/Context.md
+          - 反射: ./Programming Language/GoLang/Reflection.md
+          - 代码示例: ./Programming Language/GoLang/Code.md
   - 🐳 Docker:
       - 概述: ./Docker/Intro.md
       - 安装: ./Docker/Installation.md
