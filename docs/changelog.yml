@@ -8,6 +8,7 @@
     - pageupdate: 补充计算机网络缺失问题（TCP滑动窗口、没有listen、没有accept等）
     - pageupdate: 重构Redis文档为多文件结构（概述、数据结构、持久化、应用、集群）
     - pageupdate: 完善MySQL文档内容（select/update执行过程、Buffer Pool管理）
+    - pageupdate: 新增Programming Language专栏，添加GoLang面试题文档（概述、GMP调度、Channel、同步原语、数据结构、内存管理、Context、反射、代码示例）
   - "2025-11-03":
     - pageupdate: 重构Docker文档为多章节结构
     - pageupdate: 修复文档格式问题
