@@ -9,6 +9,7 @@
     - pageupdate: 重构Redis文档为多文件结构（概述、数据结构、持久化、应用、集群）
     - pageupdate: 完善MySQL文档内容（select/update执行过程、Buffer Pool管理）
     - pageupdate: 新增Programming Language专栏，添加GoLang面试题文档（概述、GMP调度、Channel、同步原语、数据结构、内存管理、Context、反射、代码示例）
+    - pageupdate: 合并GOALNG_INTERVIEW_COLLECTION.md中未涉及的问题到GoLang文档（sync.RWMutex、接口嵌套复用、init函数特征增强、GOROOT和GOPATH说明）
   - "2025-11-03":
     - pageupdate: 重构Docker文档为多章节结构
     - pageupdate: 修复文档格式问题
