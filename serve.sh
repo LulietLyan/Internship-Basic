@@ -22,21 +22,9 @@ if [ ! -f mkdocs.yml ]; then
   exit 1
 fi
 
-# 创建 conda 环境（若不存在）
-ENV_NAME="mkdocs"
-if ! conda env list | grep -q "^${ENV_NAME} "; then
-  echo "[2/4] 正在创建 conda 环境: ${ENV_NAME} (Python 3.11)..."
-  if ! conda create -n "$ENV_NAME" python=3.11 -y; then
-    echo ""
-    echo "  ⚠ 自动创建 conda 环境失败。若为权限问题，请在本机终端中先执行："
-    echo "     conda create -n mkdocs python=3.11 -y"
-    echo "  然后重新运行: ./serve.sh"
-    echo ""
-    exit 1
-  fi
-else
-  echo "[2/4] 使用已有 conda 环境: ${ENV_NAME}"
-fi
+# 使用 base conda 环境
+ENV_NAME="base"
+echo "[2/4] 使用 conda 环境: ${ENV_NAME}"
 
 # 安装依赖
 if [ ! -f requirements-mkdocs.txt ]; then
@@ -49,8 +37,9 @@ conda run -n "$ENV_NAME" pip install -q -r requirements-mkdocs.txt
 # 启动服务
 echo "[4/4] 启动 MkDocs 本地服务..."
 echo ""
-echo "  请在浏览器打开: http://127.0.0.1:8000"
+echo "  请在浏览器打开: http://0.0.0.0:8000"
 echo "  按 Ctrl+C 停止服务"
 echo ""
 
-exec conda run -n "$ENV_NAME" mkdocs serve
+# 监听 0.0.0.0 以便同一路由器下其他设备可访问
+exec conda run -n "$ENV_NAME" mkdocs serve -a 0.0.0.0:8000
