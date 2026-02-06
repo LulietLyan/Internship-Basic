@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
-# 一键启动 MkDocs 本地调试：自动切 main、创建环境、安装依赖、启动服务
+# 一键启动 MkDocs 本地调试：自动切 main、创建环境、安装依赖，在 tmux 会话 mkdocs 中启动服务
+# 若不存在 mkdocs 会话则创建；若已存在则提示附加或先执行结束脚本
 set -e
 
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 cd "$ROOT"
 
-echo "========== 一键启动 MkDocs 本地调试 =========="
+echo "========== 一键启动 MkDocs 本地调试（tmux 会话 mkdocs）=========="
 
 # 若当前在 gh-pages，切换到 main（源码在 main 分支）
 BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || true)
@@ -34,12 +35,22 @@ fi
 echo "[3/4] 正在安装 MkDocs 依赖..."
 conda run -n "$ENV_NAME" pip install -q -r requirements-mkdocs.txt
 
-# 启动服务
-echo "[4/4] 启动 MkDocs 本地服务..."
+# 在 tmux 会话 mkdocs 中启动服务
+SESSION="mkdocs"
+if tmux has-session -t "$SESSION" 2>/dev/null; then
+  echo "[4/4] tmux 会话 \"$SESSION\" 已存在，不重复启动。"
+  echo "  附加查看: tmux attach -t $SESSION"
+  echo "  结束会话请运行: ./stop-mkdocs.sh"
+  exit 0
+fi
+
+echo "[4/4] 创建 tmux 会话 \"$SESSION\" 并启动 MkDocs..."
+tmux new-session -d -s "$SESSION" -c "$ROOT"
+# 在会话中执行：激活 conda 并启动 mkdocs（单条命令避免交互）
+tmux send-keys -t "$SESSION" "conda run -n $ENV_NAME mkdocs serve -a 0.0.0.0:8000" Enter
+
 echo ""
 echo "  请在浏览器打开: http://0.0.0.0:8000"
-echo "  按 Ctrl+C 停止服务"
+echo "  附加到会话: tmux attach -t $SESSION"
+echo "  结束会话: ./stop-mkdocs.sh"
 echo ""
-
-# 监听 0.0.0.0 以便同一路由器下其他设备可访问
-exec conda run -n "$ENV_NAME" mkdocs serve -a 0.0.0.0:8000
