@@ -1,0 +1,12 @@
+# MkDocs 及主题（与 .github/workflows/PublishMySite.yml 一致）
+mkdocs
+mkdocs-material
+mkdocs-mermaid2-plugin
+mkdocs-jupyter
+mkdocs-document-dates
+mkdocs-statistics-plugin
+mkdocs-changelog-plugin
+mkdocs-callouts
+mkdocs-hr-plugin
+mkdocs-minify-plugin
+mkdocs-glightbox
