@@ -50,9 +50,9 @@ undo log 是 Innodb 存储引擎层生成的日志，实现了事务中的原子
 
 Innodb 存储引擎也通过 ReadView + undo log 实现 MVCC(多版本并发控制)。
 
->  **UNDO LOG 的作用** 
->  **实现事务回滚，保障事务的原子性**：如果出现了错误或者用户执行了 ROLLBACK 语句，可以利用 undo log 中的历史数据将数据恢复到事务开始之前的状态
->  **实现  MVCC 关键因素之一**：MVCC 是通过 ReadView + undo log 实现的。undo log 为每条记录保存多份历史数据，在执行快照读的时候，会根据事务的 Read View 里的信息，顺着 undo log 的版本链找到满足其可见性的记录
+!!! note "UNDO LOG 的作用"
+    - **实现事务回滚，保障事务的原子性**：如果出现了错误或者用户执行了 ROLLBACK 语句，可以利用 undo log 中的历史数据将数据恢复到事务开始之前的状态
+    - **实现 MVCC 关键因素之一**：MVCC 是通过 ReadView + undo log 实现的。undo log 为每条记录保存多份历史数据，在执行快照读的时候，会根据事务的 Read View 里的信息，顺着 undo log 的版本链找到满足其可见性的记录
 
 ### REDO LOG(重做日志)
 
@@ -60,11 +60,11 @@ edo log 是物理日志，记录了某个数据页做了什么修改，每当执
 
 redo log 实现了事务中的持久性，主要用于掉电等故障恢复。发生更新的时候，InnoDB 会先更新内存，同时标记为脏页，然后将本次对这个页的修改以 redo log 的形式记录下来。InnoDB 引擎会在适当的时候，由后台线程将缓存在 Buffer Pool 的脏页刷新到硬盘里，实现 WAL 技术。
 
->  **什么是 WAL 技术？** 
->  WAL 技术指的是 MySQL 的写操作并不是立刻写到硬盘上，而是先写日志，然后在合适的时间再写到硬盘上
->
->  **什么是 crash-safe？** 
-> redo log + WAL 技术，InnoDB 就可以保证即使数据库发生异常重启，之前已提交的记录都不会丢失
+!!! note "什么是 WAL 技术？"
+    WAL 技术指的是 MySQL 的写操作并不是立刻写到硬盘上，而是先写日志，然后在合适的时间再写到硬盘上
+
+!!! note "什么是 crash-safe？"
+    redo log + WAL 技术，InnoDB 就可以保证即使数据库发生异常重启，之前已提交的记录都不会丢失
 
 ### BINLOG(归档日志)
 
