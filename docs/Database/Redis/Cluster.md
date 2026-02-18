@@ -47,9 +47,8 @@ comments: true
 
 网络断开从服务器重新上线之后，会发送自己的复制偏移量到主服务器，主服务器根据偏移量之间的差距判断要执行的操作：如果从服务器要读的数据在 repl_backlog_buffer 中，则采用增量复制；如果不在，采用全量复制。
 
->  **repl_backlog_buffer** 
->
->  **repl_backlog_buffer**  是一个 **环形** 缓冲区，用于主从服务器断连后，从中找到差异的数据； **replication offset**  标记缓冲区的同步进度。
+!!! note "repl_backlog_buffer"
+    **repl_backlog_buffer** 是一个 **环形** 缓冲区，用于主从服务器断连后，从中找到差异的数据；**replication offset** 标记缓冲区的同步进度。
 
 
 ## 如何避免主从数据的不一致？
