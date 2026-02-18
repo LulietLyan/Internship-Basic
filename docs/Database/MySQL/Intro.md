@@ -66,7 +66,7 @@ body::before {
 
 ## 什么是索引下推（ICP）？
 
-**索引下推**（Index Condition Pushdown，ICP）是 MySQL 在利用联合索引检索数据时的一种优化：把**部分本应在 Server 层做的 WHERE 条件判断，下推到存储引擎层**去做，从而减少回表次数和与 Server 层的交互。
+**索引下推**（Index Condition Pushdown，ICP）是 MySQL 在利用联合索引检索数据时的一种优化：把  **部分本应在 Server 层做的 WHERE 条件判断，下推到存储引擎层**  去做，从而减少回表次数和与 Server 层的交互。
 
 - **没有 ICP 时**：存储引擎按索引找到一批可能满足条件的记录，先回表取完整行，再交给 Server 层逐条做 WHERE 过滤。
 - **有 ICP 时**：存储引擎在索引上就能先根据联合索引中的列做条件判断，只对“索引列条件已满足”的记录回表，再交给 Server 层，这样回表行数更少、性能更好。
