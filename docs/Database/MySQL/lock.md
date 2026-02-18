@@ -58,9 +58,8 @@ body::before {
  **作用**：对某些记录加上「共享锁」之前，需要先在表级别加上一个「意向共享锁」，对某些记录加上「独占锁」之前，需要先在表级别加上一个「意向独占锁」。普通的 select 是不会加行级锁的，普通的 select 语句是利用 MVCC 实现一致性读，是无锁的
 - 意向共享锁和意向独占锁是表级锁，不会和行级的共享锁和独占锁发生冲突，意向锁之间也不会发生冲突，只会和共享表锁和独占表锁发生冲突。意向锁的目的是为了快速判断表里是否有记录被加锁
 
->  **Tips** 
-> 
->  **select 也是可以对记录加共享锁和独占锁的** 
+!!! tip "Tips"
+    **select 也是可以对记录加共享锁和独占锁的** 
 
 ### AUTO-INC 锁
 
@@ -68,19 +67,20 @@ body::before {
 - **缺陷**：对大量数据进行插入的时会影响插入性能，因为其他事务中的插入会被阻塞
 - **改进**：InnoDB 存储引擎提供了一种轻量级的锁来实现自增。在插入数据的时候，会为被 AUTO_INCREMENT 修饰的字段加上轻量级锁，然后给该字段赋值一个自增的值，就把这个轻量级锁释放了，而不需要等待整个插入语句执行完后才释放锁
 
->  **AUTO-INC 锁控制** 
-> 设置 innodb_autoinc_lock_mode 的系统变量，是用来控制选择用 AUTO-INC 锁
-> - 当 innodb_autoinc_lock_mode = 0，采用 AUTO-INC 锁，语句执行结束后才释放锁
-> - 当 innodb_autoinc_lock_mode = 2，采用轻量级锁，申请自增主键后就释放锁，并不需要等语句执行后才释放
-> - 当 innodb_autoinc_lock_mode = 1
->   - 普通 insert 语句，自增锁在申请之后就马上释放
->   - 类似 insert … select 这样的批量插入数据的语句，自增锁要等语句结束后才被释放
-> 
->  **innodb_autoinc_lock_mode = 2 是性能最高的方式**，但是当搭配 binlog 的日志格式是 statement 时，在主从复制的场景中会发生 **数据不一致** 的问题
-> 
-> binlog 日志格式要设置为 row，这样在 binlog 里面记录的是主库分配的自增值。到备库执行的时候，主库的自增值是什么，从库的自增值就是什么
-> 
-> 所以，当  **innodb_autoinc_lock_mode = 2 并且 binlog_format = row**  时既能提升并发性，又不会出现数据一致性问题
+!!! note "AUTO-INC 锁控制"
+    设置 innodb_autoinc_lock_mode 的系统变量，是用来控制选择用 AUTO-INC 锁
+
+    - 当 innodb_autoinc_lock_mode = 0，采用 AUTO-INC 锁，语句执行结束后才释放锁
+    - 当 innodb_autoinc_lock_mode = 2，采用轻量级锁，申请自增主键后就释放锁，并不需要等语句执行后才释放
+    - 当 innodb_autoinc_lock_mode = 1
+        - 普通 insert 语句，自增锁在申请之后就马上释放
+        - 类似 insert … select 这样的批量插入数据的语句，自增锁要等语句结束后才被释放
+
+    **innodb_autoinc_lock_mode = 2 是性能最高的方式**，但是当搭配 binlog 的日志格式是 statement 时，在主从复制的场景中会发生 **数据不一致** 的问题
+
+    binlog 日志格式要设置为 row，这样在 binlog 里面记录的是主库分配的自增值。到备库执行的时候，主库的自增值是什么，从库的自增值就是什么
+
+    所以，当 **innodb_autoinc_lock_mode = 2 并且 binlog_format = row** 时既能提升并发性，又不会出现数据一致性问题
 
 ## MySQL 的行级锁有哪些？作用是什么？
 
