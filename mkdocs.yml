@@ -214,7 +214,7 @@ nav:
       - MySQL:
           - 概述: ./Database/MySQL/Intro.md
           - 事务: ./Database/MySQL/trx.md
-          - 索引: ./Database/MySQL/Index.md
+          - 索引: ./Database/MySQL/index.md
           - 锁: ./Database/MySQL/lock.md
           - 存储引擎: ./Database/MySQL/engine.md
           - 日志: ./Database/MySQL/log.md
