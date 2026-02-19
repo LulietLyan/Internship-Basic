@@ -2,7 +2,7 @@
 hide:
   # - navigation # 显示右
   # - toc #显示左
-  - footer
+    - footer
 comment: True
 glightbox: False
 nostatistics: True
