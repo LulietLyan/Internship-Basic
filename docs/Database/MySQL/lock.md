@@ -60,6 +60,7 @@ body::before {
 
 !!! tip "提示"
     **SELECT 也可以对记录加共享锁和独占锁**：
+    
       - 使用 `SELECT ... LOCK IN SHARE MODE`（或 MySQL 8.0+ 的 `FOR SHARE`）时，会对查询到的记录加 **共享锁**
       - 使用 `SELECT ... FOR UPDATE` 时，会对查询到的记录加 **独占锁**。这两种语句需要显式指定，普通的 SELECT 不加行级锁
 
