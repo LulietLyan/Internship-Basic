@@ -97,7 +97,8 @@ body::before {
 
 ### 临键锁(Next-Key Lock)
 
- **Next-Key Lock**  临键锁是  **Record Lock + Gap Lock 的组合** 
+**Next-Key Lock**  临键锁是  **Record Lock + Gap Lock 的组合** 
+
 - **作用**：锁定一个范围，并且锁定记录本身。next-key lock 既能保护该记录，又能阻止其他事务将新纪录插入到被保护记录前面的间隙中，形成 **左开右闭** 得插入保护区间
 
 ### 插入意向锁
