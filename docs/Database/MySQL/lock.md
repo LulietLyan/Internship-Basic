@@ -128,12 +128,12 @@ body::before {
 
 ### 唯一索引范围查询
 
-- **> value**：对大于 value 的索引加 next-key lock，相当于锁定区间 **(value, +∞)**
-- **≥ value**：对等于 value 的索引加 **记录锁**，对大于 value 的加 next-key lock，相当于 **[value, +∞)**
-- **< value**：对小于 value 的索引加 next-key lock；对「第一个 ≥ value 的记录」左侧加 **间隙锁**，相当于 (-∞, value) 内为 next-key lock，边界处补间隙锁
+- **> value**：对每条大于 value 的索引记录加 next-key lock（含 supremum 伪记录），等价于 **(value, +∞)**
+- **≥ value**：对 value 做等值查询，退化为 **记录锁**；对大于 value 的加 next-key lock，等价于 **[value, +∞)**
+- **< value**：对每条小于 value 的索引加 next-key lock；扫描到「第一条 ≥ value 的记录」时，其 next-key 退化为 **间隙锁**（即该记录左侧的间隙）。等价于对 (-∞, value) 加锁
 - **≤ value**：
-    - **value 对应记录存在**：在 **(-∞, value]** 上加 next-key lock
-    - **value 对应记录不存在**：对小于 value 的索引加 next-key lock，并在边界处加间隙锁，相当于 **(-∞, value)** 内加锁
+    - **value 对应记录存在**：对 (-∞, value] 内的记录加 next-key lock，**不退化**（因为 value 需被包含）
+    - **value 对应记录不存在**：与 **< value** 相同——对小于 value 的索引加 next-key lock，在「第一条 > value 的记录」左侧加间隙锁 **(pre-value, next-value)**。等价于对 (-∞, value) 加锁
 
 ### 非唯一索引范围查询
 
