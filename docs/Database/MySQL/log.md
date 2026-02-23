@@ -157,7 +157,7 @@ redo log 的写方式使用了追加，日志操作是顺序写，硬盘操作�
 
 事务执行过程中，先把日志写到 binlog cache(Server 层的 cache)，事务提交的时候，再把 binlog cache 写到 binlog 文件中。
 
-## binlog 什么时候刷盘频率？
+## binlog 刷盘频率如何控制？
 
  MySQL 提供一个 sync_binlog 参数来控制数据库的 binlog 刷到硬盘上的频率：
 
