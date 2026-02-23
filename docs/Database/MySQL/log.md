@@ -103,6 +103,7 @@ redo log 记录了此次事务完成后的数据状态，undo log 记录了此�
 ## binlog 的三种格式？
 
 STATEMENT(默认格式)、ROW、 MIXED：
+
 - **STATEMENT**：每一条修改数据的 SQL 都会被记录到 binlog 中，主从复制中 slave 端再根据 SQL 语句重现
 - **ROW**：记录行数据最终被修改成什么样了，不会出现 STATEMENT 下动态函数的问题
 - **MIXED**：包含了 STATEMENT 和 ROW 模式，它会根据不同的情况自动使用 ROW 模式和 STATEMENT 模式
