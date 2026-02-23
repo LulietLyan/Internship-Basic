@@ -131,15 +131,27 @@ redo log 的写方式使用了追加，日志操作是顺序写，硬盘操作�
 - InnoDB 的后台线程每隔 1 秒，将 redo log buffer 持久化到硬盘
 - 每次事务提交时都将缓存在 redo log buffer 里的 redo log 直接持久化到硬盘
 
-## redo log 文件文件格式和写入过程？
+## redo log 文件格式和写入过程？
 
-InnoDB 有 1 个 redo log 组，由有 2 个 redo log 文件组成：logfile0 和 logfile1。
+### 文件结构
 
-redo log 组中每个 redo log 的大小是固定且相同的，redo log 组是以循环写的方式工作的，从头开始写，写到末尾就又回到开头，相当于一个环形。
+- InnoDB 有 1 个 redo log 组，由 2 个固定大小的文件组成：`ib_logfile0` 和 `ib_logfile1`
+- 两个文件大小相同，以**循环写**方式工作：按顺序写入，写满 `ib_logfile0` 后切换至 `ib_logfile1`，写满后再从 `ib_logfile0` 开头继续
 
-先写 logfile0 文件，当 logfile0 文件被写满的时候，会切换至 logfile1 文件，当 logfile1 文件也被写满时，会切换回 ib_logfile0 文件。随着系统运行，Buffer Pool 的脏页刷新到了硬盘中， redo log 对应的记录没用了，会腾出空间记录新的更新操作。redo log 是循环写的方式相当于一个环形，用 write pos 表示 redo log 当前记录写到的位置，用 checkpoint 表示当前要擦除的位置。
+### 关键指针：write pos 与 checkpoint
 
-write pos 追上了 checkpoint，说明 redo log 文件满了， MySQL 会被阻塞，会停下来将 Buffer Pool 中的脏页刷新到硬盘中，然后标记 redo log 哪些记录可以被擦除，接着对旧的 redo log 记录进行擦除，等擦除完旧记录腾出了空间，checkpoint 就会往后移动，然后 MySQL 恢复正常运行，继续执行新的更新操作。
+- **write pos**：当前写入 redo log 的位置
+- **checkpoint**：当前可以擦除（覆盖）的位置，表示该位置之前的 redo 对应的脏页已刷盘
+
+从 checkpoint 到 write pos 之间是尚未刷盘的 redo 记录。随着脏页陆续刷盘，checkpoint 会前移，腾出空间供新日志写入。
+
+### 写满时的处理
+
+当 **write pos 追上 checkpoint** 时，表示 redo log 空间已满，MySQL 会暂停新的更新操作，执行以下步骤：
+
+1. 将 Buffer Pool 中的脏页刷盘
+2. 标记已刷盘部分对应的 redo log 记录可被擦除，checkpoint 前移
+3. 腾出空间后，write pos 可继续写入，MySQL 恢复正常运行
 
 ## binlog 什么时候刷盘？
 
