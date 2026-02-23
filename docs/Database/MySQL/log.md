@@ -115,7 +115,7 @@ STATEMENT(默认格式)、ROW、 MIXED：
 
 ## redo log 是直接写入硬盘的吗？
 
-不是。直接写入硬盘会产生大量的 I/O 操作，redo log 会写入 redo log buffer，每当产生一条 redo log 时，会先写入到 redo log buffer，后续在持久化到硬盘。
+不是。直接写入硬盘会产生大量的 I/O 操作，redo log 会写入 redo log buffer。每当产生一条 redo log 时会先写入到 redo log buffer，后续再持久化到硬盘。
 
 ## redo log 比直接落盘的优点？
 
