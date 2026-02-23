@@ -136,7 +136,7 @@ redo log 的写方式使用了追加，日志操作是顺序写，硬盘操作�
 ### 文件结构
 
 - InnoDB 有 1 个 redo log 组，由 2 个固定大小的文件组成：`ib_logfile0` 和 `ib_logfile1`
-- 两个文件大小相同，以**循环写**方式工作：按顺序写入，写满 `ib_logfile0` 后切换至 `ib_logfile1`，写满后再从 `ib_logfile0` 开头继续
+- 两个文件大小相同，以 **循环写** 方式工作：按顺序写入，写满 `ib_logfile0` 后切换至 `ib_logfile1`，写满后再从 `ib_logfile0` 开头继续
 
 ### 关键指针：write pos 与 checkpoint
 
