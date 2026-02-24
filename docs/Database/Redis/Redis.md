@@ -1,7 +1,7 @@
 ---
 comments: true
 ---
-<h1 align="center">MySQL</h1>
+<h1 align="center">Redis</h1>
 
 # Contents
 - [Contents](#contents)
