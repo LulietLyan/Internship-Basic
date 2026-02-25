@@ -9,7 +9,7 @@ comments: true
 
 Redis 是一种 **基于内存的数据库**，对数据的读写都在内存中完成，因此读写速度非常快，常用于 **缓存、消息队列、分布式锁** 等场景。
 
-Redis 提供多种数据类型（String、Hash、List、Set、Zset、BitMap、HyperLogLog、GEO、Stream），对数据类型的操作都是**原子性**的（命令由单线程串行执行，无并发竞争）。此外还支持 **事务、持久化、Lua 脚本、主从/哨兵/切片集群、发布订阅、过期删除与内存淘汰** 等。
+Redis 提供多种数据类型（String、Hash、List、Set、Zset、BitMap、HyperLogLog、GEO、Stream），对数据类型的操作都是 **原子性** 的（命令由单线程串行执行，无并发竞争）。此外还支持 **事务、持久化、Lua 脚本、主从/哨兵/切片集群、发布订阅、过期删除与内存淘汰** 等。
 
 ## Redis 为什么快？
 
