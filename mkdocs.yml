@@ -270,8 +270,8 @@ nav:
           - 技巧: ./Algorithm/18-Hot100Trick.md
   - ✏ Design Pattern:
       - UML类图: ./DesignPattern/UML.md
-      - 策略模式: ./DesignPattern/1-策略模式.md
-      - 工厂方法模式: ./DesignPattern/2-工厂方法模式.md
+      - 工厂方法模式: ./DesignPattern/1-工厂方法模式.md
+      - 策略模式: ./DesignPattern/2-策略模式.md
       - 抽象工厂模式: ./DesignPattern/3-抽象工厂模式.md
       - 建造者模式: ./DesignPattern/4-建造者模式.md
       - 原型模式: ./DesignPattern/5-原型模式.md
