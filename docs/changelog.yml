@@ -7,6 +7,8 @@
     - pageupdate: 批量删除历史版本的 PDF 与聚合 Markdown 文档，保留按主题拆分后的结构化内容
     - pageupdate: 非 Design Pattern 目录文档文件名统一增加编号前缀，并同步更新 mkdocs 导航路径
     - pageupdate: UML 类图文档补充关系线形说明与多重性（Multiplicity）详细规则及示例
+    - pageupdate: 设计模式新增「三类设计原则」章节，自建造者模式起文件名序号顺延 +1，并更新 mkdocs 导航；UML 类图入口改为 0-UML类图.md
+    - pageupdate: Design Pattern 下各文档统一增加与「三类设计原则」一致的前置 front matter 与页面网格样式
   - "2026-02-19":
     - pageupdate: Redis 概述新增「什么是 Redis」、单线程含义与 6.0 多线程 I/O 配置说明
     - pageupdate: Redis 数据结构修正 GEO 标题、补充 SDS 三点优势与 List 消息队列局限、修正压缩列表标题
