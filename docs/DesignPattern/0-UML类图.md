@@ -51,7 +51,7 @@ body::before {
 
 ### 类图示例
 
-![UML 类图示例](../Figures/Design%20Pattern/0-UML/类图示例.jpeg)
+![UML 类图示例](../Figures/Design%20Pattern/0-UML/类图示例.png)
 
 ## 常见关系与图形含义
 
