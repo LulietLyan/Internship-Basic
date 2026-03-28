@@ -11,6 +11,7 @@
     - pageupdate: Design Pattern 下各文档统一增加与「三类设计原则」一致的前置 front matter 与页面网格样式
   - "2026-03-28":
     - pageupdate: Design Pattern「SOLID 设计原则」文档补全里氏替换（LSP）、接口隔离（ISP），正文按 S-O-L-I-D 排序；mkdocs 侧栏标题由「三类设计原则」改为「SOLID 设计原则」
+    - pageupdate: Design Pattern 章节序号调整：SOLID 设计原则为第 1 节（1-三类设计原则.md），工厂方法 / 策略 / 抽象工厂分别为第 2–4 节，并同步 mkdocs 导航路径
   - "2026-02-19":
     - pageupdate: Redis 概述新增「什么是 Redis」、单线程含义与 6.0 多线程 I/O 配置说明
     - pageupdate: Redis 数据结构修正 GEO 标题、补充 SDS 三点优势与 List 消息队列局限、修正压缩列表标题
