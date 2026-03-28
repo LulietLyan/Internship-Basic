@@ -1,0 +1,259 @@
+---
+statistics: true
+comments: true
+---
+
+<style>
+body {
+  position: relative; /* 确保 body 元素的 position 属性为非静态值 */
+}
+
+body::before {
+  --size: 35px; /* 调整网格单元大小 */
+  --line: color-mix(in hsl, canvasText, transparent 60%); /* 调整线条透明度 */
+  content: '';
+  height: 100vh;
+  width: 100%;
+  position: absolute; /* 修改为 absolute 以使其随页面滚动 */
+  background: linear-gradient(
+        90deg,
+        var(--line) 1px,
+        transparent 1px var(--size)
+      )
+      50% 50% / var(--size) var(--size),
+    linear-gradient(var(--line) 1px, transparent 1px var(--size)) 50% 50% /
+      var(--size) var(--size);
+  -webkit-mask: linear-gradient(-20deg, transparent 30%, white 80%);
+          mask: linear-gradient(-20deg, transparent 30%, white 80%);
+  top: 0;
+  transform-style: flat;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@media (max-width: 768px) {
+  body::before {
+    display: none; /* 在手机端隐藏网格效果 */
+  }
+}
+</style>
+
+# SOLID 设计原则
+
+在面向对象设计中，**SOLID** 是 Robert C. Martin 等人总结的 **五条**常用原则的英文首字母缩写：
+
+| 字母 | 英文全称 | 中文习惯称呼 |
+|------|-----------|----------------|
+| **S** | Single Responsibility Principle | 单一职责原则 |
+| **O** | Open-Closed Principle | 开放-封闭原则 |
+| **L** | Liskov Substitution Principle | 里氏替换原则 |
+| **I** | Interface Segregation Principle | 接口隔离原则 |
+| **D** | Dependency Inversion Principle | 依赖倒转原则 |
+
+五条原则分别从 **类的职责边界**、**应对变化的方式**、**继承与多态的契约**、**接口粒度**、**依赖方向** 几个角度约束设计。后文的设计模式（如策略、工厂、抽象工厂等）往往是在具体场景下落实这些原则的手段。下面按 **S → O → L → I → D** 的顺序说明。
+
+---
+
+## 单一职责原则
+
+单一职责原则（Single Responsibility Principle，SRP）可以表述为：**一个类应该只有一个引起它变化的原因**。换句话说，一类只负责一块相对内聚的职责；当这块职责变化时，才需要改这个类。
+
+### 为什么要拆分职责
+
+- **降低耦合**：报表导出、权限校验、数据库访问混在一个类里时，任何一处的修改都可能波及其他逻辑，测试与回归成本变高。
+- **提高可读性与可维护**：类名、方法名能直接对应一块业务概念，新人更容易建立心智模型。
+- **复用更自然**：只负责「用户校验」的组件，可以在多个用例里复用，而不必拖上一堆无关字段。
+
+### 常见误区
+
+- **不是「每个类只能有一个 public 方法」**。职责是按「业务/变化原因」划分的，不是按方法个数机械切分。
+- **不是过度碎片化**。若拆得过细，会出现大量仅互相调用的薄包装类，反而增加导航成本；需要在内聚与粒度之间权衡。
+
+### 简单对比（示意）
+
+下面左边把「用户」与「持久化」绑在一起，用户信息结构或存储方式任一变化都会动到同一个类；右边把持久化抽出去，各自因各自的原因变化。
+
+```java
+// 职责混杂：同一类既表示领域概念又直接操作存储
+class User {
+    String name;
+    void saveToDb() { /* JDBC ... */ }
+}
+
+// 更符合 SRP：User 表达领域；持久化由专门组件负责
+class User {
+    String name;
+}
+class UserRepository {
+    void save(User u) { /* JDBC ... */ }
+}
+```
+
+---
+
+## 开放-封闭原则
+
+开放-封闭原则（Open-Closed Principle，OCP）可以表述为：**对扩展开放，对修改封闭**。即在不修改已有稳定代码的前提下，通过 **新增** 类型或实现来支持新需求。
+
+### 核心直觉
+
+- **稳定的部分**（抽象、接口、高层流程）应尽量保持不变，避免每次需求一来就到处改 `if-else`。
+- **易变的部分**（具体算法、具体报表格式、具体支付方式）通过 **多态、策略、插件** 等方式接入，新需求优先「加类」而不是「改旧类」。
+
+### 与 SRP 的关系
+
+违反 SRP 的「上帝类」往往也违反 OCP：因为职责堆在一起，任何小功能扩展都可能牵动整文件。先划清职责边界，再对易变点抽象，更容易做到对扩展开放。
+
+### 简单对比（示意）
+
+新增一种折扣时，左边要改原有类的分支；右边新增一个策略实现类即可，原有上下文不必修改（详见本系列「策略模式」章节）。
+
+```java
+// 违反 OCP：每加一种优惠就要改这个方法
+class OrderService {
+    Money discount(Order o, String type) {
+        if ("VIP".equals(type)) { /* ... */ }
+        else if ("NEW_USER".equals(type)) { /* ... */ }
+        // 新增类型又要改这里
+        return o.total();
+    }
+}
+
+// 更符合 OCP：扩展通过新增 DiscountPolicy 实现完成
+interface DiscountPolicy { Money apply(Order o); }
+class OrderService {
+    private final DiscountPolicy policy;
+    Money finalPrice(Order o) { return policy.apply(o); }
+}
+```
+
+---
+
+## 里氏替换原则
+
+里氏替换原则（Liskov Substitution Principle，LSP）由 Barbara Liskov 提出，可概括为：**凡是程序里使用基类（或接口）的地方，换成其子类（或实现类）之后，程序仍应正确工作，且语义不被破坏**。
+
+换句话说，子类应当 **扩展** 父类的行为，而不是 **违背** 父类与调用方之间隐含的约定。多态只有在满足 LSP 时才是安全的。
+
+### 核心直觉
+
+- **可替换性**：调用方只依赖父类/接口的契约，不关心具体子类；若子类偷偷改变契约（更严的前置条件、更弱的后置条件、抛出父类未声明的异常等），就会让依赖多态的代码出现隐蔽 bug。
+- **继承表示「是一种」**：若子类在业务上并不能处处当作父类使用，往往说明继承关系选错了，或应改用组合。
+
+### 常见违反：在子类中削弱或改变契约
+
+典型反例是「正方形继承长方形」：若长方形约定 `setWidth` 只改宽、`setHeight` 只改高，而正方形重写后让两者互相牵连，则「接受长方形参数、分别设置宽高」的客户端在传入正方形时行为会异常。这说明 **正方形并不是一种可以无损替换的长方形**。
+
+### 简单对比（示意）
+
+```java
+// 违反 LSP：子类抛出父类未声明的检查型异常，或让父类方法“什么都不做”却声称支持同一操作
+class Bird {
+    void fly() { /* 能飞 */ }
+}
+class Penguin extends Bird {
+    @Override
+    void fly() {
+        throw new UnsupportedOperationException(); // 调用方若按 Bird 使用会踩雷
+    }
+}
+
+// 更稳妥：抽象出真正共性的接口，不能飞的鸟类不实现 Flyable
+interface Flyable { void fly(); }
+class Sparrow implements Flyable { public void fly() { /* ... */ } }
+class Penguin { /* 不实现 Flyable */ }
+```
+
+实践中不必机械套用鸟类例子，关键是：**子类是否能在所有「合理」的父类使用场景下保持行为一致或可预期的强化**。
+
+---
+
+## 接口隔离原则
+
+接口隔离原则（Interface Segregation Principle，ISP）可表述为：**不应强迫客户端依赖它不使用的方法**；更细的接口优于「大而全」的胖接口。
+
+### 核心直觉
+
+- 若一个接口聚合了多种不相关的操作，实现类往往被迫提供空实现或抛 `UnsupportedOperationException`，说明接口粒度过粗。
+- 客户端只应看到自己需要的抽象，减少无关方法带来的耦合与误用。
+
+### 与 SRP、DIP 的关系
+
+- **SRP** 针对类的职责；**ISP** 针对 **接口** 的职责切分，二者思想一致，粒度不同。
+- 符合 **ISP** 的小接口更容易让高层只依赖「刚好够用」的抽象，从而配合 **DIP** 降低不必要的依赖面。
+
+### 简单对比（示意）
+
+```java
+// 违反 ISP：打印工被迫依赖不需要的“扫描”
+interface MultiFunctionDevice {
+    void print();
+    void scan();
+    void fax();
+}
+class SimplePrinter implements MultiFunctionDevice {
+    public void print() { /* ... */ }
+    public void scan() { throw new UnsupportedOperationException(); }
+    public void fax() { throw new UnsupportedOperationException(); }
+}
+
+// 更符合 ISP：按能力拆分，客户端只依赖所需接口
+interface Printer { void print(); }
+interface Scanner { void scan(); }
+class SimplePrinter implements Printer {
+    public void print() { /* ... */ }
+}
+```
+
+---
+
+## 依赖倒转原则
+
+依赖倒转原则（Dependency Inversion Principle，DIP）包含两层含义：
+
+1. **高层模块不应该依赖低层模块，二者都应该依赖抽象**（接口或抽象类）。
+2. **抽象不应该依赖细节；细节应该依赖抽象**。
+
+这里的「高层」指业务策略、应用服务、领域规则；「低层」指具体数据库、文件系统、第三方 SDK 等实现。
+
+### 为什么要倒置依赖
+
+若高层直接 `new` 具体实现，一旦要换存储、换消息队列或做单元测试，就必须改高层代码，稳定性和可测试性都差。让高层只依赖 **抽象接口**，由 **组装根（composition root）** 或工厂把具体实现注入进来，高层逻辑与基础设施解耦。
+
+### 与「依赖注入」的关系
+
+DIP 说的是 **依赖方向** 应该指向抽象；**依赖注入（DI）** 是实现手段之一（构造器注入、Setter 注入、框架容器等）。二者常一起出现，但不是同义词。
+
+### 简单对比（示意）
+
+```java
+// 违反 DIP：高层直接依赖具体 JDBC 实现
+class ReportService {
+    void export() {
+        MySqlReportExporter ex = new MySqlReportExporter();
+        ex.run();
+    }
+}
+
+// 更符合 DIP：依赖抽象，具体 Exporter 在更外层装配
+interface ReportExporter { void run(); }
+class ReportService {
+    private final ReportExporter exporter;
+    ReportService(ReportExporter exporter) { this.exporter = exporter; }
+    void export() { exporter.run(); }
+}
+```
+
+---
+
+## 小结
+
+| 字母 | 原则 | 一句话 | 常见落实方式 |
+|------|------|--------|----------------|
+| S | 单一职责 | 一类一事，一变一改 | 拆分类、按领域分层 |
+| O | 开放-封闭 | 加功能少改旧代码 | 抽象 + 多态、策略、模板方法等 |
+| L | 里氏替换 | 子类可安全替换父类引用 | 谨慎继承、组合优先、保持契约 |
+| I | 接口隔离 | 不强迫依赖用不到的方法 | 拆小接口、按角色依赖 |
+| D | 依赖倒转 | 依赖接口而非实现 | 接口抽象、DI、工厂/抽象工厂 |
+
+五条原则相互支撑：**SRP** 与 **ISP** 让边界清晰；**OCP** 与 **DIP** 让扩展与稳定分层协作；**LSP** 保证多态与继承不会悄悄破坏正确性。阅读后续各设计模式时，可以对照思考：该模式主要强化了哪一条（或几条）原则。
