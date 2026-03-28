@@ -269,27 +269,28 @@ nav:
           - 多维动态规划: ./Algorithm/17-Hot100MultiDP.md
           - 技巧: ./Algorithm/18-Hot100Trick.md
   - ✏ Design Pattern:
-      - UML类图: ./DesignPattern/UML.md
+      - UML类图: ./DesignPattern/0-UML类图.md
       - 工厂方法模式: ./DesignPattern/1-工厂方法模式.md
       - 策略模式: ./DesignPattern/2-策略模式.md
       - 抽象工厂模式: ./DesignPattern/3-抽象工厂模式.md
-      - 建造者模式: ./DesignPattern/4-建造者模式.md
-      - 原型模式: ./DesignPattern/5-原型模式.md
-      - 适配器模式: ./DesignPattern/6-适配器模式.md
-      - 代理模式: ./DesignPattern/7-代理模式.md
-      - 装饰模式: ./DesignPattern/8-装饰模式.md
-      - 外观模式: ./DesignPattern/9-外观模式.md
-      - 桥接模式: ./DesignPattern/10-桥接模式.md
-      - 组合模式: ./DesignPattern/11-组合模式.md
-      - 享元模式: ./DesignPattern/12-享元模式.md
-      - 观察者模式: ./DesignPattern/13-观察者模式.md
-      - 单例模式: ./DesignPattern/14-单例模式.md
-      - 命令模式: ./DesignPattern/15-命令模式.md
-      - 中介者模式: ./DesignPattern/16-中介者模式.md
-      - 备忘录模式: ./DesignPattern/17-备忘录模式.md
-      - 模板方法模式: ./DesignPattern/18-模板方法模式.md
-      - 迭代器模式: ./DesignPattern/19-迭代器模式.md
-      - 状态模式: ./DesignPattern/20-状态模式.md
-      - 责任链模式: ./DesignPattern/21-责任链模式.md
-      - 解释器模式: ./DesignPattern/22-解释器模式.md
-      - 访问者模式: ./DesignPattern/23-访问者模式.md
+      - 三类设计原则: ./DesignPattern/4-三类设计原则.md
+      - 建造者模式: ./DesignPattern/5-建造者模式.md
+      - 原型模式: ./DesignPattern/6-原型模式.md
+      - 适配器模式: ./DesignPattern/7-适配器模式.md
+      - 代理模式: ./DesignPattern/8-代理模式.md
+      - 装饰模式: ./DesignPattern/9-装饰模式.md
+      - 外观模式: ./DesignPattern/10-外观模式.md
+      - 桥接模式: ./DesignPattern/11-桥接模式.md
+      - 组合模式: ./DesignPattern/12-组合模式.md
+      - 享元模式: ./DesignPattern/13-享元模式.md
+      - 观察者模式: ./DesignPattern/14-观察者模式.md
+      - 单例模式: ./DesignPattern/15-单例模式.md
+      - 命令模式: ./DesignPattern/16-命令模式.md
+      - 中介者模式: ./DesignPattern/17-中介者模式.md
+      - 备忘录模式: ./DesignPattern/18-备忘录模式.md
+      - 模板方法模式: ./DesignPattern/19-模板方法模式.md
+      - 迭代器模式: ./DesignPattern/20-迭代器模式.md
+      - 状态模式: ./DesignPattern/21-状态模式.md
+      - 责任链模式: ./DesignPattern/22-责任链模式.md
+      - 解释器模式: ./DesignPattern/23-解释器模式.md
+      - 访问者模式: ./DesignPattern/24-访问者模式.md
