@@ -274,11 +274,11 @@ nav:
       - 策略模式: ./DesignPattern/2-策略模式.md
       - 抽象工厂模式: ./DesignPattern/3-抽象工厂模式.md
       - SOLID 设计原则: ./DesignPattern/4-三类设计原则.md
-      - 建造者模式: ./DesignPattern/5-建造者模式.md
+      - 装饰模式: ./DesignPattern/5-装饰模式.md
       - 原型模式: ./DesignPattern/6-原型模式.md
       - 适配器模式: ./DesignPattern/7-适配器模式.md
       - 代理模式: ./DesignPattern/8-代理模式.md
-      - 装饰模式: ./DesignPattern/9-装饰模式.md
+      - 建造者模式: ./DesignPattern/9-建造者模式.md
       - 外观模式: ./DesignPattern/10-外观模式.md
       - 桥接模式: ./DesignPattern/11-桥接模式.md
       - 组合模式: ./DesignPattern/12-组合模式.md
