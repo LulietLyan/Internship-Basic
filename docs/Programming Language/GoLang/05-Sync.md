@@ -333,3 +333,17 @@ Goroutine 的自旋占用资源问题主要涉及到 Goroutine 在等待锁或�
 
 `sync.RWMutex` 适用于读多写少的场景，可以显著提高程序的并发性能。例如，在缓存系统、配置管理系统等场景中，读操作远多于写操作，使用 `sync.RWMutex` 可以在保证数据一致性的同时，提高读操作的并发性。
 
+## 19. sync.Map 原理（并发安全 map）
+
+原生 `map` **不是**并发安全的：多 goroutine 同时读写会触发 **fatal error**。常见做法是用 `Mutex` 包一层，但锁粒度大时读多写少场景会吃亏。`sync.Map`（Go 1.9+）用**读写分离 + 原子加载只读表**降低读路径开销。
+
+### 核心结构（概念）
+
+- `read`：`atomic.Value`，内部存 **只读快照** `readOnly{ m, amended }`。`m` 为 `map[any]*entry`；`amended==true` 表示 `dirty` 里还有 `read` 中不存在的键。
+- `dirty`：需配合 `mu` 访问的 map，承载新增或尚未提升到 `read` 的项。
+- `misses`：`Load` 在 `read` 未命中并转向 `dirty` 时的计数；足够大时会触发把 `dirty` **提升为**新的 `read`（具体阈值与实现以 `src/sync/map.go` 为准）。
+
+### entry 与删除
+
+`entry` 用原子指针 `p` 指向真实 value。删除多为**标记删除**（`nil` / `expunged`），与 `dirty` 提升、重建等配合；**不要**把 `sync.Map` 当普通 map 的无锁替代品——它适合**键集合相对稳定、读远多于写或键需惰性创建**的场景，否则可能不如 `map+RWMutex` 清晰高效。
+
