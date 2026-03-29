@@ -1,3 +1,43 @@
+---
+statistics: true
+comments: true
+---
+
+<style>
+body {
+  position: relative;
+}
+
+body::before {
+  --size: 35px;
+  --line: color-mix(in hsl, canvasText, transparent 60%);
+  content: '';
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  background: linear-gradient(
+        90deg,
+        var(--line) 1px,
+        transparent 1px var(--size)
+      )
+      50% 50% / var(--size) var(--size),
+    linear-gradient(var(--line) 1px, transparent 1px var(--size)) 50% 50% /
+      var(--size) var(--size);
+  -webkit-mask: linear-gradient(-20deg, transparent 30%, white 80%);
+          mask: linear-gradient(-20deg, transparent 30%, white 80%);
+  top: 0;
+  transform-style: flat;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@media (max-width: 768px) {
+  body::before {
+    display: none;
+  }
+}
+</style>
+
 # interface 底层原理
 
 Go 的 `interface` 描述一组方法约定；**空接口** `interface{}`（Go 1.18+ 亦可用 `any`）可承载任意类型。赋值给接口变量时，运行时会建立**动态类型**与**动态值**的表示。

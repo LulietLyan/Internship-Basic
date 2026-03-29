@@ -1,3 +1,43 @@
+---
+statistics: true
+comments: true
+---
+
+<style>
+body {
+  position: relative;
+}
+
+body::before {
+  --size: 35px;
+  --line: color-mix(in hsl, canvasText, transparent 60%);
+  content: '';
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  background: linear-gradient(
+        90deg,
+        var(--line) 1px,
+        transparent 1px var(--size)
+      )
+      50% 50% / var(--size) var(--size),
+    linear-gradient(var(--line) 1px, transparent 1px var(--size)) 50% 50% /
+      var(--size) var(--size);
+  -webkit-mask: linear-gradient(-20deg, transparent 30%, white 80%);
+          mask: linear-gradient(-20deg, transparent 30%, white 80%);
+  top: 0;
+  transform-style: flat;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@media (max-width: 768px) {
+  body::before {
+    display: none;
+  }
+}
+</style>
+
 # 内存管理
 
 关于go堆栈内存不是很清楚可先看这篇文章：https://juejin.cn/post/7135670650353483783

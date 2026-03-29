@@ -1,3 +1,43 @@
+---
+statistics: true
+comments: true
+---
+
+<style>
+body {
+  position: relative;
+}
+
+body::before {
+  --size: 35px;
+  --line: color-mix(in hsl, canvasText, transparent 60%);
+  content: '';
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  background: linear-gradient(
+        90deg,
+        var(--line) 1px,
+        transparent 1px var(--size)
+      )
+      50% 50% / var(--size) var(--size),
+    linear-gradient(var(--line) 1px, transparent 1px var(--size)) 50% 50% /
+      var(--size) var(--size);
+  -webkit-mask: linear-gradient(-20deg, transparent 30%, white 80%);
+          mask: linear-gradient(-20deg, transparent 30%, white 80%);
+  top: 0;
+  transform-style: flat;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@media (max-width: 768px) {
+  body::before {
+    display: none;
+  }
+}
+</style>
+
 # 程序初始化
 
 Go应用程序的初始化是在单一的`goroutine`中执行的。对于包这一级别的初始化来说，在一个包里会先进行包级别变量的初始化。一个包下可以有多个`init`函数，每个文件也可以有多个`init` 函数，多个 `init` 函数按照它们的文件名顺序逐个初始化。但是程序不可能把所有代码都放在一个包里，通常都是会引入很多包。如果`main`包引入了`pkg1`包，`pkg1`包本身又导入了包`pkg2`，那么应用程序的初始化会按照什么顺序来执行呢？
