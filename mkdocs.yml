@@ -229,13 +229,16 @@ nav:
       - GoLang:
           - 概述: ./Programming Language/GoLang/01-Intro.md
           - GMP调度: ./Programming Language/GoLang/02-GMP.md
-          - Channel: ./Programming Language/GoLang/03-Channel.md
-          - 同步原语: ./Programming Language/GoLang/04-Sync.md
-          - 数据结构: ./Programming Language/GoLang/05-DataStructure.md
-          - 内存管理: ./Programming Language/GoLang/06-Memory.md
-          - Context: ./Programming Language/GoLang/07-Context.md
-          - 反射: ./Programming Language/GoLang/08-Reflection.md
-          - 代码示例: ./Programming Language/GoLang/09-Code.md
+          - 程序初始化: ./Programming Language/GoLang/03-ProgramInit.md
+          - Channel: ./Programming Language/GoLang/04-Channel.md
+          - 同步原语: ./Programming Language/GoLang/05-Sync.md
+          - 数据结构: ./Programming Language/GoLang/06-DataStructure.md
+          - 内存管理: ./Programming Language/GoLang/07-Memory.md
+          - 逃逸分析: ./Programming Language/GoLang/08-Escape.md
+          - 垃圾回收: ./Programming Language/GoLang/09-GC.md
+          - Context: ./Programming Language/GoLang/10-Context.md
+          - 反射: ./Programming Language/GoLang/11-Reflection.md
+          - 代码示例: ./Programming Language/GoLang/12-Code.md
   - 🐳 Docker:
       - 概述: ./Docker/01-Intro.md
       - 安装: ./Docker/02-Installation.md
