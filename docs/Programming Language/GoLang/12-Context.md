@@ -13,7 +13,7 @@ type Context interface {
     Deadline() (deadline time.Time, ok bool)  // Deadline方法的第一个返回值表示还有多久到期， 第二个返回值代表是否被超时时间控制
     Done() <-chan struct{}  // Done() 返回一个 只读channel，当这个channel被关闭时，说明这个context被取消
     Err() error // Err() 返回一个错误，表示channel被关闭的原因，例如是被取消，还是超时关闭
-    Value(key interface{}) interface{}) // value方法返回指定key对应的value，这是context携带的值
+    Value(key interface{}) interface{} // value 方法返回指定 key 对应的 value
 }
 ```
 
@@ -50,4 +50,30 @@ Context的取消是通过**channel关闭信号**实现的，主要有三种取�
 其次是**超时取消**，`context.WithTimeout`和`context.WithDeadline`会启动一个定时器，到达指定时间后自动调用cancel函数触发取消。
 
 最后是**级联取消**，当父Context被取消时，所有子Context会自动被取消，这是通过Context树的结构实现的。
+
+## 5. 实现要点（标准库 `context` 包）
+
+实现与用法以 `src/context/context.go` 为准，以下为阅读源码时的抓手。
+
+### 根节点：`emptyCtx`
+
+`context.Background()` / `TODO()` 返回不可取消、无 deadline、无值的根 context（历史上用不同地址区分，语义上均为空根）。
+
+### 可取消：`cancelCtx`
+
+- 内嵌父 `Context`，并用 `done`（惰性创建的 `chan struct{}`）表示取消：**关闭该 channel** 即向所有监听方广播完成。
+- `children` 记录子节点；`cancel` 时会关闭 `done`、设置 `err`，并**递归取消子节点**。
+- `WithCancel` 通过 `propagateCancel` 把子节点挂到可取消的父节点上；若父已取消则立即取消子节点。若父不是标准 `cancelCtx`，可能退化为**单独 goroutine** 监听 `parent.Done()` 与子完成（见源码分支）。
+
+### 超时：`timerCtx`
+
+内嵌 `cancelCtx`，并持有 `time.Timer`；在 deadline 到达或手动 `cancel` 时取消并停止定时器。若父级 deadline **更早**，`WithDeadline` 可能直接退化为 `WithCancel(parent)`，避免无意义的更晚子 deadline。
+
+### 值：`valueCtx`
+
+仅实现链式 `Value`：先比对本层 `key`，否则委托父 `Context.Value`。**不要**用 `WithValue` 传业务大对象或可选参数替代品；key 建议用自定义非导出类型避免碰撞。
+
+### 并发安全
+
+`cancel` 与 `Done` 的懒初始化均受互斥保护；用户侧应把 `Context` 当只读传递，**不要**并发调用 `cancel` 以外的方式篡改内部状态。
 
