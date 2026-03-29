@@ -3901,7 +3901,7 @@ Minimatch.prototype.matchOne = function (file, pattern, partial) {
       this.debug('GLOBSTAR', [pattern, p, f])
 
       // "**"
-      // a/ **/b/** /c would match the following:
+      // a/**/b/**/c would match the following:
       // a/b/x/y/z/c
       // a/x/y/z/b/c
       // a/b/x/b/x/c
@@ -3912,7 +3912,7 @@ Minimatch.prototype.matchOne = function (file, pattern, partial) {
       // If not, the ** "swallows" a segment, and try again.
       // This is recursively awful.
       //
-      // a/ **/b/** /c matching a/b/x/y/z/c
+      // a/**/b/**/c matching a/b/x/y/z/c
       // - a matches a
       // - doublestar
       //   - matchOne(b/x/y/z/c, b/**/c)
@@ -4547,7 +4547,7 @@ process.umask = function() { return 0; };
     toString         = ObjProto.toString,
     hasOwnProperty   = ObjProto.hasOwnProperty;
 
-  // All  **ECMAScript 5**  native function implementations that we hope to use
+  // All **ECMAScript 5** native function implementations that we hope to use
   // are declared here.
   var
     nativeIsArray      = Array.isArray,
@@ -4565,7 +4565,7 @@ process.umask = function() { return 0; };
     this._wrapped = obj;
   };
 
-  // Export the Underscore object for  **Node.js** , with
+  // Export the Underscore object for **Node.js**, with
   // backwards-compatibility for the old `require()` API. If we're in
   // the browser, add `_` as a global object.
   if (typeof exports !== 'undefined') {
@@ -4723,7 +4723,7 @@ process.umask = function() { return 0; };
     };
   }
 
-  //  **Reduce**  builds up a single result from a list of values, aka `inject`,
+  // **Reduce** builds up a single result from a list of values, aka `inject`,
   // or `foldl`.
   _.reduce = _.foldl = _.inject = createReduce(1);
 
@@ -4882,8 +4882,8 @@ process.umask = function() { return 0; };
     return shuffled;
   };
 
-  // Sample  **n**  random values from a collection.
-  // If  **n**  is not specified, returns a single random element.
+  // Sample **n** random values from a collection.
+  // If **n** is not specified, returns a single random element.
   // The internal `guard` argument allows it to work with `map`.
   _.sample = function(obj, n, guard) {
     if (n == null || guard) {
@@ -4973,8 +4973,8 @@ process.umask = function() { return 0; };
   // Array Functions
   // ---------------
 
-  // Get the first element of an array. Passing  **n**  will return the first N
-  // values in the array. Aliased as `head` and `take`. The  **guard**  check
+  // Get the first element of an array. Passing **n** will return the first N
+  // values in the array. Aliased as `head` and `take`. The **guard** check
   // allows it to work with `_.map`.
   _.first = _.head = _.take = function(array, n, guard) {
     if (array == null) return void 0;
@@ -4983,13 +4983,13 @@ process.umask = function() { return 0; };
   };
 
   // Returns everything but the last entry of the array. Especially useful on
-  // the arguments object. Passing  **n**  will return all the values in
+  // the arguments object. Passing **n** will return all the values in
   // the array, excluding the last N.
   _.initial = function(array, n, guard) {
     return slice.call(array, 0, Math.max(0, array.length - (n == null || guard ? 1 : n)));
   };
 
-  // Get the last element of an array. Passing  **n**  will return the last N
+  // Get the last element of an array. Passing **n** will return the last N
   // values in the array.
   _.last = function(array, n, guard) {
     if (array == null) return void 0;
@@ -4998,7 +4998,7 @@ process.umask = function() { return 0; };
   };
 
   // Returns everything but the first entry of the array. Aliased as `tail` and `drop`.
-  // Especially useful on the arguments object. Passing an  **n**  will return
+  // Especially useful on the arguments object. Passing an **n** will return
   // the rest N values in the array.
   _.rest = _.tail = _.drop = function(array, n, guard) {
     return slice.call(array, n == null || guard ? 1 : n);
@@ -5191,7 +5191,7 @@ process.umask = function() { return 0; };
   // Return the position of the first occurrence of an item in an array,
   // or -1 if the item is not included in the array.
   // If the array is large and already in sort order, pass `true`
-  // for  **isSorted**  to use binary search.
+  // for **isSorted** to use binary search.
   _.indexOf = createIndexFinder(1, _.findIndex, _.sortedIndex);
   _.lastIndexOf = createIndexFinder(-1, _.findLastIndex);
 
@@ -5229,7 +5229,7 @@ process.umask = function() { return 0; };
   };
 
   // Create a function bound to a given object (assigning `this`, and arguments,
-  // optionally). Delegates to  **ECMAScript 5** 's native `Function.bind` if
+  // optionally). Delegates to **ECMAScript 5**'s native `Function.bind` if
   // available.
   _.bind = function(func, context) {
     if (nativeBind && func.bind === nativeBind) return nativeBind.apply(func, slice.call(arguments, 1));
@@ -5447,7 +5447,7 @@ process.umask = function() { return 0; };
   }
 
   // Retrieve the names of an object's own properties.
-  // Delegates to  **ECMAScript 5** 's native `Object.keys`
+  // Delegates to **ECMAScript 5**'s native `Object.keys`
   _.keys = function(obj) {
     if (!_.isObject(obj)) return [];
     if (nativeKeys) return nativeKeys(obj);
@@ -5833,7 +5833,7 @@ process.umask = function() { return 0; };
     };
   };
 
-  // Run a function  **n**  times.
+  // Run a function **n** times.
   _.times = function(n, iteratee, context) {
     var accum = Array(Math.max(0, n));
     iteratee = optimizeCb(iteratee, context, 1);

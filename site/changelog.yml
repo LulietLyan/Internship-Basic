@@ -1,0 +1,69 @@
+- "2025":
+  # - "2025-05-31":
+  #     - function: 
+  #         text: 本站不再更新,跳转查看最新动态
+  #         href: https://dearrongerr.github.io/
+  - "2026-03-26":
+    - pageupdate: 批量删除历史版本的 PDF 与聚合 Markdown 文档，保留按主题拆分后的结构化内容
+    - pageupdate: 非 Design Pattern 目录文档文件名统一增加编号前缀，并同步更新 mkdocs 导航路径
+    - pageupdate: UML 类图文档补充关系线形说明与多重性（Multiplicity）详细规则及示例
+    - pageupdate: 设计模式新增「三类设计原则」章节，自建造者模式起文件名序号顺延 +1，并更新 mkdocs 导航；UML 类图入口改为 0-UML类图.md
+    - pageupdate: Design Pattern 下各文档统一增加与「三类设计原则」一致的前置 front matter 与页面网格样式
+  - "2026-03-30":
+    - pageupdate: Programming Language 下 Go 文档拆为「基础与原理」与「进阶」两栏；进阶文来自 GolangGuide Go语言进阶（10 篇，编号 01–10），置于 docs/Programming Language/GoLang-Advanced；为尚未带网格背景的页面统一增加与 Docker 概述一致的前缀（statistics/comments + 样式）
+  - "2026-03-29":
+    - pageupdate: GoLang 专栏新增程序初始化、逃逸分析、垃圾回收三篇原理文，并将原合并「内存管理」拆为独立章节与长文；Channel 起至代码示例顺延编号 04–12，同步 mkdocs 导航与 changelog
+    - pageupdate: GoLang 合并 GolangGuide 原理文（defer、interface、GMP/channel/context/sync.Map 等要点），新增 06-defer 与 08-interface，顺延内存至代码示例为 09–14；修正 channel 缓冲阻塞表述、Context 接口示例笔误等
+  - "2026-03-28":
+    - pageupdate: Design Pattern「SOLID 设计原则」文档补全里氏替换（LSP）、接口隔离（ISP），正文按 S-O-L-I-D 排序；mkdocs 侧栏标题由「三类设计原则」改为「SOLID 设计原则」
+    - pageupdate: Design Pattern 章节序号调整：SOLID 设计原则为第 1 节（1-三类设计原则.md），工厂方法 / 策略 / 抽象工厂分别为第 2–4 节，并同步 mkdocs 导航路径
+  - "2026-02-19":
+    - pageupdate: Redis 概述新增「什么是 Redis」、单线程含义与 6.0 多线程 I/O 配置说明
+    - pageupdate: Redis 数据结构修正 GEO 标题、补充 SDS 三点优势与 List 消息队列局限、修正压缩列表标题
+    - pageupdate: Redis 持久化补充 RDB save/bgsave 与自动触发配置、混合持久化缺点
+    - pageupdate: Redis 集群补充脑裂应对参数 min-slaves-to-write 与 min-slaves-max-lag
+    - pageupdate: Redis 总览页标题由 MySQL 修正为 Redis
+    - pageupdate: 操作系统 Concurrency 文档格式与小幅更新
+  - "2026-02-18":
+    - pageupdate: MySQL 日志优化 redo log 文件格式与写入过程表述、补充 binlog 三种格式与刷盘频率标题
+    - pageupdate: MySQL 日志重写主从复制实现说明、补充两阶段提交与 binlog 刷盘相关表述
+    - pageupdate: MySQL 存储引擎补充聚簇/非聚簇索引概念、修正 MyISAM 与 InnoDB 查询性能与操作速度表述
+    - pageupdate: MySQL 锁丰富加锁规则与区间理解法、修正元数据锁与 SELECT 加锁说明、补充非唯一索引范围查询主键加锁
+  - "2025-11-04":
+    - pageupdate: 补充操作系统缺失问题（线程崩溃、内存满了、预读失效缓存污染等）
+    - pageupdate: 补充计算机网络缺失问题（TCP滑动窗口、没有listen、没有accept等）
+    - pageupdate: 重构Redis文档为多文件结构（概述、数据结构、持久化、应用、集群）
+    - pageupdate: 完善MySQL文档内容（select/update执行过程、Buffer Pool管理）
+    - pageupdate: 新增Programming Language专栏，添加GoLang面试题文档（概述、GMP调度、Channel、同步原语、数据结构、内存管理、Context、反射、代码示例）
+    - pageupdate: 合并GOALNG_INTERVIEW_COLLECTION.md中未涉及的问题到GoLang文档（sync.RWMutex、接口嵌套复用、init函数特征增强、GOROOT和GOPATH说明）
+  - "2025-11-03":
+    - pageupdate: 重构Docker文档为多章节结构
+    - pageupdate: 修复文档格式问题
+  - "2025-08-07":
+    - pageupdate: 更新算法二叉树相关内容
+    - pageupdate: 优化表单格式
+  - "2025-06-15":
+    - pageupdate: 添加算法列表相关内容
+    - pageupdate: 添加算法矩阵相关内容
+  - "2025-06-07":
+    - pageupdate: 添加算法数组相关内容
+    - pageupdate: 添加算法滑动窗口相关内容
+    - pageupdate: 添加算法子串相关内容
+    - pageupdate: 更新算法模板和Hot100标题
+  - "2025-06-05":
+    - pageupdate: 更新MySQL子标题
+    - pageupdate: 更新LeetCode Hot100内容
+  - "2025-06-04":
+    - pageupdate: 整理 MySQL
+  - "2025-06-03":
+    - pageupdate: 添加 Hot100 哈希
+  - "2025-06-02":
+    - pageupdate: 添加设计模式
+  - "2025-06-02":
+    - pageupdate: 添加算法专栏
+  - "2025-06-01":
+    - pageupdate: 修复次级列表缩进问题
+  - "2025-05-31":
+    - pageupdate: 添加计算机网络、操作系统部分内容
+  - "2025-05-30":
+    - pageupdate: 本站正式运行
