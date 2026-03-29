@@ -4,7 +4,7 @@
 
 GMP是Go运行时的核心调度模型
 
-**GMP含义**：G是goroutine协程；M是machine系统线程，真正干活的；P是processor，逻辑处理器，它是G和M之间的桥梁。它负责调度G
+**GMP含义**：G（goroutine）是用户任务；M（machine）是绑定在操作系统线程上的执行实体；P（processor）是**逻辑处理器**，持有本地运行队列（LRQ）等调度资源，并与某个 M 绑定。**真正决定“下一个运行哪个 G”的是调度器逻辑**（如 `schedule` / `findRunnable`），通常不把整个调度器等同于单个 P。
 
 调度逻辑是这样的，M必须绑定P才能执行G。每个P维护一个自己的本地G队列（长度256），M从P的本地队列取G执行。当本地队列空时，M会按优先级从**全局队列、网络轮询器、其他P队列**中窃取goroutine，这是work-stealing机制。
 
@@ -110,4 +110,28 @@ structG
     uintptr    gopc;          // 创建这个goroutine的go表达式的pc...
  };
 ```
+
+## 11. 原理补充：与 runtime 行为对齐
+
+下列内容便于与源码阅读对照，细节以当前 Go 版本为准。
+
+### P 与队列
+
+- 每个 P 持有 **LRQ**（本地可运行 G 队列，长度常数为 256）以及可选的 **`runnext`**：用于优先运行刚被唤醒或刚创建的 G，减少队列操作。
+- **GRQ**（全局队列）由全局 `sched` 管理，访问需加锁；新 G 优先放入当前 P 的 LRQ，`runnext` 或 LRQ 满时可能转入 GRQ（与 `runqputslow` 等逻辑相关）。
+
+### 找 G 的优先级（`findRunnable` 思路）
+
+实现会随版本微调，典型逻辑包含：
+
+1. **防饥饿**：在满足周期条件时（历史上与 `schedtick` 取模相关，例如 **每 61 次**）先尝试从 **GRQ** 取 G，避免全局队列长期得不到执行。
+2. **当前 P 的 LRQ / `runnext`**（本地优先，开销低）。
+3. 若本地为空，再尝试 **GRQ**（若仍有积压）。
+4. **netpoll**：拉取因网络 I/O 就绪的 G。
+5. **work-stealing**：从其他 P 的 LRQ 窃取任务。
+6. 若仍无工作，可能进入 **P/M 闲置**、阻塞式 `netpoll` 或 `stopm` 等路径（见 `proc.go`）。
+
+### 新建 G（`go func`）
+
+`newproc` 最终在系统栈上创建 G，经 `runqput` 放入当前 P 的 `runnext` 或 LRQ；LRQ 满时可能批量搬到 GRQ，并视情况 `wakep` 唤醒闲置 P。
 
