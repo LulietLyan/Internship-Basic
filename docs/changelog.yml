@@ -9,6 +9,8 @@
     - pageupdate: UML 类图文档补充关系线形说明与多重性（Multiplicity）详细规则及示例
     - pageupdate: 设计模式新增「三类设计原则」章节，自建造者模式起文件名序号顺延 +1，并更新 mkdocs 导航；UML 类图入口改为 0-UML类图.md
     - pageupdate: Design Pattern 下各文档统一增加与「三类设计原则」一致的前置 front matter 与页面网格样式
+  - "2026-03-30":
+    - pageupdate: Programming Language 下 Go 文档拆为「基础与原理」与「进阶」两栏；进阶文来自 GolangGuide Go语言进阶（10 篇，编号 01–10），置于 docs/Programming Language/GoLang-Advanced；为尚未带网格背景的页面统一增加与 Docker 概述一致的前缀（statistics/comments + 样式）
   - "2026-03-29":
     - pageupdate: GoLang 专栏新增程序初始化、逃逸分析、垃圾回收三篇原理文，并将原合并「内存管理」拆为独立章节与长文；Channel 起至代码示例顺延编号 04–12，同步 mkdocs 导航与 changelog
     - pageupdate: GoLang 合并 GolangGuide 原理文（defer、interface、GMP/channel/context/sync.Map 等要点），新增 06-defer 与 08-interface，顺延内存至代码示例为 09–14；修正 channel 缓冲阻塞表述、Context 接口示例笔误等
