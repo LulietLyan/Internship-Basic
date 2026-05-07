@@ -281,15 +281,15 @@ if needzero && span.needzero != 0 {
 
 ### Channel 分配在栈还是堆？
 
-`channel` 一般由运行时分配在**堆**上：用于协程间通信，生命周期常超出单个函数。
+`channel` 一般由运行时分配在 **堆** 上：用于协程间通信，生命周期常超出单个函数。
 
 ### 内存泄漏常见场景（简要）
 
-- **goroutine 泄漏**：未正常退出的 goroutine 持续占用资源。
-- **channel 泄漏**：未关闭的 channel 与阻塞的 goroutine 相互持有引用。
-- **slice 引用大数组**：子 slice 导致整块底层数组无法回收，可对所需片段 `copy` 出新 slice。
-- **map**：删除元素未必收缩底层 bucket，曾很大的 map 可能长期占内存。
-- **定时器**：`time.After` / `time.Timer` 未调用 `Stop()` 可能长期占用堆。
+- **goroutine 泄漏** ：未正常退出的 goroutine 持续占用资源。
+- **channel 泄漏** ：未关闭的 channel 与阻塞的 goroutine 相互持有引用。
+- **slice 引用大数组** ：子 slice 导致整块底层数组无法回收，可对所需片段 `copy` 出新 slice。
+- **map** ：删除元素未必收缩底层 bucket，曾很大的 map 可能长期占内存。
+- **定时器** ：`time.After` / `time.Timer` 未调用 `Stop()` 可能长期占用堆。
 
 ### 定位与优化（简要）
 
