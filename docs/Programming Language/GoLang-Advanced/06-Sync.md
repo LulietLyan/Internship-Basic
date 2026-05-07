@@ -89,6 +89,7 @@ end
 ### 使用WaitGroup实现等待
 这里我们可以用`sync`包下的`WaitGroup`来实现，Go语言中可以使用`sync.WaitGroup`来实现并发任务的同步以及协程任务等待。
 `sync.WaitGroup`是一个对象，里面维护者一个计数器，并且通过三个方法来配合使用：
+
 - (wg * WaitGroup) Add(delta int)  计数器加delta
 - (wg *WaitGroup) Done()           计数器减1
 - (wg *WaitGroup) Wait()           会阻塞代码的运行，直至计数器减为0
@@ -214,7 +215,7 @@ var lock sync.Mutex
 func (m *Mutex) Lock()     // 加锁
 func (m *Mutex) Unlock()   // 解锁
 ```
-一个互斥锁只能同时被一个`goroutine`锁定，其它`goroutine`将阻塞直到互斥锁被解锁才能加锁成功。`sync.Mutex`在使用的时候要注意：**对一个未锁定的互斥锁解锁将会产生运行时错误**。
+一个互斥锁只能同时被一个`goroutine`锁定，其它`goroutine`将阻塞直到互斥锁被解锁才能加锁成功。`sync.Mutex`在使用的时候要注意： **对一个未锁定的互斥锁解锁将会产生运行时错误** 。
 对上面的例子稍作修改，加上互斥锁：
 ```go
 package main
@@ -276,6 +277,7 @@ func (rw *RWMutex) RLock()    // 对读锁加锁
 func (rw *RWMutex) RUnlock()  // 对读锁解锁
 ```
 读写锁的使用遵循以下几个法则：
+
 1. 同时只能有一个 goroutine 能够获得写锁定。
 2. 同时可以有任意多个 gorouinte 获得读锁定。
 3. 同时只能存在写锁定或读锁定（读和写互斥）。
@@ -353,7 +355,8 @@ final count: 3
 
 #### 死锁
 提到锁，就有一个绕不开的话题：死锁。死锁就是一种状态，当两个或以上的`goroutine`在执行过程中，因争夺共享资源处在互相等待的状态，如果没有外部干涉将会一直处于这种阻塞状态，我们称这时的系统发生了死锁。思索场景一般有以下两种
-1. **Lock/Unlock不成对**。这类情况最常见的场景就是对锁进行拷贝使用
+
+1. **Lock/Unlock不成对** 。这类情况最常见的场景就是对锁进行拷贝使用
 ```go
 package main    
 
@@ -627,6 +630,7 @@ func main() {
 
 ### atomic.value
 上面展示的`AddT`，`StoreT`等方法都是针对的基本数据类型做的操作，假设想对多个变量进行同步保护，即假设想对一个`struct`这样的复合类型用原子操作，也是支持的吗？也可以做支持，go语言里的`atomic.value`支持任意一种接口类型进行原子操作，且提供了`Load`、`Store`、`Swap`和`CompareAndSwap`四种方法：
+
 - `Load`：func (v *Value) Load() (val any)，从value读出数据
 - `Store`：func (v *Value) Store(val any)，向value写入数据
 - `Swap`：func (v *Value) Swap(new any) (old any)，用new交换value中存储的数据，返回value原来存储的旧数据
