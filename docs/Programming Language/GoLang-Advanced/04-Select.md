@@ -54,6 +54,7 @@ body::before {
 ![传统阻塞IO](https://golangstar.cn/assets/img/go语言系列/select/select1.png)
 
 优缺点：
+
 - 优点：逻辑简单，在阻塞等待期间线程会挂起，不会占用 CPU 资源
 - 缺点：每个连接需要独立的线程单独处理，当并发请求量大时为了维护程序，内存、线程切换开销较大
 
@@ -63,6 +64,7 @@ IO多路复用的基本原理如下图所示：
 ![IO多路复用](https://golangstar.cn/assets/img/go语言系列/select/select2.png)
 
 优缺点：
+
 - 优点：通过复用一个线程处理了多个IO事件，无需对额外过多的线程维护管理，资源和效率上都获得了提升
 - 缺点：当连接数较少时效率相比多线程+阻塞 I/O 模型效率较低
 
