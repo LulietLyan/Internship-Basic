@@ -51,6 +51,7 @@ type Context interface {
 }
 ```
 这个接口定义了四个方法:
+
 - `Deadline`: 设置 `context.Context` 被取消的时间，即截止时间
 - `Done`: 返回一个只读`Channel`，当Context被取消或者到达截止时间，这个`Channel`就会被关闭，表示Context的链路结束，多次调用`Done`方法会返回同一个`Channel`
 - `Err`: 返回`context.Context`结束的原因，它只会在`Done`返回的`Channel`被关闭时才会返回非空的值，返回值有以下两种情况:
@@ -85,6 +86,7 @@ func WithValue(parent Context, key, val interface{}) Context
 
 ## Context有什么用
 `context`主要有两个用途，也是在项目中经常使用的:
+
 1. 用于并发控制，控制协程的优雅退出
 2. 上下文的信息传递
 总的来说，`context`就是用来在父子`goroutine`间进行值传递以及发送`cancel`信号的一种机制。
