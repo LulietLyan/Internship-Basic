@@ -83,6 +83,7 @@ after 2s Time out!
 func (t *Timer) Stop() bool
 ```
 返回值：
+
 - `true`：执行`stop()`时`timer`还没有到达超时时间，即超时时间内停止了`timer`
 - `false`：执行`stop()`时`timer`到达了超时时间，过了超时时间才停止`timer`
 
