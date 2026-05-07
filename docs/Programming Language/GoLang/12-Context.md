@@ -44,7 +44,7 @@ body::before {
 
 go语言里的context实际上是一个接口，提供了Deadline()，Done()，Err()以及Value()四种方法。它在Go 1.7 标准库被引入。
 
-它本质上是一个**信号传递和范围控制的工具**。它的核心作用是在一个请求处理链路中（跨越多个函数和goroutine），优雅地传递**取消信号（cancellation）、超时（timeout）和截止日期（deadline）**，并能携带一些范围内的键值对数据。
+它本质上是一个 **信号传递和范围控制的工具** 。它的核心作用是在一个请求处理链路中（跨越多个函数和goroutine），优雅地传递 **取消信号（cancellation）、超时（timeout）和截止日期（deadline）** ，并能携带一些范围内的键值对数据。
 
 **分析**
 
@@ -57,7 +57,7 @@ type Context interface {
 }
 ```
 
-这个接口定义了四个核心方法，它们共同构成了一套关于**截止时间、取消信号和请求范围值**的协定：
+这个接口定义了四个核心方法，它们共同构成了一套关于 **截止时间、取消信号和请求范围值** 的协定：
 
 * `Deadline()` - 返回一个时间点，告知任务何时应该被取消。
 
@@ -69,7 +69,7 @@ type Context interface {
 
 ## 2. Go语言的Context有什么作用？
 
-Go的Context主要解决三个核心问题：**超时控制、取消信号传播和请求级数据传递**
+Go的Context主要解决三个核心问题： **超时控制、取消信号传播和请求级数据传递**
 
 在实际项目中，我们最常用的是超时控制。比如一个HTTP请求需要调用多个下游服务，我们通过`context.WithTimeout`设置整体超时时间，当超时发生时，所有子操作都会收到取消信号并立即退出，避免资源浪费。取消信号的传播是通过Context的层级结构实现的，父Context取消时，所有子Context都会自动取消。
 
@@ -77,19 +77,19 @@ Go的Context主要解决三个核心问题：**超时控制、取消信号传播
 
 ## 3. Context.Value的查找过程是怎样的
 
-Context.Value的查找过程是一个**链式递归查找的过程**，从当前Context开始，沿着父Context链一直向上查找直到找到对应的key或者到达根Context。
+Context.Value的查找过程是一个 **链式递归查找的过程** ，从当前Context开始，沿着父Context链一直向上查找直到找到对应的key或者到达根Context。
 
 具体流程是：当调用`ctx.Value(key)`时，首先检查当前Context是否包含这个key，如果当前层没有，就会调用`parent.Value(key)`继续向上查找。这个过程会一直递归下去，直到找到匹配的key返回对应的value，或者查找到根Context返回nil。
 
 ## 4. Context如何被取消
 
-Context的取消是通过**channel关闭信号**实现的，主要有三种取消方式。
+Context的取消是通过 **channel关闭信号** 实现的，主要有三种取消方式。
 
-首先是**主动取消**，通过`context.WithCancel`创建的Context会返回一个cancel函数，调用这个函数就会关闭内部的done channel，所有监听这个Context的goroutine都能通过`ctx.Done()`收到取消信号。
+首先是 **主动取消** ，通过`context.WithCancel`创建的Context会返回一个cancel函数，调用这个函数就会关闭内部的done channel，所有监听这个Context的goroutine都能通过`ctx.Done()`收到取消信号。
 
-其次是**超时取消**，`context.WithTimeout`和`context.WithDeadline`会启动一个定时器，到达指定时间后自动调用cancel函数触发取消。
+其次是 **超时取消** ，`context.WithTimeout`和`context.WithDeadline`会启动一个定时器，到达指定时间后自动调用cancel函数触发取消。
 
-最后是**级联取消**，当父Context被取消时，所有子Context会自动被取消，这是通过Context树的结构实现的。
+最后是 **级联取消** ，当父Context被取消时，所有子Context会自动被取消，这是通过Context树的结构实现的。
 
 ## 5. 实现要点（标准库 `context` 包）
 
@@ -101,19 +101,19 @@ Context的取消是通过**channel关闭信号**实现的，主要有三种取�
 
 ### 可取消：`cancelCtx`
 
-- 内嵌父 `Context`，并用 `done`（惰性创建的 `chan struct{}`）表示取消：**关闭该 channel** 即向所有监听方广播完成。
-- `children` 记录子节点；`cancel` 时会关闭 `done`、设置 `err`，并**递归取消子节点**。
-- `WithCancel` 通过 `propagateCancel` 把子节点挂到可取消的父节点上；若父已取消则立即取消子节点。若父不是标准 `cancelCtx`，可能退化为**单独 goroutine** 监听 `parent.Done()` 与子完成（见源码分支）。
+- 内嵌父 `Context`，并用 `done`（惰性创建的 `chan struct{}`）表示取消： **关闭该 channel** 即向所有监听方广播完成。
+- `children` 记录子节点；`cancel` 时会关闭 `done`、设置 `err`，并 **递归取消子节点** 。
+- `WithCancel` 通过 `propagateCancel` 把子节点挂到可取消的父节点上；若父已取消则立即取消子节点。若父不是标准 `cancelCtx`，可能退化为 **单独 goroutine** 监听 `parent.Done()` 与子完成（见源码分支）。
 
 ### 超时：`timerCtx`
 
-内嵌 `cancelCtx`，并持有 `time.Timer`；在 deadline 到达或手动 `cancel` 时取消并停止定时器。若父级 deadline **更早**，`WithDeadline` 可能直接退化为 `WithCancel(parent)`，避免无意义的更晚子 deadline。
+内嵌 `cancelCtx`，并持有 `time.Timer`；在 deadline 到达或手动 `cancel` 时取消并停止定时器。若父级 deadline **更早** ，`WithDeadline` 可能直接退化为 `WithCancel(parent)`，避免无意义的更晚子 deadline。
 
 ### 值：`valueCtx`
 
-仅实现链式 `Value`：先比对本层 `key`，否则委托父 `Context.Value`。**不要**用 `WithValue` 传业务大对象或可选参数替代品；key 建议用自定义非导出类型避免碰撞。
+仅实现链式 `Value`：先比对本层 `key`，否则委托父 `Context.Value`。 **不要** 用 `WithValue` 传业务大对象或可选参数替代品；key 建议用自定义非导出类型避免碰撞。
 
 ### 并发安全
 
-`cancel` 与 `Done` 的懒初始化均受互斥保护；用户侧应把 `Context` 当只读传递，**不要**并发调用 `cancel` 以外的方式篡改内部状态。
+`cancel` 与 `Done` 的懒初始化均受互斥保护；用户侧应把 `Context` 当只读传递， **不要** 并发调用 `cancel` 以外的方式篡改内部状态。
 
