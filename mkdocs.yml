@@ -266,7 +266,6 @@ nav:
       - 镜像仓库: ./Docker/10-ImageRegistry.md
       - 最佳实践: ./Docker/11-BestPractices.md
   - 🐧 Linux Commands:
-      - 概述: ./Linux Commands/index.md
       - 第一部分 Linux 命令行:
           - 初识 Linux Shell: ./Linux Commands/01-Intro.md
           - 走进 Shell: ./Linux Commands/02-Shell-Access.md
