@@ -265,6 +265,37 @@ nav:
       - 数据卷: ./Docker/09-Volumes.md
       - 镜像仓库: ./Docker/10-ImageRegistry.md
       - 最佳实践: ./Docker/11-BestPractices.md
+  - 🐧 Linux Commands:
+      - 概述: ./Linux Commands/index.md
+      - 第一部分 Linux 命令行:
+          - 初识 Linux Shell: ./Linux Commands/01-Intro.md
+          - 走进 Shell: ./Linux Commands/02-Shell-Access.md
+          - Bash 基础命令: ./Linux Commands/03-Basic-Commands.md
+          - 更多 Bash 命令与监控: ./Linux Commands/04-More-Commands.md
+          - 理解 Shell: ./Linux Commands/05-Understanding-Shell.md
+          - Linux 环境变量: ./Linux Commands/06-Environment-Variables.md
+          - Linux 文件权限: ./Linux Commands/07-File-Permissions.md
+          - 管理文件系统: ./Linux Commands/08-Filesystem.md
+          - 安装软件: ./Linux Commands/09-Software-Install.md
+          - 文本编辑器: ./Linux Commands/10-Text-Editors.md
+      - 第二部分 Shell 脚本基础:
+          - 构建基础脚本: ./Linux Commands/11-Basic-Scripts.md
+          - 结构化命令: ./Linux Commands/12-Structured-Commands.md
+          - 更多结构化命令: ./Linux Commands/13-More-Structured-Commands.md
+          - 处理用户输入: ./Linux Commands/14-User-Input.md
+          - 呈现数据: ./Linux Commands/15-Present-Data.md
+          - 脚本控制: ./Linux Commands/16-Script-Control.md
+      - 第三部分 高级 Shell 脚本:
+          - 创建函数: ./Linux Commands/17-Functions.md
+          - 图形化环境脚本: ./Linux Commands/18-GUI-Scripting.md
+          - 初识 sed 和 gawk: ./Linux Commands/19-Sed-Gawk.md
+          - 正则表达式: ./Linux Commands/20-Regex.md
+          - sed 进阶: ./Linux Commands/21-Sed-Advanced.md
+          - gawk 进阶: ./Linux Commands/22-Gawk-Advanced.md
+          - 使用其他 Shell: ./Linux Commands/23-Other-Shells.md
+      - 第四部分 实用脚本工具:
+          - 编写脚本实用工具: ./Linux Commands/24-Script-Utilities.md
+          - 井井有条: ./Linux Commands/25-Organizing.md
   - 💡 Algorithm:
       - ACM 模式的算法题: ./Algorithm/01-Template.md
       - LeetCode Hot100:
