@@ -3,6 +3,10 @@
   #     - function: 
   #         text: 本站不再更新,跳转查看最新动态
   #         href: https://dearrongerr.github.io/
+  - "2026-06-01":
+    - pageupdate: 新增 Linux Commands 专栏（索引 + 25 章速查笔记），涵盖命令行、Shell 脚本与 Git；第 4 章扩充 top/ps/htop/ss/lsof/journalctl 等开发者常用监控与排查命令
+    - pageupdate: mkdocs 导航新增 🐧 Linux Commands 四部分结构（命令行 / 脚本基础 / 高级脚本 / 实用工具）
+    - pageupdate: Design Pattern 补充总览类图资源（Design Pattern.png / Design Pattern.svg）
   - "2026-03-26":
     - pageupdate: 批量删除历史版本的 PDF 与聚合 Markdown 文档，保留按主题拆分后的结构化内容
     - pageupdate: 非 Design Pattern 目录文档文件名统一增加编号前缀，并同步更新 mkdocs 导航路径
