@@ -287,27 +287,31 @@ nav:
           - 技巧: ./Algorithm/18-Hot100Trick.md
   - ✏ Design Pattern:
       - UML类图: ./DesignPattern/0-UML类图.md
-      - SOLID 设计原则: ./DesignPattern/1-SOLID设计原则.md
-      - 工厂方法模式: ./DesignPattern/2-工厂方法模式.md
-      - 策略模式: ./DesignPattern/3-策略模式.md
-      - 抽象工厂模式: ./DesignPattern/4-抽象工厂模式.md
-      - 装饰模式: ./DesignPattern/5-装饰模式.md
-      - 原型模式: ./DesignPattern/6-原型模式.md
-      - 适配器模式: ./DesignPattern/7-适配器模式.md
-      - 代理模式: ./DesignPattern/8-代理模式.md
-      - 建造者模式: ./DesignPattern/9-建造者模式.md
-      - 外观模式: ./DesignPattern/10-外观模式.md
-      - 桥接模式: ./DesignPattern/11-桥接模式.md
-      - 组合模式: ./DesignPattern/12-组合模式.md
-      - 享元模式: ./DesignPattern/13-享元模式.md
+      - 简单工厂模式: ./DesignPattern/1-简单工厂模式.md
+      - 策略模式: ./DesignPattern/2-策略模式.md
+      - 单一职责原则: ./DesignPattern/3-单一职责原则.md
+      - 开放-封闭原则: ./DesignPattern/4-开放封闭原则.md
+      - 依赖倒转原则: ./DesignPattern/5-依赖倒转原则.md
+      - 装饰模式: ./DesignPattern/6-装饰模式.md
+      - 代理模式: ./DesignPattern/7-代理模式.md
+      - 工厂方法模式: ./DesignPattern/8-工厂方法模式.md
+      - 原型模式: ./DesignPattern/9-原型模式.md
+      - 模板方法模式: ./DesignPattern/10-模板方法模式.md
+      - 迪米特法则: ./DesignPattern/11-迪米特法则.md
+      - 外观模式: ./DesignPattern/12-外观模式.md
+      - 建造者模式: ./DesignPattern/13-建造者模式.md
       - 观察者模式: ./DesignPattern/14-观察者模式.md
-      - 单例模式: ./DesignPattern/15-单例模式.md
-      - 命令模式: ./DesignPattern/16-命令模式.md
-      - 中介者模式: ./DesignPattern/17-中介者模式.md
+      - 抽象工厂模式: ./DesignPattern/15-抽象工厂模式.md
+      - 状态模式: ./DesignPattern/16-状态模式.md
+      - 适配器模式: ./DesignPattern/17-适配器模式.md
       - 备忘录模式: ./DesignPattern/18-备忘录模式.md
-      - 模板方法模式: ./DesignPattern/19-模板方法模式.md
+      - 组合模式: ./DesignPattern/19-组合模式.md
       - 迭代器模式: ./DesignPattern/20-迭代器模式.md
-      - 状态模式: ./DesignPattern/21-状态模式.md
-      - 责任链模式: ./DesignPattern/22-责任链模式.md
-      - 解释器模式: ./DesignPattern/23-解释器模式.md
-      - 访问者模式: ./DesignPattern/24-访问者模式.md
+      - 单例模式: ./DesignPattern/21-单例模式.md
+      - 桥接模式: ./DesignPattern/22-桥接模式.md
+      - 命令模式: ./DesignPattern/23-命令模式.md
+      - 责任链模式: ./DesignPattern/24-责任链模式.md
+      - 中介者模式: ./DesignPattern/25-中介者模式.md
+      - 享元模式: ./DesignPattern/26-享元模式.md
+      - 解释器模式: ./DesignPattern/27-解释器模式.md
+      - 访问者模式: ./DesignPattern/28-访问者模式.md
