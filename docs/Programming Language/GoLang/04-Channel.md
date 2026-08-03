@@ -186,7 +186,7 @@ select {
 case data := <-ch1:
     // 处理ch1的数据
 case ch2 <- value:
-    // 向ch2发送数据  
+    // 向ch2发送数据
 case <-timeout:
     // 超时处理
 default:

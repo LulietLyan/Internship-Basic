@@ -70,13 +70,13 @@ defer someFunc(a, b) // 注意：参数在 defer 注册时就会求值，而非�
 
 编译器在 SSA 阶段处理 `defer`，大致三类实现（由编译器择优）：
 
-1. **开放编码（open-coded，约 Go 1.14+）**  
+1. **开放编码（open-coded，约 Go 1.14+）**
    在满足条件时，把 defer 逻辑展开在函数出口附近，减少 `deferproc` 调用开销。常见限制包括：`defer` 个数不宜过多、与返回值/`defer` 数量组合不能过大、不在循环中动态增加难以静态分析的 `defer` 等。
 
-2. **栈上分配：`deferprocStack`**  
+2. **栈上分配：`deferprocStack`**
    未逃逸、可静态分析时，在栈上放置 `_defer` 记录，再链入 goroutine 的 defer 链表。
 
-3. **堆上分配：`deferproc` / `newdefer`**  
+3. **堆上分配：`deferproc` / `newdefer`**
    早期版本或无法满足栈/开放编码条件时使用；`newdefer` 会尽量从 **P 本地 defer 池** 与 **全局 defer 池** 取复用对象，减少频繁堆分配。
 
 **经验** ：在 **循环里** 反复 `defer` 会导致大量 `_defer` 分配或无法开放编码，容易带来性能问题；应改为在循环外 `defer` 一次，或显式使用函数封装缩小 defer 次数。

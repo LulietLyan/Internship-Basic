@@ -143,16 +143,16 @@ func main() {
 TraceLog-----init package2 value1--------20
 TraceLog-----init package2 value2--------30
 init func1 in package2
-init func2 in package2                     
+init func2 in package2
 TraceLog-----init package1 value1--------30
 TraceLog-----init package1 value2--------40
-init func in package1                      
-TraceLog-----init M_v1--------40           
-TraceLog-----init M_v2--------50           
-init func1 in main                         
-init func2 in main                         
-main func in main   
-``` 
+init func in package1
+TraceLog-----init M_v1--------40
+TraceLog-----init M_v2--------50
+init func1 in main
+init func2 in main
+main func in main
+```
 
 实验与结论相符合，按照导入包的层次，最先被依赖的包最先被初始化，且初始化的顺序是先初始化包变量，再执行`init`函数。初始化过程总结如下：
 

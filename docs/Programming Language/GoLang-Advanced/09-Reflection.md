@@ -334,7 +334,7 @@ func main() {
     }
 }
 ```
-运行结果：  
+运行结果：
 ```
 Student
 struct
@@ -422,10 +422,10 @@ func main() {
 运行结果：
 ```
 input:
-int int 
+int int
 --------------------------------
 output:
-int error 
+int error
 ```
 `t := reflect.TypeOf(Add)`获取到Add函数的`type`类型，然后通过`NumIn()`方法获得Add函数的参数个数，依次打印出参数的类型。通过`NumOut()`方法获得Add函数的返回值个数，依次打印出返回值的类型
 
@@ -491,12 +491,13 @@ func main() {
 {GetScore func(*main.Student) float64}
 {SetScore func(*main.Student, float64)}
 ```
+
 - `reflect.Type.NumMethod()`：返回struct所绑定的的方法个数
 - `reflect.Type.Method(i)`：返回第i个方法的`reflect.Method`对象
 
 `reflect.Method`定义在`src/reflect/type.go`文件：
 ```go
-type Method struct {  
+type Method struct {
   Name    string // 方法名
   PkgPath string
   Type  Type  // 方法类型（
@@ -565,7 +566,7 @@ func main() {
     argsV1 := make([]reflect.Value, 0)
     argsV1 = append(argsV1, v)
     argsV1 = append(argsV1, reflect.ValueOf("lisi"))
-    m1.Func.Call(argsV1)       // 
+    m1.Func.Call(argsV1)       //
     fmt.Printf("st === %+v\n", st)
 
     m2 := v.MethodByName("SetName")    // 获取SetName方法
@@ -585,7 +586,7 @@ st === &{Name:wangwu Age:18 Score:90.5}
 可以看到通过`reflect.Type.MethodByName()`方法获取到的`reflect.Method`对象和`reflect.Value.MethodByName()`方法获取到的`reflect.Method`获取到的`reflect.Value`对象都可以在程序运行时动态的调用方法修改结构本身，`student`的`name`由`zhangsan`------>`lisi`------>`wangwu`。
 但是二者的调用存在一个区别：通过`reflect.Method`调用方法，必须使用`Func`字段，而且要传入接收器的`reflect.Value`作为第一个参数
 ```go
-m1.Func.Call(argsV1) 
+m1.Func.Call(argsV1)
 ```
 `reflect.Value.MethodByName()`返回一个`reflect.Value`对象，它不需要接收器的`reflect.Value`作为第一个参数，而且直接使用`Call()`发起方法调用：
 ```go
@@ -616,7 +617,7 @@ func main() {
     }
     v := reflect.ValueOf(st)
     fmt.Println(v.CanAddr())
-}   
+}
 ```
 运行结果：
 ```
@@ -708,7 +709,7 @@ func main() {
 ```
 false
 ```
-可以看到，对数组`reflect.Value.Index(i)`获取到的`reflect.Value`对象是不可寻址的 
+可以看到，对数组`reflect.Value.Index(i)`获取到的`reflect.Value`对象是不可寻址的
 通过`reflect.ValueOf`的到的其实是原始数据的一份拷贝，切片底层实现其实是一个`stuct`类型，`struct`里包含一个执行具体数组的指针，对切片拷贝，虽然拷贝了这个`struct`，自然`struct`里的指针也拷贝了一份，但是两个指针执行同一个内存区域，所以修改拷贝的切片，也会影响原值
 
 3. 通过结构体的指针获取到的字段也是可寻址的
@@ -805,7 +806,7 @@ func main() {
     fmt.Printf("st = %+v\n", st)
 }
 ```
-运行结果：  
+运行结果：
 ```
 st = &{Name:lisi Age:18 Score:90.5}
 ```

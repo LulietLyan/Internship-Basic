@@ -140,7 +140,7 @@ structG
     uintptr    stackguard;    // 分段栈的可用空间下界
     uintptr    stackbase;     // 分段栈的栈基址
     Gobuf    sched;           //协程切换时，利用sched域来保存上下文
-    uintptr    stack0; 
+    uintptr    stack0;
     FuncVal*    fnstart;        // goroutine运行的函数void*    param;        // 用于传递参数，睡眠时其它goroutine设置param，唤醒时此goroutine可以获取
     int16    status;          // 状态    Gidle,Grunnable,Grunning,Gsyscall,Gwaiting,Gdead
     int64    goid;            // goroutine的id号

@@ -281,7 +281,7 @@ func (rw *RWMutex) RUnlock()  // 对读锁解锁
 1. 同时只能有一个 goroutine 能够获得写锁定。
 2. 同时可以有任意多个 gorouinte 获得读锁定。
 3. 同时只能存在写锁定或读锁定（读和写互斥）。
-通俗理解就是可以多个`goroutine`同时读，但是只有一个`goroutine`能写，共享资源要么在被一个或多个`goroutine`读取，要么在被一个`goroutine`写入， 读写不能同时进行。 
+通俗理解就是可以多个`goroutine`同时读，但是只有一个`goroutine`能写，共享资源要么在被一个或多个`goroutine`读取，要么在被一个`goroutine`写入， 读写不能同时进行。
 读写锁示例：
 ```go
 package main
@@ -345,7 +345,7 @@ goroutine2 reading count:1
 goroutine2 reader over
 goroutine2 writing count:2
 goroutine1 reader over
-goroutine2 writer over    
+goroutine2 writer over
 goroutine3 writing count:3
 goroutine3 writer over
 final count: 3
@@ -358,7 +358,7 @@ final count: 3
 
 1. **Lock/Unlock不成对** 。这类情况最常见的场景就是对锁进行拷贝使用
 ```go
-package main    
+package main
 
 import (
     "fmt"
@@ -380,16 +380,16 @@ func copyMutex(mu sync.Mutex) {
 ```
 运行结果：
 ```
-fatal error: all goroutines are asleep - deadlock!      
-                                                        
-goroutine 1 [semacquire]:                               
-sync.runtime_SemacquireMutex(0xc0000160ac, 0x0, 0x1)    
+fatal error: all goroutines are asleep - deadlock!
+
+goroutine 1 [semacquire]:
+sync.runtime_SemacquireMutex(0xc0000160ac, 0x0, 0x1)
         D:/Program Files/Go/src/runtime/sema.go:71 +0x4e
-sync.(*Mutex).lockSlow(0xc0000160a8)                    
+sync.(*Mutex).lockSlow(0xc0000160a8)
         D:/Program Files/Go/src/sync/mutex.go:138 +0x10f
-sync.(*Mutex).Lock(...)                                 
-        D:/Program Files/Go/src/sync/mutex.go:81        
-main.copyTest(0xc0000160a8)  
+sync.(*Mutex).Lock(...)
+        D:/Program Files/Go/src/sync/mutex.go:81
+main.copyTest(0xc0000160a8)
 ```
 会报死锁，为什么呢？有的同学可能会注意到，这里`mu sync.Mutex`当作参数传入到函数`copyMutex`，锁进行了拷贝，不是原来的锁变量了，那么一把新的锁，在执行`mu.Lock()`的时候应该没问题。这就是要注意的地方，如果将带有锁结构的变量赋值给其他变量，锁的状态会复制。所以多锁复制后的新的锁拥有了原来的锁状态，那么在`copyMutex`函数内执行`mu.Lock()`的时候会一直阻塞，因为外层的`main`函数已经`Lock()`了一次，但是并没有机会`Unlock()`，导致内层函数会一直等待`Lock()`，而外层函数一直等待`Unlock()`，这样就造成了死锁
 所以在使用锁的时候，我们应当尽量避免锁拷贝，并且保证Lock()和Unlock()成对出现，没有成对出现容易会出现死锁的情况，或者是Unlock 一个未加锁的Mutex而导致 panic。尽量养成如下使用习惯
@@ -436,7 +436,7 @@ func main() {
 ```
 运行结果：
 ```
-fatal error: all goroutines are asleep - deadlock! 
+fatal error: all goroutines are asleep - deadlock!
 ```
 死锁了，代码很简单，两个`goroutine`，一个`goroutine`先锁`mu1`，再锁`mu2`，另一个`goroutine`先锁`mu2`，再锁`mu1`，但是在它们进行第二次枷锁操作的时候，彼此等待对方释放锁，这样就造成了循环等待，一直阻塞，形成死锁。
 
@@ -574,10 +574,11 @@ func main() {
 ```
 18
 key is:name, val is:zhangsan
-key is:age, val is:18       
-<nil> false                 
-zhangsan  
+key is:age, val is:18
+<nil> false
+zhangsan
 ```
+
 1. 通过store方法写入两个键值对
 2. 读取key为age的值，读出来age为18
 3. 通过range方法遍历map的key和value
@@ -589,6 +590,7 @@ zhangsan
 除了前面介绍的锁`mutex`以外，还有一种解决并发安全的策略，就是原子操作。所谓原子操作就是这一系列的操作在`cpu`上执行是一个不可分割的整体，显然要么全部执行，要么全部不执行，不会受到其他操作的影响，也就不会存在并发问题。
 
 ### atomic和mutex的区别
+
 1. 使用方式：通常`mutex`用于保护一段执行逻辑，而`atomic`主要是对变量进行操作
 2. 底层实现：`mutex`由操作系统调度器实现，而`atomic`操作有底层硬件指令支持，保证在`cpu`上执行不中断。所以`atomic`的性能也能随`cpu`的个数增加线性提升
 
@@ -797,6 +799,7 @@ addr1 is 0x1400000c030
 可以看到，我们第二次取出的对象虽然和第一次是同一个，地址形同，但是对象的字段值却发生了变化，不是我们初始化的对象了，我们想要一只重复使用一个相同的对象的话，显然这里有问题。所以，我们需要在`pool.Put(st)`回收对象之前，进行对象的`Reset`操作，将对象值复原，同时在每次我们`pool.Get()`取出完对象使用完毕之后，也不要忘了调用`pool.Put`方法把对象再次放入对象池，以便对象能够复用。
 
 ### sync.pool使用场景
+
 1. `sync.pool`主要是通过对象复用来降低gc带来的性能损耗，所以在高并发场景下，由于每个`goroutine`都可能过于频繁的创建一些大对象，造成gc压力很大。所以在高并发业务场景下出现 GC 问题时，可以使用 `sync.Pool` 减少 GC 负担
 2. `sync.pool`不适合存储带状态的对象，比如socket 连接、数据库连接等，因为里面的对象随时可能会被gc回收释放掉
 3. 不适合需要控制缓存对象个数的场景，因为`Pool` 池里面的对象个数是随机变化的，因为池子里的对象是会被gc的，且释放时机是随机的

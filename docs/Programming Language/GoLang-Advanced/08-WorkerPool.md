@@ -45,6 +45,7 @@ Go语言虽然有着高效的GMP调度模型，理论上支持成千上万的`go
 协程池简单理解就是有一个池子一样的东西，里面装这个固定数量的`goroutine`，当有一个任务到来的时候，会将这个任务交给池子里的一个空闲的`goroutine`去处理，如果池子里没有空闲的`goroutine`了，任务就会阻塞等待。所以协程池有三个角色`Worker`，`Task`，`Pool`。
 
 ### 属性定义
+
 - `Worker`：用于执行任务的`goroutine`
 - `Task`: 具体的任务
 - `Pool`: 池子
@@ -75,7 +76,7 @@ type Pool struct {
 ```go
 // p为Pool对象指针
 for task := range p.JobCh {
-    do ...      
+    do ...
 }
 ```
 执行任务单元，简单理解就是干活的`goroutine`，这个worker其实只做一件事情，就是不断的从任务队列里面取任务执行，而worker的数量就是协程池里协程的数量，由`Pool`的参数`WorkerNum`指定。
@@ -93,7 +94,7 @@ func NewPool(Capacity int, taskNum int) *Pool
 
 接下来主要介绍协程池的各个方法：
 ```go
-func (p *Pool) AddTask(task *Task) 
+func (p *Pool) AddTask(task *Task)
 ```
 `AddTask`方法是往协程池添加任务，如果当前运行着的worker数量小于协程池worker容量，则立即启动一个协程worker来处理任务，否则将任务添加到任务队列。
 

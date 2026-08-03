@@ -165,7 +165,7 @@ slice 的底层数据其实也是数组，slice 是对数组的封装，它描�
 // runtime/slice.go
 type slice struct {
         array unsafe.Pointer // 元素指针
-        len   int // 长度 
+        len   int // 长度
         cap   int // 容量
 }
 ```
@@ -315,8 +315,8 @@ import "fmt"
 
 func main() {
     var str = "hello 你好" //思考下 len(str) 的长度是多少？
-    
-    //golang中string底层是通过byte数组实现的，直接求len 实际是在按字节长度计算  
+
+    //golang中string底层是通过byte数组实现的，直接求len 实际是在按字节长度计算
     //所以一个汉字占3个字节算了3个长度
     fmt.Println("len(str):", len(str))  // len(str): 12
 
@@ -348,17 +348,17 @@ tag可以为结构体成员提供属性。常见的：
 ```go
 package main
 import "fmt"
- 
+
 type student struct {
   id   int32
   name string
 }
- 
+
 func main() {
   a := &student{id: 1, name: "微客鸟窝"}
 
-  fmt.Printf("a=%v  \n", a) // a=&{1 微客鸟窝}  
-  fmt.Printf("a=%+v  \n", a) // a=&{id:1 name:微客鸟窝}  
+  fmt.Printf("a=%v  \n", a) // a=&{1 微客鸟窝}
+  fmt.Printf("a=%+v  \n", a) // a=&{id:1 name:微客鸟窝}
   fmt.Printf("a=%#v  \n", a) // a=&main.student{id:1, name:微客鸟窝}
 }
 ```
@@ -564,28 +564,28 @@ unsafe.Pointer和uintptr可以相互转换，这是Go提供的唯一合法的指
 
 ### go语言和python的区别
 
-1. **范例**  
+1. **范例**
 Python是一种基于面向对象编程的多范式，命令式和函数式编程语言。Go是一种基于并发编程范式的过程编程语言，它与C具有表面相似性。
 
-2. **类型化**  
+2. **类型化**
 Python是动态类型语言，而Go是一种静态类型语言，它实际上有助于在编译时捕获错误，这可以进一步减少生产后期的严重错误。
 
-3. **并发**  
+3. **并发**
 Python没有提供内置的并发机制，而Go有内置的并发机制。
 
-4. **安全性**  
+4. **安全性**
 Python是一种强类型语言，它是经过编译的，因此增加了一层安全性。Go具有分配给每个变量的类型，因此，它提供了安全性。
 
-5. **管理内存**  
+5. **管理内存**
 Go允许程序员在很大程度上管理内存。而Python中的内存管理完全自动化并由Python VM管理；它不允许程序员对内存管理负责。
 
-6. **库**  
+6. **库**
 与Go相比，Python提供的库数量要大得多。
 
-7. **语法**  
+7. **语法**
 Python的语法使用缩进来指示代码块。Go的语法基于打开和关闭括号。
 
-8. **详细程度**  
+8. **详细程度**
 为了获得相同的功能，Golang代码通常需要编写比Python代码更多的字符。
 
 ### Go 是面向对象的语言吗？
@@ -695,7 +695,7 @@ func (f *File) Write(p []byte) (n int, err error) {
 
 ## 24. 值拷贝与引用拷贝，深拷贝与浅拷贝
 
-map，slice，chan 是引用拷贝；引用拷贝 是 浅拷贝  
+map，slice，chan 是引用拷贝；引用拷贝 是 浅拷贝
 其余的，都是 值拷贝；值拷贝 是 深拷贝
 
 ### 深浅拷贝的本质区别
@@ -798,7 +798,7 @@ type Set map[string]struct{}
 
 func main() {
     set := make(Set)
-    
+
     for _, item := range []string{"A", "A", "B", "C"} {
         set[item] = struct{}{}
     }

@@ -51,7 +51,7 @@ channel的声明方式如下：
 ```go
 var channel_name chan channel_type
 var channel_name [size]chan channel_type  // 声明一个channel，其容量大小为size
-``` 
+```
 声明之后的管道，并没有进行初始化为其分配空间，其值是`nil`，我们要使用还要配合`make`函数来对其初始化，之后才可以在程序中使用该管道。
 ```go
 channel_name := make(chan channel_type)
@@ -101,7 +101,7 @@ v=0
 v=0
 v=0
 v=0
-``` 
+```
 创建一个缓存为`5`的`int`类型的管道，向管道里写入一个`1`之后，将管道关闭，然后开启一个`gortoutine`从管道读取数据，读取`5`次，可以看到即便管道关闭之后，他仍然可以读取数据，在读完数据之后，将一直读取零值。
 但是，上述读取方式还有一个问题？比如我们创建一个`int`类型的`channel`，我们需要往里面写入零值，用另一个`goroutine`读取，此时我们就无法区两种常用的读取方式
 
@@ -134,7 +134,7 @@ func main() {
 ```
 运行结果：
 ```
-v=1 
+v=1
 channel数据已读完，v=0
 channel数据已读完，v=0
 channel数据已读完，v=0
@@ -170,7 +170,7 @@ func main() {
 v=1
 v=2
 ```
-主`goroutine`往`channel`里写了两个数据`1`和`2`，然后关闭，子`goroutine`也只能读取到`1`和`2`。这里在主`goroutine`关闭了`channel`之后，子`goroutine`里的`for range`循环才会结束。 
+主`goroutine`往`channel`里写了两个数据`1`和`2`，然后关闭，子`goroutine`也只能读取到`1`和`2`。这里在主`goroutine`关闭了`channel`之后，子`goroutine`里的`for range`循环才会结束。
 
 ## 双向channel和单向channel
 channel根据其功能又可以分为双向`channel`和单向`channel`，双向`channel`即可发送数据又可接收数据，单向`channel`要么只能发送数据，要么只能接收数据。
@@ -208,7 +208,7 @@ func main() {
 
     go func() {
         var rec RChannel = ch
-        num := <- rec 
+        num := <- rec
         fmt.Printf("receive: %d", num)
     }()
     time.Sleep(2*time.Second)
@@ -218,7 +218,7 @@ func main() {
 ```
 send: 100
 receive: 100
-``` 
+```
 创建一个`channel ch`，分别定义两个单向`channel`类型`SChannel`和`RChannel` ，根据别名类型给`ch`定义两个别名`send`和`rec`，一个只用于发送，一个只用于读取。
 
 ## 扩展
@@ -303,12 +303,13 @@ func main() {
 运行结果：
 ```
 num 的值： 100
-``` 
+```
 `ch <- true`和`<- ch`就相当于一个锁，将 `*num = *num + 1`这个操作锁住了。因为`ch`管道的容量是1，在每个`add`函数里都会往`channel`放置一个`true`，直到执行完+1操作之后才将`channel`里的`true`取出。由于`channel`的`size`是1，所以当一个`goroutine`在执行`add`函数的时候，其他`goroutine`执行`add`函数，执行到`ch <- true`的时候就会阻塞，`*num = *num + 1`不会成功，直到前一个+1操作完成，`<-ch`，读出了管道的元素，这样就实现了并发安全
 
 
 
 ## 小结
+
 - 关闭一个未初始化的`channel` 会产生`panic`
 - `channel`只能被关闭一次，对同一个`channel`重复关闭会产生`panic`
 - 向一个已关闭的 `channel` 发送消息会产生 `panic`

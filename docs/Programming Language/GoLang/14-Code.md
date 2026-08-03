@@ -526,7 +526,7 @@ package xxx_test
 
 ```go
 // 原文件方法：
-func Xxx(name string) error 
+func Xxx(name string) error
 
 // 单元测试文件方法：
 func TestXxx()

@@ -246,19 +246,19 @@ type Value interface {
 
 自 Go 1.18 起，接口不仅可以嵌入其他接口，还可以嵌入任意类型、类型的联合或具有相同底层类型的无限类型集合。当接口用作类型约束时，其定义的类型集会精确地指定允许作为相应类型参数的类型。
 
-1.  `|`符号  
+1.  `|`符号
 使用`|`运算符可以将多个类型组合成一个类型集合,例如`T1 | T2`表示一个包含类型T1和T2的类型集。下面的`Numeric`接口就定义了一个由`Integer`和`Float`类型组成的类型集。
-```go  
-type Numeric interface {  
-    Integer | Float  
-}  
+```go
+type Numeric interface {
+    Integer | Float
+}
 ```
 
-2.  `~`符号  
+2.  `~`符号
 `~T`运算符用于匹配所有以T为底层类型的类型集合。比如`~string`不仅匹配string类型本身,还会匹配所有以string为底层类型的自定义类型。
-```go  
-type CustomString string  // CustomString的底层类型是string  
-```  
+```go
+type CustomString string  // CustomString的底层类型是string
+```
 **注意：** `~`符号后面只能是基本类型。
 接口作为类型集合的新机制为Go语言带来了强大的类型约束能力。需要注意的是,目前这种使用新语法定义的接口类型仅限于作为类型约束使用,不能作为普通的接口类型使用。
 

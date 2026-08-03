@@ -293,7 +293,7 @@ func main() {
    go func1(ctx)
    time.Sleep(time.Second)
 }
-```     
+```
 运行结果：
 ```
 name is: zhangsan

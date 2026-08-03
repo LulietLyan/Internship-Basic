@@ -142,7 +142,7 @@ func main() {
 ```
 time out1
 res1 is false
-res2 is true 
+res2 is true
 ```
 程序2s之后打印"time out1"，此时`timer`已经过期了，所以`res1`的值为`false`，接下来执行`timer.Reset(time.Second * 3)`又使`timer`生效了，并且重设超时时间为3s，但是紧接着执行了`timer.Stop()`，还未到超时时间，所以`res2`的值为`true`。
 
