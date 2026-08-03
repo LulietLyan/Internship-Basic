@@ -40,6 +40,35 @@ body::before {
 
 # 🟠 日志
 
+## redo log、undo log、binlog 分别解决什么问题？
+
+三类日志的定位不同。
+
+- **redo log** ：InnoDB 存储引擎层日志，记录物理页修改，用于崩溃恢复，保证持久性。
+- **undo log** ：记录旧版本或反向操作，用于事务回滚和 MVCC 版本链。
+- **binlog** ：MySQL Server 层日志，记录逻辑变更，用于主从复制和时间点恢复。
+
+面试答题时要避免把 redo log 和 binlog 混为一谈。redo log 关心“页怎么恢复到崩溃前状态”，binlog 关心“执行过哪些逻辑变更”；redo log 是循环写，binlog 通常追加写。
+
+## MySQL 两阶段提交解决什么问题？
+
+![MySQL 两阶段提交](../../Figures/Database/MySQL/two-phase-commit.svg)
+
+两阶段提交用于保证 redo log 和 binlog 的一致性。事务提交时，InnoDB 先写 redo log prepare，然后 Server 层写 binlog，最后 InnoDB 写 redo log commit。
+
+如果没有两阶段提交，可能出现两类不一致。
+
+- redo log 写成功但 binlog 没写，主库崩溃恢复后有这笔数据，从库却无法通过 binlog 复制到。
+- binlog 写成功但 redo log 没写，主库崩溃恢复后没有这笔数据，从库却可能重放出来。
+
+崩溃恢复时，如果发现 redo log 处于 prepare 状态，会结合 binlog 是否完整来决定提交还是回滚，从而让主库恢复结果和复制日志保持一致。
+
+## 什么是 WAL？为什么能提升性能？
+
+WAL 是 Write-Ahead Logging，也就是先写日志，再择机刷脏页。事务提交时不需要立即把所有数据页随机刷到磁盘，只要保证 redo log 按策略持久化，就可以在崩溃后通过 redo log 恢复。
+
+它提升性能的原因是把大量随机写数据页转化为顺序写日志，并允许后台批量刷脏页。需要注意的是，WAL 提升的是写入路径效率，不代表数据页永远不落盘；脏页最终仍然需要刷回磁盘，否则 Buffer Pool 会被挤满。
+
 ## MySQL 三种日志？
 
 ### UNDO LOG(回滚日志)
