@@ -400,10 +400,10 @@
       0 22px 58px rgba(55, 139, 134, 0.1),
       0 8px 24px rgba(18, 73, 68, 0.06),
       inset 0 1px 0 rgba(255, 255, 255, 0.84);
-    --hex-matrix-color: rgb(44, 142, 132);
-    --hex-matrix-stroke: #2a8179;
-    --hex-matrix-glow-a: rgba(83, 196, 178, 0.34);
-    --hex-matrix-glow-b: rgba(55, 139, 134, 0.22);
+    --hex-matrix-color: #171717;
+    --hex-matrix-stroke: #17f700;
+    --hex-matrix-glow-a: rgba(23, 247, 0, 0.26);
+    --hex-matrix-glow-b: rgba(23, 247, 0, 0.16);
   }
 
   [data-md-color-scheme="slate"] {
@@ -414,10 +414,10 @@
       0 22px 58px rgba(0, 0, 0, 0.24),
       0 8px 24px rgba(184, 242, 250, 0.08),
       inset 0 1px 0 rgba(255, 255, 255, 0.08);
-    --hex-matrix-color: rgb(72, 170, 160);
-    --hex-matrix-stroke: #8ee6dd;
-    --hex-matrix-glow-a: rgba(142, 230, 221, 0.34);
-    --hex-matrix-glow-b: rgba(55, 139, 134, 0.22);
+    --hex-matrix-color: #171717;
+    --hex-matrix-stroke: #17f700;
+    --hex-matrix-glow-a: rgba(23, 247, 0, 0.28);
+    --hex-matrix-glow-b: rgba(23, 247, 0, 0.18);
   }
 
   body {
@@ -477,11 +477,11 @@
   .hexagon-matrix-background__svg {
     width: 100%;
     height: 100%;
-    opacity: 0.82;
+    opacity: 0.9;
     filter:
-      blur(0.2px)
-      drop-shadow(0 0 8px var(--hex-matrix-glow-a))
-      drop-shadow(0 0 22px var(--hex-matrix-glow-b));
+      blur(0.35px)
+      drop-shadow(0 0 10px var(--hex-matrix-glow-a))
+      drop-shadow(0 0 26px var(--hex-matrix-glow-b));
     mix-blend-mode: multiply;
   }
 
@@ -566,30 +566,37 @@
     0%,
     18% {
       opacity: var(--hex-rest-opacity);
-      stroke-dashoffset: 0;
-      stroke-opacity: 0.04;
+      stroke-dashoffset: var(--hex-dash-from);
+      stroke-opacity: 0;
       transform: scale(1);
     }
 
-    48% {
-      opacity: var(--hex-peak-opacity);
-      stroke-dashoffset: 0;
-      stroke-opacity: 0.42;
+    68% {
+      opacity: var(--hex-rest-opacity);
+      stroke-dashoffset: var(--hex-dash-from);
+      stroke-opacity: 0;
       transform: scale(1);
     }
 
     74% {
-      opacity: var(--hex-mid-opacity);
+      opacity: var(--hex-peak-opacity);
       stroke-dashoffset: 0;
-      stroke-opacity: 0.24;
+      stroke-opacity: 0.52;
       transform: scale(1);
     }
 
-    92%,
+    80% {
+      opacity: var(--hex-mid-opacity);
+      stroke-dashoffset: 0;
+      stroke-opacity: 0.22;
+      transform: scale(1);
+    }
+
+    84%,
     100% {
       opacity: var(--hex-rest-opacity);
-      stroke-dashoffset: 0;
-      stroke-opacity: 0.04;
+      stroke-dashoffset: var(--hex-dash-from);
+      stroke-opacity: 0;
       transform: scale(1);
     }
   }
@@ -597,9 +604,9 @@
   @media (prefers-reduced-motion: reduce) {
     .hexagon-matrix-background__block {
       animation: none;
-      opacity: 0.28;
+      opacity: 0.08;
       stroke-dashoffset: 0;
-      stroke-opacity: 0.35;
+      stroke-opacity: 0.16;
     }
   }
 

@@ -20,7 +20,9 @@
   function createBlock(line, row) {
     const index = line * ROW_COUNT + row;
     const seed = (index * 37 + line * 17 + row * 11) % 113;
-    const centerDistance = Math.abs(row - 7) + Math.abs(line - 7);
+    const delaySeed = (index * 83 + line * 29 + row * 47) % 997;
+    const durationSeed = (index * 53 + line * 71 + row * 19) % 401;
+    const opacitySeed = (index * 61 + line * 13 + row * 89) % 101;
     const block = createSvgElement("use", {
       class: BLOCK_CLASS,
       href: `#${CELL_ID}`,
@@ -28,11 +30,14 @@
       y: HEX_HEIGHT * line,
     });
 
-    block.style.setProperty("--hex-delay", `${(seed / 113) * 2.4 + centerDistance * 0.04}s`);
-    block.style.setProperty("--hex-duration", `${7.2 + ((seed * 19) % 90) / 100}s`);
-    block.style.setProperty("--hex-peak-opacity", `${0.24 + ((seed * 7) % 12) / 100}`);
-    block.style.setProperty("--hex-mid-opacity", `${0.08 + ((seed * 5) % 8) / 100}`);
-    block.style.setProperty("--hex-rest-opacity", `${((seed * 3) % 3) / 100}`);
+    const duration = 11.2 + durationSeed / 100;
+    const delay = -(delaySeed / 997) * duration;
+
+    block.style.setProperty("--hex-delay", `${delay}s`);
+    block.style.setProperty("--hex-duration", `${duration}s`);
+    block.style.setProperty("--hex-peak-opacity", `${0.09 + opacitySeed / 1200}`);
+    block.style.setProperty("--hex-mid-opacity", `${0.025 + opacitySeed / 2500}`);
+    block.style.setProperty("--hex-rest-opacity", "0");
     block.style.setProperty("--hex-dash-from", seed % 2 ? "-100" : "100");
 
     return block;
