@@ -45,8 +45,8 @@ comments: true
 
     愿它成为后来者的明灯💡
 
-    <span style="text-align: right; display: block;">Concat me: :material-email: lulietlyan@gmail.com </span>  
-        
+    <span style="text-align: right; display: block;">Concat me: :material-email: lulietlyan@gmail.com </span>
+
 
 </div>
 <style>
@@ -65,16 +65,16 @@ comments: true
 
     ---
 
-    - :material-file-document-outline: 页面数：  **{{pages}}**  
-    - :material-alphabetical: 总字数： **{{words}}**   
-    - :material-code-tags: 代码行数： **{{codes}}**   
-    - :material-image-multiple: 图片数量： **{{images}}** 
+    - :material-file-document-outline: 页面数：  **{{pages}}**
+    - :material-alphabetical: 总字数： **{{words}}**
+    - :material-code-tags: 代码行数： **{{codes}}**
+    - :material-image-multiple: 图片数量： **{{images}}**
     - :material-calendar: 网站创建日期：2025 年 5 月 31 日
     <script defer src="https://events.vercount.one/js"></script>
-    - :material-timer-outline: 网站运行时间： <span id="web-time"></span> 
-    - :material-chart-line: 本站总访问量：<span id="vercount_value_site_pv"></span>次  
-    - :material-account: 本站访客数：<span id="vercount_value_site_uv"></span>人次  
-    
+    - :material-timer-outline: 网站运行时间： <span id="web-time"></span>
+    - :material-chart-line: 本站总访问量：<span id="vercount_value_site_pv"></span>次
+    - :material-account: 本站访客数：<span id="vercount_value_site_uv"></span>人次
+
 -  :material-link:{ .lg .middle } __Link__
 
     ---
