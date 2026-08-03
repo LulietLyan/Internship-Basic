@@ -400,10 +400,10 @@
       0 22px 58px rgba(55, 139, 134, 0.1),
       0 8px 24px rgba(18, 73, 68, 0.06),
       inset 0 1px 0 rgba(255, 255, 255, 0.84);
-    --hex-matrix-color: #171717;
+    --hex-matrix-color: #72ff58;
     --hex-matrix-stroke: #17f700;
-    --hex-matrix-glow-a: rgba(23, 247, 0, 0.26);
-    --hex-matrix-glow-b: rgba(23, 247, 0, 0.16);
+    --hex-matrix-glow-a: rgba(23, 247, 0, 0.34);
+    --hex-matrix-glow-b: rgba(114, 255, 88, 0.18);
   }
 
   [data-md-color-scheme="slate"] {
@@ -414,10 +414,10 @@
       0 22px 58px rgba(0, 0, 0, 0.24),
       0 8px 24px rgba(184, 242, 250, 0.08),
       inset 0 1px 0 rgba(255, 255, 255, 0.08);
-    --hex-matrix-color: #171717;
+    --hex-matrix-color: #72ff58;
     --hex-matrix-stroke: #17f700;
-    --hex-matrix-glow-a: rgba(23, 247, 0, 0.28);
-    --hex-matrix-glow-b: rgba(23, 247, 0, 0.18);
+    --hex-matrix-glow-a: rgba(23, 247, 0, 0.38);
+    --hex-matrix-glow-b: rgba(114, 255, 88, 0.22);
   }
 
   body {
@@ -581,14 +581,14 @@
     74% {
       opacity: var(--hex-peak-opacity);
       stroke-dashoffset: 0;
-      stroke-opacity: 0.52;
+      stroke-opacity: 0.62;
       transform: scale(1);
     }
 
     80% {
       opacity: var(--hex-mid-opacity);
       stroke-dashoffset: 0;
-      stroke-opacity: 0.22;
+      stroke-opacity: 0.28;
       transform: scale(1);
     }
 
