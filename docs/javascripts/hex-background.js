@@ -28,11 +28,11 @@
       y: HEX_HEIGHT * line,
     });
 
-    block.style.setProperty("--hex-delay", `${(seed / 113) * 1.25 + centerDistance * 0.025}s`);
-    block.style.setProperty("--hex-duration", `${4.05 + ((seed * 19) % 60) / 100}s`);
-    block.style.setProperty("--hex-peak-opacity", `${0.56 + ((seed * 7) % 18) / 100}`);
-    block.style.setProperty("--hex-mid-opacity", `${0.28 + ((seed * 5) % 14) / 100}`);
-    block.style.setProperty("--hex-rest-opacity", `${0.05 + ((seed * 3) % 5) / 100}`);
+    block.style.setProperty("--hex-delay", `${(seed / 113) * 2.4 + centerDistance * 0.04}s`);
+    block.style.setProperty("--hex-duration", `${7.2 + ((seed * 19) % 90) / 100}s`);
+    block.style.setProperty("--hex-peak-opacity", `${0.24 + ((seed * 7) % 12) / 100}`);
+    block.style.setProperty("--hex-mid-opacity", `${0.08 + ((seed * 5) % 8) / 100}`);
+    block.style.setProperty("--hex-rest-opacity", `${((seed * 3) % 3) / 100}`);
     block.style.setProperty("--hex-dash-from", seed % 2 ? "-100" : "100");
 
     return block;

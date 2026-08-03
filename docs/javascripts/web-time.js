@@ -33,7 +33,10 @@ function calculateWebTime() {
     displayText += `${months} 个月 ${days} 天 ${hours} 小时 ${minutes} 分钟`;
 
     // 显示运行时间
-    document.getElementById("web-time").innerText = displayText;
+    const webTime = document.getElementById("web-time");
+    if (webTime) {
+        webTime.innerText = displayText;
+    }
 }
 
 // 页面加载完成后执行
@@ -51,7 +54,10 @@ function updateVisitCount() {
     }
 
     localStorage.setItem(visitCountKey, visitCount);
-    document.getElementById("visit-count").innerText = visitCount;
+    const visitCountElement = document.getElementById("visit-count");
+    if (visitCountElement) {
+        visitCountElement.innerText = visitCount;
+    }
 }
 
 // 页面加载完成后执行

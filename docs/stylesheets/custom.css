@@ -393,17 +393,17 @@
   /* 全站蜂窝矩阵背景 */
 
   :root {
-    --site-surface-bg: rgba(255, 255, 255, 0.64);
-    --site-surface-bg-strong: rgba(255, 255, 255, 0.8);
-    --site-surface-border: rgba(34, 120, 112, 0.24);
+    --site-surface-bg: rgba(255, 255, 255, 0.72);
+    --site-surface-bg-strong: rgba(255, 255, 255, 0.88);
+    --site-surface-border: rgba(55, 139, 134, 0.16);
     --site-surface-shadow:
-      0 22px 58px rgba(34, 120, 112, 0.16),
-      0 8px 24px rgba(12, 86, 78, 0.1),
-      inset 0 1px 0 rgba(255, 255, 255, 0.78);
-    --hex-matrix-color: rgb(24, 118, 109);
-    --hex-matrix-stroke: #0f6862;
-    --hex-matrix-glow-a: rgba(64, 176, 158, 0.56);
-    --hex-matrix-glow-b: rgba(20, 112, 103, 0.42);
+      0 22px 58px rgba(55, 139, 134, 0.1),
+      0 8px 24px rgba(18, 73, 68, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.84);
+    --hex-matrix-color: rgb(44, 142, 132);
+    --hex-matrix-stroke: #2a8179;
+    --hex-matrix-glow-a: rgba(83, 196, 178, 0.34);
+    --hex-matrix-glow-b: rgba(55, 139, 134, 0.22);
   }
 
   [data-md-color-scheme="slate"] {
@@ -414,16 +414,14 @@
       0 22px 58px rgba(0, 0, 0, 0.24),
       0 8px 24px rgba(184, 242, 250, 0.08),
       inset 0 1px 0 rgba(255, 255, 255, 0.08);
-    --hex-matrix-color: rgb(44, 147, 137);
-    --hex-matrix-stroke: #70e0d5;
-    --hex-matrix-glow-a: rgba(112, 224, 213, 0.42);
-    --hex-matrix-glow-b: rgba(36, 142, 132, 0.34);
+    --hex-matrix-color: rgb(72, 170, 160);
+    --hex-matrix-stroke: #8ee6dd;
+    --hex-matrix-glow-a: rgba(142, 230, 221, 0.34);
+    --hex-matrix-glow-b: rgba(55, 139, 134, 0.22);
   }
 
   body {
-    background:
-      linear-gradient(180deg, rgba(170, 232, 211, 0.56), transparent 34vh),
-      linear-gradient(135deg, rgba(232, 252, 244, 0.82), rgba(197, 236, 225, 0.78));
+    background: #fff;
     overflow-x: hidden;
   }
 
@@ -444,15 +442,11 @@
     z-index: 0;
     overflow: hidden;
     pointer-events: none;
-    background:
-      linear-gradient(135deg, rgba(29, 126, 116, 0.44), transparent 34%),
-      linear-gradient(225deg, rgba(65, 181, 158, 0.36), transparent 32%);
+    background: transparent;
   }
 
   [data-md-color-scheme="slate"] .hexagon-matrix-background {
-    background:
-      linear-gradient(135deg, rgba(35, 139, 129, 0.32), transparent 34%),
-      linear-gradient(225deg, rgba(112, 224, 213, 0.2), transparent 32%);
+    background: transparent;
   }
 
   .hexagon-matrix-background::after {
@@ -462,11 +456,11 @@
     background:
       linear-gradient(
         180deg,
-        rgba(248, 255, 252, 0.04),
-        rgba(248, 255, 252, 0.22) 58%,
-        rgba(255, 255, 255, 0.34)
+        rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, 0.14) 58%,
+        rgba(255, 255, 255, 0.28)
       ),
-      radial-gradient(circle at 48% 18%, transparent 0%, rgba(182, 232, 217, 0.2) 76%);
+      radial-gradient(circle at 48% 18%, transparent 0%, rgba(255, 255, 255, 0.18) 76%);
   }
 
   [data-md-color-scheme="slate"] .hexagon-matrix-background::after {
@@ -483,10 +477,16 @@
   .hexagon-matrix-background__svg {
     width: 100%;
     height: 100%;
-    opacity: 0.94;
+    opacity: 0.82;
     filter:
+      blur(0.2px)
       drop-shadow(0 0 8px var(--hex-matrix-glow-a))
-      drop-shadow(0 0 18px var(--hex-matrix-glow-b));
+      drop-shadow(0 0 22px var(--hex-matrix-glow-b));
+    mix-blend-mode: multiply;
+  }
+
+  [data-md-color-scheme="slate"] .hexagon-matrix-background__svg {
+    mix-blend-mode: screen;
   }
 
   .hexagon-matrix-background__block {
@@ -511,8 +511,7 @@
   .md-main,
   .md-footer,
   .md-dialog,
-  .md-search,
-  .md-sidebar {
+  .md-search {
     position: relative;
     z-index: 1;
   }
@@ -565,32 +564,32 @@
 
   @keyframes site-hexagon-matrix-cycle {
     0%,
-    12% {
+    18% {
       opacity: var(--hex-rest-opacity);
       stroke-dashoffset: 0;
-      stroke-opacity: 0.16;
+      stroke-opacity: 0.04;
       transform: scale(1);
     }
 
-    36% {
+    48% {
       opacity: var(--hex-peak-opacity);
       stroke-dashoffset: 0;
-      stroke-opacity: 0.72;
+      stroke-opacity: 0.42;
       transform: scale(1);
     }
 
-    64% {
+    74% {
       opacity: var(--hex-mid-opacity);
       stroke-dashoffset: 0;
-      stroke-opacity: 0.48;
+      stroke-opacity: 0.24;
       transform: scale(1);
     }
 
-    82%,
+    92%,
     100% {
       opacity: var(--hex-rest-opacity);
       stroke-dashoffset: 0;
-      stroke-opacity: 0.16;
+      stroke-opacity: 0.04;
       transform: scale(1);
     }
   }
