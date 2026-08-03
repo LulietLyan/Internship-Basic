@@ -40,6 +40,41 @@ body::before {
 
 # 📝 Dockerfile 详解
 
+## 多阶段构建解决什么问题？
+
+多阶段构建允许在一个 Dockerfile 中使用多个 `FROM`。前面的阶段负责编译、测试、下载依赖，最后阶段只复制运行必需的产物。
+
+它主要解决镜像体积和安全面问题。例如 Go / Java / Node 项目构建阶段需要编译器、包管理器和大量缓存，但运行阶段只需要二进制、JRE 或构建后的静态文件。把构建工具留在最终镜像里，会让镜像更大，也增加漏洞暴露面。
+
+典型写法如下。
+
+```dockerfile
+FROM golang:1.22 AS builder
+WORKDIR /src
+COPY . .
+RUN go build -o app ./cmd/app
+
+FROM debian:bookworm-slim
+WORKDIR /app
+COPY --from=builder /src/app /app/app
+CMD ["./app"]
+```
+
+## Dockerfile 缓存为什么经常因为 COPY 顺序失效？
+
+Docker 构建缓存按指令层复用。某一层输入变了，这一层和后续层缓存都会失效。如果先 `COPY . .` 再安装依赖，只要业务代码变动，依赖安装层也会重新执行。
+
+更好的方式是先复制依赖清单并安装依赖，再复制业务代码。
+
+```dockerfile
+COPY package.json package-lock.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+```
+
+这样业务代码变动时，依赖清单未变就能复用 `npm ci` 的缓存。面试中可以顺带提 `.dockerignore`，避免把 `node_modules`、日志、构建产物等无关文件送入构建上下文。
+
 Dockerfile是用于定义Docker镜像构建过程的文本文件。它包含一系列的指令和配置，用于指导Docker引擎在构建过程中执行特定的操作。
 
 ## 通过 Dockerfile 创建镜像

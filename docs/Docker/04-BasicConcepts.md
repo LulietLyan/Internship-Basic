@@ -40,6 +40,48 @@ body::before {
 
 # 💡 Docker 基本概念
 
+## 容器和虚拟机的本质区别是什么？
+
+容器不是轻量级虚拟机。虚拟机通过 Hypervisor 虚拟出完整硬件环境，每个虚拟机通常有独立内核；容器共享宿主机内核，通过 namespace 做隔离，通过 cgroup 做资源限制，通过镜像和联合文件系统提供运行环境。
+
+![Docker 容器隔离与资源控制](../Figures/Docker/container-isolation.svg)
+
+因此容器启动快、镜像小、资源开销低，但隔离边界也主要依赖宿主机内核能力。面试中可以这样比较。
+
+- **启动速度** ：容器通常秒级甚至更快，虚拟机要启动完整操作系统。
+- **资源开销** ：容器共享内核，额外开销更低。
+- **隔离强度** ：虚拟机隔离更强，容器需要关注内核漏洞、特权容器、挂载宿主敏感目录等风险。
+
+## Docker 用 namespace 隔离了什么？
+
+namespace 用来让进程看到“隔离后的系统视图”。常见 namespace 包括 PID、Network、Mount、UTS、IPC、User、Cgroup。
+
+例如 PID namespace 让容器内进程看到自己的进程树，容器里的 1 号进程不等于宿主机的 1 号进程；Network namespace 让容器拥有独立网卡、路由表和端口空间；Mount namespace 让容器看到自己的文件系统挂载视图。
+
+需要强调：namespace 隔离的是视图，不是资源用量。限制 CPU、内存、I/O 主要依赖 cgroup。
+
+## cgroup 在 Docker 中解决什么问题？
+
+cgroup 用于限制、统计和隔离进程组资源。Docker 可以通过 cgroup 限制容器 CPU、内存、blkio、pids 等资源，避免单个容器耗尽宿主机。
+
+例如 `--memory` 限制容器可用内存，`--cpus` 限制 CPU 配额，`--pids-limit` 限制进程数量。没有合适限制时，一个异常容器可能触发宿主机 OOM，影响其他容器。
+
+面试里可以补一句：namespace 负责“看见什么”，cgroup 负责“能用多少”。
+
+## overlay2 的 lowerdir、upperdir、merged 分别是什么？
+
+overlay2 是 Docker 常用的联合文件系统驱动。镜像的只读层作为 lowerdir，容器自己的可写层作为 upperdir，最终通过 merged 目录呈现给容器进程。
+
+容器读取文件时，如果 upperdir 有修改后的版本，就读 upperdir；否则读 lowerdir。容器第一次修改来自镜像层的文件时，会触发 copy-up，把文件复制到 upperdir 后再修改。
+
+这解释了为什么容器可写层不适合承载高频写数据：copy-up、元数据维护和联合文件系统开销会拖慢性能。数据库、日志、上传文件等持久化数据应优先放到 volume。
+
+## 为什么不建议把重要数据写在容器可写层？
+
+容器可写层生命周期绑定容器本身，删除容器时数据容易丢失；同时可写层经过存储驱动叠加，写入性能和可观测性通常不如 volume。
+
+更推荐使用 Docker volume 或绑定挂载保存持久化数据。这样容器可以随时重建，数据仍然保留，备份、迁移和权限控制也更清晰。
+
 ## Docker 系统架构
 
 Docker平台拥有两个不同部分：

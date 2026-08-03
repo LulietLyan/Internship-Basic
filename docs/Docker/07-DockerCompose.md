@@ -40,6 +40,37 @@ body::before {
 
 # 🎼 Docker Compose 详解
 
+## depends_on 能保证服务已经可用吗？
+
+默认情况下，`depends_on` 只能保证依赖服务先启动，不保证依赖服务已经完成初始化并能对外提供服务。比如数据库容器进程启动了，但还没完成恢复或初始化，应用容器马上连接就可能失败。
+
+更稳妥的方式是给依赖服务配置 `healthcheck`，并在应用服务中使用 `condition: service_healthy`。
+
+```yaml
+services:
+  db:
+    image: mysql:8
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  app:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+```
+
+同时应用本身也应该具备连接重试能力，因为容器运行过程中依赖服务仍可能重启、迁移或短暂不可用。
+
+## Compose 中环境变量和配置文件如何取舍？
+
+环境变量适合放部署环境差异，例如端口、连接地址、开关；配置文件适合放结构化配置，例如日志规则、复杂路由、插件配置。敏感信息不建议直接写进仓库里的 compose 文件，应使用 `.env`、secret 管理或部署平台的密钥能力。
+
+面试中可以强调：Compose 更适合单机编排、开发环境和中小规模部署；如果需要跨主机调度、自动扩缩容、复杂发布策略和服务治理，通常会进入 Kubernetes 等编排系统。
+
 Docker Compose是一个用于定义和运行多容器Docker应用程序的工具。它使用YAML文件来配置应用程序的服务、网络和卷，使得多容器应用的部署变得非常简单。
 
 ## 为什么需要Docker Compose？
