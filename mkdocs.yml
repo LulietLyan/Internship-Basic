@@ -224,6 +224,12 @@ nav:
           - 持久化: ./Database/Redis/03-Persistence.md
           - 应用: ./Database/Redis/04-Application.md
           - 集群: ./Database/Redis/05-Cluster.md
+      - Message Queue:
+          - 概览: ./Database/MessageQueue/01-Intro.md
+          - Kafka: ./Database/MessageQueue/02-Kafka.md
+          - RabbitMQ: ./Database/MessageQueue/03-RabbitMQ.md
+          - RocketMQ: ./Database/MessageQueue/04-RocketMQ.md
+          - 可靠性模式: ./Database/MessageQueue/05-Reliability.md
   - 💻 Programming Language:
       - Go:
           - 基础与原理:
