@@ -393,46 +393,44 @@
   /* 全站蜂窝矩阵背景 */
 
   :root {
-    --site-surface-bg: rgba(255, 255, 255, 0.58);
-    --site-surface-bg-strong: rgba(255, 255, 255, 0.72);
-    --site-surface-border: rgba(55, 139, 134, 0.12);
+    --site-surface-bg: rgba(255, 255, 255, 0.68);
+    --site-surface-bg-strong: rgba(255, 255, 255, 0.84);
+    --site-surface-border: rgba(55, 139, 134, 0.18);
     --site-surface-shadow:
-      0 22px 58px rgba(55, 139, 134, 0.08),
-      0 8px 24px rgba(18, 73, 68, 0.05),
-      inset 0 1px 0 rgba(255, 255, 255, 0.72);
-    --hex-matrix-base-fill: rgba(215, 248, 234, 0.09);
-    --hex-matrix-base-stroke: rgba(55, 139, 134, 0.08);
-    --hex-matrix-lit-fill: rgba(215, 248, 234, 0.2);
-    --hex-matrix-lit-stroke: rgba(55, 139, 134, 0.34);
-    --hex-matrix-glow: rgba(92, 190, 184, 0.25);
+      0 22px 58px rgba(55, 139, 134, 0.12),
+      0 8px 24px rgba(18, 73, 68, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.82);
+    --hex-matrix-color: rgb(54, 143, 136);
+    --hex-matrix-stroke: #216f6a;
+    --hex-matrix-glow-a: rgba(92, 190, 184, 0.46);
+    --hex-matrix-glow-b: rgba(55, 139, 134, 0.32);
   }
 
   [data-md-color-scheme="slate"] {
     --site-surface-bg: rgba(22, 22, 22, 0.62);
     --site-surface-bg-strong: rgba(22, 22, 22, 0.78);
-    --site-surface-border: rgba(184, 242, 250, 0.11);
+    --site-surface-border: rgba(184, 242, 250, 0.16);
     --site-surface-shadow:
       0 22px 58px rgba(0, 0, 0, 0.24),
-      0 8px 24px rgba(184, 242, 250, 0.05),
+      0 8px 24px rgba(184, 242, 250, 0.08),
       inset 0 1px 0 rgba(255, 255, 255, 0.08);
-    --hex-matrix-base-fill: rgba(28, 62, 60, 0.15);
-    --hex-matrix-base-stroke: rgba(184, 242, 250, 0.08);
-    --hex-matrix-lit-fill: rgba(55, 139, 134, 0.17);
-    --hex-matrix-lit-stroke: rgba(184, 242, 250, 0.34);
-    --hex-matrix-glow: rgba(184, 242, 250, 0.24);
+    --hex-matrix-color: rgb(72, 157, 150);
+    --hex-matrix-stroke: #b8f2fa;
+    --hex-matrix-glow-a: rgba(184, 242, 250, 0.32);
+    --hex-matrix-glow-b: rgba(55, 139, 134, 0.26);
   }
 
   body {
     background:
-      linear-gradient(180deg, rgba(215, 248, 234, 0.28), transparent 34vh),
-      linear-gradient(135deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.54));
+      linear-gradient(180deg, rgba(215, 248, 234, 0.5), transparent 34vh),
+      linear-gradient(135deg, rgba(241, 254, 249, 0.86), rgba(224, 248, 241, 0.72));
     overflow-x: hidden;
   }
 
   [data-md-color-scheme="slate"] body {
     background:
-      linear-gradient(180deg, rgba(26, 72, 68, 0.2), transparent 34vh),
-      linear-gradient(135deg, rgba(16, 18, 18, 0.98), rgba(22, 22, 22, 0.9));
+      linear-gradient(180deg, rgba(26, 72, 68, 0.34), transparent 34vh),
+      linear-gradient(135deg, rgba(14, 18, 18, 0.98), rgba(22, 30, 29, 0.94));
   }
 
   body::before {
@@ -440,39 +438,71 @@
     content: none !important;
   }
 
-  .hex-matrix-background {
+  .hexagon-matrix-background {
     position: fixed;
-    inset: 0;
+    inset: -14% -8% -10%;
     z-index: 0;
-    width: 100vw;
-    height: 100vh;
+    overflow: hidden;
     pointer-events: none;
-    opacity: 0.62;
+    background:
+      linear-gradient(135deg, rgba(55, 139, 134, 0.3), transparent 34%),
+      linear-gradient(225deg, rgba(122, 210, 187, 0.26), transparent 32%);
   }
 
-  .hex-matrix-cell {
-    fill: var(--hex-matrix-base-fill);
-    stroke: var(--hex-matrix-base-stroke);
-    stroke-width: 0.55;
-    opacity: 0.22;
-    filter: drop-shadow(0 0 10px rgba(92, 190, 184, 0.08));
-    transition:
-      opacity 760ms ease,
-      fill 760ms ease,
-      stroke 760ms ease,
-      filter 760ms ease;
-    transition-delay: var(--hex-delay, 0ms);
+  [data-md-color-scheme="slate"] .hexagon-matrix-background {
+    background:
+      linear-gradient(135deg, rgba(55, 139, 134, 0.22), transparent 34%),
+      linear-gradient(225deg, rgba(184, 242, 250, 0.13), transparent 32%);
   }
 
-  .hex-matrix-cell.is-lit {
-    fill: var(--hex-matrix-lit-fill);
-    stroke: var(--hex-matrix-lit-stroke);
-    opacity: calc(0.28 + var(--hex-intensity, 0.5) * 0.36);
+  .hexagon-matrix-background::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(248, 255, 252, 0.1),
+        rgba(248, 255, 252, 0.34) 58%,
+        rgba(255, 255, 255, 0.48)
+      ),
+      radial-gradient(circle at 48% 18%, transparent 0%, rgba(216, 246, 237, 0.22) 76%);
+  }
+
+  [data-md-color-scheme="slate"] .hexagon-matrix-background::after {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(22, 30, 29, 0.18),
+        rgba(22, 30, 29, 0.48) 58%,
+        rgba(14, 18, 18, 0.72)
+      ),
+      radial-gradient(circle at 48% 18%, transparent 0%, rgba(10, 22, 21, 0.42) 76%);
+  }
+
+  .hexagon-matrix-background__svg {
+    width: 100%;
+    height: 100%;
+    opacity: 0.88;
     filter:
-      drop-shadow(0 0 var(--hex-glow, 16px) var(--hex-matrix-glow))
-      drop-shadow(0 0 32px rgba(215, 248, 234, 0.16));
-    transition-duration: 420ms;
-    transition-delay: 0ms;
+      drop-shadow(0 0 8px var(--hex-matrix-glow-a))
+      drop-shadow(0 0 18px var(--hex-matrix-glow-b));
+  }
+
+  .hexagon-matrix-background__block {
+    color: var(--hex-matrix-color);
+    fill: currentColor;
+    opacity: 0;
+    stroke: var(--hex-matrix-stroke);
+    stroke-width: 1;
+    stroke-dasharray: 100;
+    stroke-dashoffset: var(--hex-dash-from);
+    stroke-opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: site-hexagon-matrix-cycle var(--hex-duration) infinite both;
+    animation-delay: var(--hex-delay);
+    will-change: opacity, transform, stroke-dashoffset, stroke-opacity;
   }
 
   .md-container,
@@ -488,6 +518,11 @@
   }
 
   .md-main {
+    background: transparent;
+  }
+
+  .md-content,
+  .md-content__inner {
     background: transparent;
   }
 
@@ -528,13 +563,51 @@
       inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
 
-  @media (max-width: 768px), (prefers-reduced-motion: reduce) {
-    .hex-matrix-background {
-      opacity: 0.3;
+  @keyframes site-hexagon-matrix-cycle {
+    0%,
+    12% {
+      opacity: var(--hex-rest-opacity);
+      stroke-dashoffset: 0;
+      stroke-opacity: 0.16;
+      transform: scale(1);
     }
 
-    .hex-matrix-cell {
-      transition: none;
+    36% {
+      opacity: var(--hex-peak-opacity);
+      stroke-dashoffset: 0;
+      stroke-opacity: 0.72;
+      transform: scale(1);
+    }
+
+    64% {
+      opacity: var(--hex-mid-opacity);
+      stroke-dashoffset: 0;
+      stroke-opacity: 0.48;
+      transform: scale(1);
+    }
+
+    82%,
+    100% {
+      opacity: var(--hex-rest-opacity);
+      stroke-dashoffset: 0;
+      stroke-opacity: 0.16;
+      transform: scale(1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hexagon-matrix-background__block {
+      animation: none;
+      opacity: 0.28;
+      stroke-dashoffset: 0;
+      stroke-opacity: 0.35;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hexagon-matrix-background {
+      inset: -10% -42%;
+      opacity: 0.86;
     }
 
     .md-typeset .grid.cards > ul > li {

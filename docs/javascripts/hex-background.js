@@ -1,12 +1,13 @@
 (function () {
   const SVG_NS = "http://www.w3.org/2000/svg";
-  const ROOT_CLASS = "hex-matrix-background";
-  const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
-  const MOBILE_QUERY = "(max-width: 768px)";
-
-  let svg;
-  let blocks = [];
-  let timer = 0;
+  const ROOT_CLASS = "hexagon-matrix-background";
+  const SVG_CLASS = "hexagon-matrix-background__svg";
+  const BLOCK_CLASS = "hexagon-matrix-background__block";
+  const CELL_ID = "site-hexagon-matrix-cell";
+  const ROW_COUNT = 15;
+  const LINE_COUNT = 15;
+  const HEX_WIDTH = 86.5;
+  const HEX_HEIGHT = 74.5;
 
   function createSvgElement(name, attrs) {
     const element = document.createElementNS(SVG_NS, name);
@@ -16,121 +17,66 @@
     return element;
   }
 
-  function shouldAnimate() {
-    return !window.matchMedia(REDUCED_MOTION_QUERY).matches;
-  }
+  function createBlock(line, row) {
+    const index = line * ROW_COUNT + row;
+    const seed = (index * 37 + line * 17 + row * 11) % 113;
+    const centerDistance = Math.abs(row - 7) + Math.abs(line - 7);
+    const block = createSvgElement("use", {
+      class: BLOCK_CLASS,
+      href: `#${CELL_ID}`,
+      x: line % 2 ? HEX_WIDTH * row : HEX_WIDTH * row + 43.3,
+      y: HEX_HEIGHT * line,
+    });
 
-  function getCellSize() {
-    return window.matchMedia(MOBILE_QUERY).matches ? 58 : 78;
+    block.style.setProperty("--hex-delay", `${(seed / 113) * 1.25 + centerDistance * 0.025}s`);
+    block.style.setProperty("--hex-duration", `${4.05 + ((seed * 19) % 60) / 100}s`);
+    block.style.setProperty("--hex-peak-opacity", `${0.56 + ((seed * 7) % 18) / 100}`);
+    block.style.setProperty("--hex-mid-opacity", `${0.28 + ((seed * 5) % 14) / 100}`);
+    block.style.setProperty("--hex-rest-opacity", `${0.05 + ((seed * 3) % 5) / 100}`);
+    block.style.setProperty("--hex-dash-from", seed % 2 ? "-100" : "100");
+
+    return block;
   }
 
   function buildMatrix() {
-    if (!svg) {
-      svg = createSvgElement("svg", {
-        class: ROOT_CLASS,
-        "aria-hidden": "true",
-        focusable: "false",
-      });
-      document.body.prepend(svg);
-    }
+    document.querySelectorAll(`.${ROOT_CLASS}`).forEach((node) => node.remove());
 
-    clearInterval(timer);
-    timer = 0;
-    blocks = [];
-    svg.replaceChildren();
-
-    const width = window.innerWidth || document.documentElement.clientWidth;
-    const height = window.innerHeight || document.documentElement.clientHeight;
-    const radius = getCellSize() / 2;
-    const horizontal = radius * 1.72;
-    const vertical = radius * 1.5;
-    const columns = Math.ceil(width / horizontal) + 3;
-    const rows = Math.ceil(height / vertical) + 3;
+    const root = document.createElement("div");
+    const svg = createSvgElement("svg", {
+      class: SVG_CLASS,
+      viewBox: "0 0 1300 1100",
+      preserveAspectRatio: "xMidYMid slice",
+      "aria-hidden": "true",
+      focusable: "false",
+    });
+    const defs = createSvgElement("defs");
+    const polygon = createSvgElement("polygon", {
+      id: CELL_ID,
+      points: "0,-50 43.3,-25 43.3,25 0,50 -43.3,25 -43.3,-25",
+      fill: "currentColor",
+    });
     const fragment = document.createDocumentFragment();
 
-    svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+    root.className = ROOT_CLASS;
+    root.setAttribute("aria-hidden", "true");
+    defs.appendChild(polygon);
+    svg.appendChild(defs);
 
-    for (let row = -1; row < rows; row += 1) {
-      for (let column = -1; column < columns; column += 1) {
-        const cx = column * horizontal + (row % 2 ? horizontal / 2 : 0);
-        const cy = row * vertical;
-        const points = [];
-
-        for (let side = 0; side < 6; side += 1) {
-          const angle = (Math.PI / 3) * side - Math.PI / 2;
-          points.push(
-            `${(cx + radius * Math.cos(angle)).toFixed(2)},${(
-              cy + radius * Math.sin(angle)
-            ).toFixed(2)}`
-          );
-        }
-
-        const polygon = createSvgElement("polygon", {
-          class: "hex-matrix-cell",
-          points: points.join(" "),
-        });
-
-        polygon.style.setProperty("--hex-delay", `${Math.random() * 1400}ms`);
-        fragment.appendChild(polygon);
-        blocks.push(polygon);
+    for (let line = 0; line < LINE_COUNT; line += 1) {
+      for (let row = 0; row < ROW_COUNT; row += 1) {
+        fragment.appendChild(createBlock(line, row));
       }
     }
 
     svg.appendChild(fragment);
-
-    if (shouldAnimate()) {
-      startRandomPulse();
-    }
-  }
-
-  function pulseCell(cell) {
-    cell.classList.remove("is-lit");
-    cell.style.setProperty("--hex-intensity", (0.34 + Math.random() * 0.5).toFixed(2));
-    cell.style.setProperty("--hex-glow", `${(10 + Math.random() * 16).toFixed(1)}px`);
-
-    requestAnimationFrame(() => {
-      cell.classList.add("is-lit");
-      window.setTimeout(() => {
-        cell.classList.remove("is-lit");
-      }, 420 + Math.random() * 560);
-    });
-  }
-
-  function startRandomPulse() {
-    const burstSize = window.matchMedia(MOBILE_QUERY).matches ? 3 : 7;
-
-    timer = window.setInterval(() => {
-      if (!blocks.length) {
-        return;
-      }
-
-      for (let i = 0; i < burstSize; i += 1) {
-        const cell = blocks[Math.floor(Math.random() * blocks.length)];
-        window.setTimeout(() => pulseCell(cell), Math.random() * 260);
-      }
-    }, 145);
-  }
-
-  function scheduleRebuild() {
-    clearTimeout(scheduleRebuild.handle);
-    scheduleRebuild.handle = window.setTimeout(buildMatrix, 180);
+    root.appendChild(svg);
+    document.body.prepend(root);
   }
 
   function init() {
-    if (!document.body) {
-      return;
+    if (document.body) {
+      buildMatrix();
     }
-
-    buildMatrix();
-  }
-
-  window.addEventListener("resize", scheduleRebuild, { passive: true });
-
-  const reducedMotionMedia = window.matchMedia(REDUCED_MOTION_QUERY);
-  if (typeof reducedMotionMedia.addEventListener === "function") {
-    reducedMotionMedia.addEventListener("change", buildMatrix);
-  } else if (typeof reducedMotionMedia.addListener === "function") {
-    reducedMotionMedia.addListener(buildMatrix);
   }
 
   if (window.document$ && typeof window.document$.subscribe === "function") {
