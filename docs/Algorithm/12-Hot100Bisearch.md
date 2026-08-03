@@ -42,11 +42,11 @@ body::before {
 
 ## [搜索插入位置](https://leetcode.cn/problems/search-insert-position/?envType=study-plan-v2&envId=top-100-liked)
 
-**题目描述**：
+**题目描述** ：
 
 给定一个排序数组 `nums` 和目标值 `target`，如果目标值存在则返回下标；否则返回它按顺序插入的位置。
 
-**算法解析**：
+**算法解析** ：
 
 本题本质是找第一个大于等于 `target` 的位置，也就是 `lower_bound`。
 
@@ -84,11 +84,11 @@ int main() {
 
 ## [搜索二维矩阵](https://leetcode.cn/problems/search-a-2d-matrix/?envType=study-plan-v2&envId=top-100-liked)
 
-**题目描述**：
+**题目描述** ：
 
 给定一个满足每行递增、每行第一个数大于上一行最后一个数的矩阵，判断目标值是否存在。
 
-**算法解析**：
+**算法解析** ：
 
 整个矩阵可以视为一个长度为 `m * n` 的有序数组。下标 `idx` 对应矩阵位置 `(idx / n, idx % n)`。
 
@@ -131,11 +131,11 @@ int main() {
 
 ## [在排序数组中查找元素的第一个和最后一个位置](https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/?envType=study-plan-v2&envId=top-100-liked)
 
-**题目描述**：
+**题目描述** ：
 
 给定非递减数组 `nums` 和目标值 `target`，找出目标值的起始位置和结束位置，不存在则返回 `[-1, -1]`。
 
-**算法解析**：
+**算法解析** ：
 
 分别二分找：
 
@@ -184,11 +184,11 @@ int main() {
 
 ## [搜索旋转排序数组](https://leetcode.cn/problems/search-in-rotated-sorted-array/?envType=study-plan-v2&envId=top-100-liked)
 
-**题目描述**：
+**题目描述** ：
 
 整数数组原本升序排列，经过旋转后得到 `nums`。给定 `target`，若存在则返回下标，否则返回 `-1`。
 
-**算法解析**：
+**算法解析** ：
 
 每次二分时，左右两半至少有一半是有序的。先判断哪一半有序，再判断 `target` 是否落在有序区间内。
 
@@ -232,11 +232,11 @@ int main() {
 
 ## [寻找旋转排序数组中的最小值](https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array/?envType=study-plan-v2&envId=top-100-liked)
 
-**题目描述**：
+**题目描述** ：
 
 给定一个升序数组旋转后的结果，数组中不含重复元素，返回最小元素。
 
-**算法解析**：
+**算法解析** ：
 
 用右端点作为参照：
 
@@ -277,11 +277,11 @@ int main() {
 
 ## [寻找两个正序数组的中位数](https://leetcode.cn/problems/median-of-two-sorted-arrays/?envType=study-plan-v2&envId=top-100-liked)
 
-**题目描述**：
+**题目描述** ：
 
 给定两个正序数组 `nums1` 和 `nums2`，返回这两个正序数组的中位数，要求时间复杂度为 `O(log(m+n))`。
 
-**算法解析**：
+**算法解析** ：
 
 将问题转化为找两个有序数组中的第 `k` 小元素。每次比较两个数组当前第 `k/2` 个候选元素，丢弃较小一侧的前 `k/2` 个元素，因为它们不可能是第 `k` 小。
 

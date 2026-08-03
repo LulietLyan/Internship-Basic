@@ -42,11 +42,11 @@ body::before {
 
 ## [矩阵置零](https://leetcode.cn/problems/set-matrix-zeroes/description/?envType=study-plan-v2&envId=top-100-liked)
 
-**题目描述**：
+**题目描述** ：
 
 给定一个 `m x n` 的矩阵，如果一个元素为 `0`，则将其所在行和列的所有元素都设为 `0`。
 
-**示例**：
+**示例** ：
 ```
 输入：matrix = [[1,1,1],[1,0,1],[1,1,1]]
 输出：[[1,0,1],[0,0,0],[1,0,1]]
@@ -55,7 +55,7 @@ body::before {
 输出：[[0,0,0,0],[0,4,5,0],[0,3,1,0]]
 ```
 
-**说明**：
+**说明** ：
 
 
 - m == matrix.length
@@ -63,7 +63,7 @@ body::before {
 - 1 <= m, n <= 200
 - -2^31 <= matrix[i][j] <= 2^31 - 1
 
-**算法解析**：
+**算法解析** ：
 
 这道题使用 **原地算法** 来节省空间：
 
@@ -168,11 +168,11 @@ int main()
 
 ## [螺旋矩阵](https://leetcode.cn/problems/spiral-matrix/description/?envType=study-plan-v2&envId=top-100-liked)
 
-**题目描述**：
+**题目描述** ：
 
 给你一个 `m x n` 的矩阵，请按照顺时针螺旋顺序，返回矩阵中的所有元素。
 
-**示例**：
+**示例** ：
 ```
 输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]
 输出：[1,2,3,6,9,8,7,4,5]
@@ -181,7 +181,7 @@ int main()
 输出：[1,2,3,4,8,12,11,10,9,5,6,7]
 ```
 
-**说明**：
+**说明** ：
 
 
 - m == matrix.length
@@ -189,7 +189,7 @@ int main()
 - 1 <= m, n <= 10
 - -100 <= matrix[i][j] <= 100
 
-**算法解析**：
+**算法解析** ：
 
 这道题使用 **模拟法** 按照螺旋路径遍历矩阵：
 
@@ -273,7 +273,7 @@ int main()
     }
 
     vector<int> res = Solution().spiralOrder(matrix);
-    
+
     cout << "螺旋遍历结果: ";
     for (int val : res)
         cout << val << ' ';
@@ -372,7 +372,7 @@ public:
     bool searchMatrix(vector<vector<int>> &matrix, int& target)
     {
         int x = 0, y = matrix[0].size() - 1;
-        
+
         while (x < matrix.size() && y >= 0)
         {
             if (matrix[x][y] == target)

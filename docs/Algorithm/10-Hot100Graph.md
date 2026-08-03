@@ -42,11 +42,11 @@ body::before {
 
 ## [岛屿数量](https://leetcode.cn/problems/number-of-islands/?envType=study-plan-v2&envId=top-100-liked)
 
-**题目描述**：
+**题目描述** ：
 
 给定一个由 `'1'`(陆地)和 `'0'`(水)组成的二维网格，计算岛屿数量。岛屿由水平或垂直方向相邻的陆地连接形成，网格四周都被水包围。
 
-**算法解析**：
+**算法解析** ：
 
 遍历整个网格，遇到一块未访问的陆地，就说明发现了一个新的岛屿。随后用 DFS 或 BFS 把与它连通的所有陆地都标记掉，避免重复计数。
 
@@ -110,11 +110,11 @@ int main() {
 
 ## [腐烂的橘子](https://leetcode.cn/problems/rotting-oranges/?envType=study-plan-v2&envId=top-100-liked)
 
-**题目描述**：
+**题目描述** ：
 
 在一个二维网格中，`0` 表示空格，`1` 表示新鲜橘子，`2` 表示腐烂橘子。每分钟腐烂橘子会使上下左右相邻的新鲜橘子腐烂，求直到没有新鲜橘子所需的最小分钟数。如果不可能，返回 `-1`。
 
-**算法解析**：
+**算法解析** ：
 
 这是多源 BFS。所有初始腐烂橘子同时作为 BFS 起点，按层扩散，每扩散一层代表一分钟。
 
@@ -183,11 +183,11 @@ int main() {
 
 ## [课程表](https://leetcode.cn/problems/course-schedule/?envType=study-plan-v2&envId=top-100-liked)
 
-**题目描述**：
+**题目描述** ：
 
 给定课程总数 `numCourses` 和先修关系 `prerequisites`，其中 `prerequisites[i] = [a, b]` 表示学习课程 `a` 前必须先学习课程 `b`。判断是否可以完成所有课程。
 
-**算法解析**：
+**算法解析** ：
 
 课程依赖可以看作有向图。如果图中有环，就存在循环依赖，无法完成所有课程。可以用拓扑排序判断是否能访问所有点。
 
@@ -249,11 +249,11 @@ int main() {
 
 ## [实现 Trie 前缀树](https://leetcode.cn/problems/implement-trie-prefix-tree/?envType=study-plan-v2&envId=top-100-liked)
 
-**题目描述**：
+**题目描述** ：
 
 实现 Trie，支持插入字符串、查找完整字符串、判断是否存在某个前缀。
 
-**算法解析**：
+**算法解析** ：
 
 Trie 是一棵多叉树，每条边代表一个字符。从根到某节点的路径表示一个前缀。节点需要保存子节点指针和是否为单词结尾。
 

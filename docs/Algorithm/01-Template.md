@@ -138,7 +138,7 @@ void printList(ListNode* head)
     }
 }
 
-int main() 
+int main()
 {
     int n;
     cin >> n;

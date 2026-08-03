@@ -42,11 +42,11 @@ body::before {
 
 ## [最大子数组和](https://leetcode.cn/problems/maximum-subarray/description/?envType=study-plan-v2&envId=top-100-liked)
 
-**题目描述**：
+**题目描述** ：
 
 给你一个整数数组 `nums`，请你找出一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。
 
-**示例**：
+**示例** ：
 ```
 输入：nums = [-2,1,-3,4,-1,2,1,-5,4]
 输出：6
@@ -59,14 +59,14 @@ body::before {
 输出：23
 ```
 
-**说明**：
+**说明** ：
 
 
 - 1 <= nums.length <= 10^5
 
 - -10^4 <= nums[i] <= 10^4
 
-**算法解析**：
+**算法解析** ：
 
 这道题使用 **动态规划** 的思想，具体来说是 **Kadane算法** ：
 
@@ -122,13 +122,13 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(0);
     cout.tie(0);
-    
+
     // 构造测试用例：[-2,1,-3,4,-1,2,1,-5,4]
     vector<int> nums = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
-    
+
     Solution sol;
     int result = sol.maxSubArray(nums);
-    
+
     cout << "最大子数组和: " << result << endl;
 
     return 0;
@@ -137,11 +137,11 @@ int main()
 
 ## [合并区间](https://leetcode.cn/problems/merge-intervals/description/?envType=study-plan-v2&envId=top-100-liked)
 
-**题目描述**：
+**题目描述** ：
 
 以数组 `intervals` 表示若干个区间的集合，其中单个区间为 `intervals[i] = [starti, endi]`。请你合并所有重叠的区间，并返回一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间。
 
-**示例**：
+**示例** ：
 ```
 输入：intervals = [[1,3],[2,6],[8,10],[15,18]]
 输出：[[1,6],[8,10],[15,18]]
@@ -152,13 +152,13 @@ int main()
 解释：区间 [1,4] 和 [4,5] 可被视为重叠区间。
 ```
 
-**说明**：
+**说明** ：
 
 - 1 <= intervals.length <= 10^4
 - intervals[i].length == 2
 - 0 <= starti <= endi <= 10^4
 
-**算法解析**：
+**算法解析** ：
 
 这道题使用 **排序 + 贪心** 的思想：
 
@@ -221,10 +221,10 @@ int main()
 
     // 构造测试用例：[[1,3],[2,6],[8,10],[15,18]]
     vector<vector<int>> intervals = {{1,3}, {2,6}, {8,10}, {15,18}};
-    
+
     Solution sol;
     vector<vector<int>> ans = sol.merge(intervals);
-    
+
     cout << "合并后的区间:" << endl;
     for(auto& p : ans)
         cout << "[" << p[0] << "," << p[1] << "] ";
@@ -236,11 +236,11 @@ int main()
 
 ## [轮转数组](https://leetcode.cn/problems/rotate-array/description/?envType=study-plan-v2&envId=top-100-liked)
 
-**题目描述**：
+**题目描述** ：
 
 给定一个整数数组 `nums`，将数组中的元素向右轮转 `k` 个位置，其中 `k` 是非负数。
 
-**示例**：
+**示例** ：
 ```
 输入：nums = [1,2,3,4,5,6,7], k = 3
 输出：[5,6,7,1,2,3,4]
@@ -256,13 +256,13 @@ int main()
 向右轮转 2 步: [3,99,-1,-100]
 ```
 
-**说明**：
+**说明** ：
 
 - 1 <= nums.length <= 10^5
 - -2^31 <= nums[i] <= 2^31 - 1
 - 0 <= k <= 10^5
 
-**算法解析**：
+**算法解析** ：
 
 这道题使用 **三次反转** 的方法，这是一个经典的数组旋转技巧：
 
@@ -327,10 +327,10 @@ int main()
     // 构造测试用例：[1,2,3,4,5,6,7], k = 3
     vector<int> nums = {1, 2, 3, 4, 5, 6, 7};
     int k = 3;
-    
+
     Solution sol;
     sol.rotate(nums, k);
-    
+
     cout << "轮转后的数组: ";
     for(auto x : nums)
         cout << x << ' ';
@@ -342,7 +342,7 @@ int main()
 
 ## [除自身以外数组的乘积](https://leetcode.cn/problems/product-of-array-except-self/description/?envType=study-plan-v2&envId=top-100-liked)
 
-**题目描述**：
+**题目描述** ：
 
 给你一个整数数组 `nums`，返回数组 `answer`，其中 `answer[i]` 等于 `nums` 中除 `nums[i]` 之外其余各元素的乘积。
 
@@ -350,7 +350,7 @@ int main()
 
 请不要使用除法，且在 O(n) 时间复杂度内完成此题。
 
-**示例**：
+**示例** ：
 ```
 输入：nums = [1,2,3,4]
 输出：[24,12,8,6]
@@ -361,13 +361,13 @@ int main()
 解释：answer[0] = 1×0×(-3)×3 = 0, answer[1] = (-1)×0×(-3)×3 = 0, answer[2] = (-1)×1×(-3)×3 = 9, answer[3] = (-1)×1×0×3 = 0, answer[4] = (-1)×1×0×(-3) = 0
 ```
 
-**说明**：
+**说明** ：
 
 - 2 <= nums.length <= 10^5
 - -30 <= nums[i] <= 30
 - 保证数组 nums 之中任意元素的全部前缀元素和后缀的乘积都在 32 位整数范围内
 
-**算法解析**：
+**算法解析** ：
 
 这道题使用 **左右乘积列表** 的方法，避免使用除法：
 
@@ -430,10 +430,10 @@ int main()
 
     // 构造测试用例：[1,2,3,4]
     vector<int> nums = {1, 2, 3, 4};
-    
+
     Solution sol;
     vector<int> ans = sol.productExceptSelf(nums);
-    
+
     cout << "除自身以外数组的乘积: ";
     for(auto x : ans)
         cout << x << ' ';
@@ -445,13 +445,13 @@ int main()
 
 ## [缺失的第一个正数](https://leetcode.cn/problems/first-missing-positive/description/?envType=study-plan-v2&envId=top-100-liked)
 
-**题目描述**：
+**题目描述** ：
 
 给你一个未排序的整数数组 `nums`，请你找出其中没有出现的最小的正整数。
 
 请你实现时间复杂度为 O(n) 并且只使用常数级别额外空间的解决方案。
 
-**示例**：
+**示例** ：
 ```
 输入：nums = [1,2,0]
 输出：3
@@ -463,12 +463,12 @@ int main()
 输出：1
 ```
 
-**说明**：
+**说明** ：
 
 - 1 <= nums.length <= 5 * 10^5
 - -2^31 <= nums[i] <= 2^31 - 1
 
-**算法解析**：
+**算法解析** ：
 
 这道题使用 **原地哈希** 的方法，将数组本身作为哈希表：
 
@@ -530,10 +530,10 @@ int main()
 
     // 构造测试用例：[3,4,-1,1]
     vector<int> nums = {3, 4, -1, 1};
-    
+
     Solution sol;
     int result = sol.firstMissingPositive(nums);
-    
+
     cout << "缺失的第一个正数: " << result << endl;
 
     return 0;

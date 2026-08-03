@@ -42,11 +42,11 @@ body::before {
 
 ## [和为 K 的子数组](https://leetcode.cn/problems/subarray-sum-equals-k/description/?envType=study-plan-v2&envId=top-100-liked)
 
-**题目描述**：
+**题目描述** ：
 
 给定一个整数数组 `nums` 和一个整数 `k`，统计该数组中连续子数组的和恰好等于 `k` 的个数。
 
-**示例**：
+**示例** ：
 ```
 输入：nums = [1,1,1], k = 2
 输出：2
@@ -57,14 +57,14 @@ body::before {
 解释：连续子数组 [1,2] 和 [3] 的和为 3
 ```
 
-**说明**：
+**说明** ：
 
 
 - 1 <= nums.length <= 2 * 10^4
 - -1000 <= nums[i] <= 1000
 - -10^7 <= k <= 10^7
 
-**算法解析**：
+**算法解析** ：
 
 这道题使用 **前缀和 + 哈希表** 的方法：
 
@@ -142,7 +142,7 @@ int main()
 
     Solution sol;
     int result = sol.subarraySum(nums, k);
-    
+
     cout << "和为 " << k << " 的子数组个数: " << result << endl;
 
     return 0;
