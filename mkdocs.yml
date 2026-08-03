@@ -144,8 +144,8 @@ markdown_extensions:
   - md_in_html
   - meta
   - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.pathconverter:
       base_path: 'docs/Figures' # 设置基础路径为你的 PDF 文件所在目录
       absolute: false # 将路径转换为绝对路径
@@ -201,6 +201,7 @@ nav:
       - HTTP & HTTPs: Computer Network/02-HTTP & HTTPs.md
       - TCP & UDP: Computer Network/03-TCP & UDP.md
       - IP: Computer Network/04-IP.md
+      - Network Interview: Computer Network/05-Network-Interview.md
     # - PDF:
   - 💻 Operating System:
       - System Basic: Operating System/01-Intro.md
