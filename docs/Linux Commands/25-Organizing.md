@@ -49,7 +49,7 @@ git pull / git push
 
 ## 25.3 脚本项目实践
 
-**`.gitignore` 示例**：
+**`.gitignore` 示例** ：
 
 ```gitignore
 *.log

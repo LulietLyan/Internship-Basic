@@ -49,7 +49,7 @@ echo $PPID         # 父 Shell PID
 
 **不会** 创建子 Shell：`export`、`cd`、`alias`（当前 Shell 内生效）。
 
-子 Shell 中 **`cd` 不影响父 Shell 工作目录**；变量默认不向上传递（除非 export）。
+子 Shell 中 **`cd` 不影响父 Shell 工作目录** ；变量默认不向上传递（除非 export）。
 
 ### 后台与协程
 
@@ -105,7 +105,7 @@ cmd1 || cmd2           # cmd1 失败才执行 cmd2
 cmd1; cmd2             # 无论成败都执行 cmd2
 ```
 
-**`source script.sh` / `. script.sh`**：在当前 Shell 执行（环境变量会保留）；直接 `./script.sh` 则在子 Shell。
+**`source script.sh` / `. script.sh`** ：在当前 Shell 执行（环境变量会保留）；直接 `./script.sh` 则在子 Shell。
 
 ## 5.5 脚本安全选项（预览）
 

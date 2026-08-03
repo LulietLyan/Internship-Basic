@@ -132,7 +132,7 @@ find . -name "*.tmp" -print0 | xargs -0 rm
 find . -name "*.sh" -exec chmod +x {} \;
 ```
 
-**`-print0 | xargs -0`**：避免文件名含空格出错。
+**`-print0 | xargs -0`** ：避免文件名含空格出错。
 
 ## 3.10 重定向、管道与 tee
 

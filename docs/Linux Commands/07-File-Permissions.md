@@ -25,11 +25,11 @@ body::before {
 
 ## 7.1 用户管理
 
-**`/etc/passwd`**（7 字段，冒号分隔）：
+**`/etc/passwd`** （7 字段，冒号分隔）：
 
 `用户名:密码占位:UID:GID:描述:主目录:Shell`
 
-**`/etc/shadow`**：加密密码、过期策略（仅 root 可读）。
+**`/etc/shadow`** ：加密密码、过期策略（仅 root 可读）。
 
 ```bash
 useradd -m user          # -m 创建主目录
@@ -45,7 +45,7 @@ finger user               # 查看用户信息
 
 ## 7.2 组
 
-**`/etc/group`**：`组名:密码占位:GID:成员列表`
+**`/etc/group`** ：`组名:密码占位:GID:成员列表`
 
 ```bash
 groupadd shared

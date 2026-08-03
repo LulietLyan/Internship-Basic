@@ -25,7 +25,7 @@ body::before {
 
 ## 23.1 dash
 
-- Debian/Ubuntu 中 **`/bin/sh` → dash**（POSIX，比 bash 快）
+- Debian/Ubuntu 中 **`/bin/sh` → dash** （POSIX，比 bash 快）
 - 脚本首行 `#!/bin/sh` 应避免 bash 专有语法
 
 ## 23.2 zsh

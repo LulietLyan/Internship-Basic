@@ -502,7 +502,7 @@ $ docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
 ## 最佳实践
 
 1. **使用版本控制** ：将`docker-compose.yml`文件纳入Git版本控制
-2. **使用`.env`文件**：不要将敏感信息硬编码在YAML文件中
+2. **使用`.env`文件** ：不要将敏感信息硬编码在YAML文件中
 3. **使用命名卷** ：对于需要持久化的数据，使用命名卷而不是绑定挂载
 4. **设置资源限制** ：在生产环境中设置CPU和内存限制
 5. **使用健康检查** ：确保服务正常启动后再依赖它
