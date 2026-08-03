@@ -389,3 +389,89 @@
     transition: all 0.3s ease-in-out;
     /* 平滑过渡 */
   }
+
+  /* 全站蜂窝矩阵背景 */
+
+  :root {
+    --hex-matrix-base-fill: rgba(215, 248, 234, 0.14);
+    --hex-matrix-base-stroke: rgba(55, 139, 134, 0.12);
+    --hex-matrix-lit-fill: rgba(215, 248, 234, 0.34);
+    --hex-matrix-lit-stroke: rgba(55, 139, 134, 0.58);
+    --hex-matrix-glow: rgba(92, 190, 184, 0.38);
+  }
+
+  [data-md-color-scheme="slate"] {
+    --hex-matrix-base-fill: rgba(28, 62, 60, 0.2);
+    --hex-matrix-base-stroke: rgba(184, 242, 250, 0.11);
+    --hex-matrix-lit-fill: rgba(55, 139, 134, 0.22);
+    --hex-matrix-lit-stroke: rgba(184, 242, 250, 0.48);
+    --hex-matrix-glow: rgba(184, 242, 250, 0.3);
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  body::before {
+    display: none !important;
+    content: none !important;
+  }
+
+  .hex-matrix-background {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    opacity: 0.68;
+  }
+
+  .hex-matrix-cell {
+    fill: var(--hex-matrix-base-fill);
+    stroke: var(--hex-matrix-base-stroke);
+    stroke-width: 0.7;
+    opacity: 0.28;
+    filter: drop-shadow(0 0 0 transparent);
+    transition:
+      opacity 900ms ease,
+      fill 900ms ease,
+      stroke 900ms ease,
+      filter 900ms ease;
+    transition-delay: var(--hex-delay, 0ms);
+  }
+
+  .hex-matrix-cell.is-lit {
+    fill: var(--hex-matrix-lit-fill);
+    stroke: var(--hex-matrix-lit-stroke);
+    opacity: calc(0.38 + var(--hex-intensity, 0.5) * 0.48);
+    filter: drop-shadow(0 0 var(--hex-glow, 6px) var(--hex-matrix-glow));
+    transition-duration: 520ms;
+    transition-delay: 0ms;
+  }
+
+  .md-container,
+  .md-header,
+  .md-tabs,
+  .md-main,
+  .md-footer,
+  .md-dialog,
+  .md-search,
+  .md-sidebar {
+    position: relative;
+    z-index: 1;
+  }
+
+  .md-main {
+    background: transparent;
+  }
+
+  @media (max-width: 768px), (prefers-reduced-motion: reduce) {
+    .hex-matrix-background {
+      opacity: 0.3;
+    }
+
+    .hex-matrix-cell {
+      transition: none;
+    }
+  }

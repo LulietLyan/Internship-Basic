@@ -84,6 +84,7 @@ extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js
   - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js
   - javascripts/web-time.js
+  - javascripts/hex-background.js
   - https://cdn.jsdelivr.net/gh/Wcowin/Wcowin.github.io@main/docs/javascripts/extra.js
   - https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js
 
