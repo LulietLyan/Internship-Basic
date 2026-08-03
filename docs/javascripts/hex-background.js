@@ -21,7 +21,7 @@
   }
 
   function getCellSize() {
-    return window.matchMedia(MOBILE_QUERY).matches ? 44 : 58;
+    return window.matchMedia(MOBILE_QUERY).matches ? 58 : 78;
   }
 
   function buildMatrix() {
@@ -85,19 +85,19 @@
 
   function pulseCell(cell) {
     cell.classList.remove("is-lit");
-    cell.style.setProperty("--hex-intensity", (0.45 + Math.random() * 0.55).toFixed(2));
-    cell.style.setProperty("--hex-glow", `${(2 + Math.random() * 8).toFixed(1)}px`);
+    cell.style.setProperty("--hex-intensity", (0.34 + Math.random() * 0.5).toFixed(2));
+    cell.style.setProperty("--hex-glow", `${(10 + Math.random() * 16).toFixed(1)}px`);
 
     requestAnimationFrame(() => {
       cell.classList.add("is-lit");
       window.setTimeout(() => {
         cell.classList.remove("is-lit");
-      }, 520 + Math.random() * 780);
+      }, 420 + Math.random() * 560);
     });
   }
 
   function startRandomPulse() {
-    const burstSize = window.matchMedia(MOBILE_QUERY).matches ? 4 : 9;
+    const burstSize = window.matchMedia(MOBILE_QUERY).matches ? 3 : 7;
 
     timer = window.setInterval(() => {
       if (!blocks.length) {
@@ -106,9 +106,9 @@
 
       for (let i = 0; i < burstSize; i += 1) {
         const cell = blocks[Math.floor(Math.random() * blocks.length)];
-        window.setTimeout(() => pulseCell(cell), Math.random() * 420);
+        window.setTimeout(() => pulseCell(cell), Math.random() * 260);
       }
-    }, 190);
+    }, 145);
   }
 
   function scheduleRebuild() {
