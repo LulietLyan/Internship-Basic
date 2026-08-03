@@ -64,14 +64,14 @@ renice -n 5 -p PID
 
 ## 16.4 脚本自动化运行
 
-- **cron**：`crontab -e`
+- **cron** ：`crontab -e`
 
 ```
 分 时 日 月 周 命令
 0 2 * * * /path/script.sh
 ```
 
-- **at**：一次性定时
+- **at** ：一次性定时
 
 ```bash
 at 10:00
@@ -79,9 +79,9 @@ at> script.sh
 Ctrl+D
 ```
 
-- **systemd timer**：现代替代 cron 的方式
+- **systemd timer** ：现代替代 cron 的方式
 
-**crontab 示例**：
+**crontab 示例** ：
 
 ```cron
 PATH=/usr/local/bin:/usr/bin

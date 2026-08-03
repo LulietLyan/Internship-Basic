@@ -51,8 +51,8 @@ sed '/start/,/end/{N;s/\n/ /;}' file
 
 ## 21.4 hold / pattern 空间
 
-- **pattern space**：当前处理行
-- **hold space**：缓存区 `h/H/g/G/x`
+- **pattern space** ：当前处理行
+- **hold space** ：缓存区 `h/H/g/G/x`
 
 用于倒序行、合并行等复杂转换。
 

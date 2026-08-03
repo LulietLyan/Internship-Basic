@@ -40,14 +40,14 @@ echo $$            # 当前 Shell PID
 echo $PPID         # 父 Shell PID
 ```
 
-**创建子 Shell 的方式**：
+**创建子 Shell 的方式** ：
 
-- `( cmd )` — **进程列表**，在子 Shell 中执行
+- `( cmd )` — **进程列表** ，在子 Shell 中执行
 - `cmd1 | cmd2` — 管道各段可能在子 Shell
 - **`bash`** — 启动新 bash 子 Shell
 - **`coproc cmd`** — 协程，异步管道
 
-**不会**创建子 Shell：`export`、`cd`、`alias`（当前 Shell 内生效）。
+**不会** 创建子 Shell：`export`、`cd`、`alias`（当前 Shell 内生效）。
 
 子 Shell 中 **`cd` 不影响父 Shell 工作目录**；变量默认不向上传递（除非 export）。
 

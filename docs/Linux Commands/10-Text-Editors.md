@@ -25,7 +25,7 @@ body::before {
 
 ## 10.1 vim
 
-**模式**：
+**模式** ：
 
 | 模式 | 作用 |
 |------|------|
@@ -57,7 +57,7 @@ cc           " 改整行
 :%s/old/new/gc  " 全文替换前确认
 ```
 
-**.vimrc 最小配置**：
+**.vimrc 最小配置** ：
 
 ```vim
 set number relativenumber
@@ -79,7 +79,7 @@ nano file
 
 ## 10.4 GUI 编辑器
 
-- **KWrite / Kate**（KDE）：语法高亮、插件
-- **gedit**（GNOME）：轻量，支持插件
+- **KWrite / Kate** （KDE）：语法高亮、插件
+- **gedit** （GNOME）：轻量，支持插件
 
 脚本开发最低要求：语法高亮 + 行号 + 缩进。

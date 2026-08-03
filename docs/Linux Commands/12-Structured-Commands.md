@@ -45,7 +45,7 @@ else
 fi
 ```
 
-**注意**：if 判断的是 **退出状态码**，非输出内容；`if grep q /etc/passwd` 找到则成功。
+**注意** ：if 判断的是 **退出状态码** ，非输出内容；`if grep q /etc/passwd` 找到则成功。
 
 ## 12.2 test / [ ]
 
@@ -105,7 +105,7 @@ if [ -f $HOME/file ]; then ...; fi
 
 ```bash
 case $var in
-  pattern1) cmds ;; 
+  pattern1) cmds ;;
   pattern2|pattern3) cmds ;;
   *) default ;;
 esac

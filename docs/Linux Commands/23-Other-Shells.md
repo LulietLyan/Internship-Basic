@@ -53,4 +53,4 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 # 插件：git docker kubectl zsh-autosuggestions zsh-syntax-highlighting
 ```
 
-**bash 脚本兼容**：Shebang 仍用 `#!/usr/bin/env bash`；交互 Shell 可换 zsh。
+**bash 脚本兼容** ：Shebang 仍用 `#!/usr/bin/env bash`；交互 Shell 可换 zsh。

@@ -30,16 +30,16 @@ body::before {
 | **虚拟控制台** | 全屏文本登录，系统内存中的 tty 会话 |
 | **终端仿真器** | 桌面窗口中模拟控制台（GNOME Terminal、Konsole 等） |
 
-GUI 栈：**客户端** → **显示服务器**（Wayland/X）→ **窗口管理器** → **小部件库**。
+GUI 栈： **客户端** → **显示服务器** （Wayland/X）→ **窗口管理器** → **小部件库** 。
 
 ## 2.2 虚拟控制台
 
-- 切换：**Ctrl+Alt+F1~F7**（发行版映射不同，Ubuntu/CentOS 常用 F1）
+- 切换： **Ctrl+Alt+F1~F7** （发行版映射不同，Ubuntu/CentOS 常用 F1）
 - 查看当前 tty：`tty`（如 `/dev/tty3`）
 - 虚拟控制台 **不能** 运行图形程序
 - 密码输入 **无回显**
 
-**setterm 常用选项**：
+**setterm 常用选项** ：
 
 ```bash
 setterm --inversescreen on|off    # 反色
@@ -57,13 +57,13 @@ setterm --reset                   # 恢复默认
 ### GNOME Terminal
 
 - 启动：Activities → 搜索 **terminal**
-- 常用：**Ctrl+Shift+T** 新标签，**Ctrl+Shift+N** 新窗口
+- 常用： **Ctrl+Shift+T** 新标签， **Ctrl+Shift+N** 新窗口
 - Profile 可改字体、颜色、滚动缓冲区
 
 ### Konsole（KDE）
 
 - 启动：`konsole` 或 **Ctrl+Alt+T**
-- **Ctrl+Shift+C/V** 复制粘贴；**Ctrl+Shift+M** 显示菜单栏
+- **Ctrl+Shift+C/V** 复制粘贴； **Ctrl+Shift+M** 显示菜单栏
 - 书签、分屏、Monitor for Silence/Activity
 
 ### xterm

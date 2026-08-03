@@ -51,9 +51,9 @@ gawk 'BEGIN {sum=0} {sum+=$1} END {print sum}' file
 gawk -f script.awk file
 ```
 
-**字段变量**：`$0` 整行，`$1`…`$NF`，`NF` 字段数，`FS`/`OFS` 分隔符。
+**字段变量** ：`$0` 整行，`$1`…`$NF`，`NF` 字段数，`FS`/`OFS` 分隔符。
 
-**BEGIN / END**：处理前后各执行一次。
+**BEGIN / END** ：处理前后各执行一次。
 
 ## 19.3 日志处理实战
 

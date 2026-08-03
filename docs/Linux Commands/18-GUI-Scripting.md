@@ -36,7 +36,7 @@ read -p "Choice: " choice
 case $choice in 1) ... ;; esac
 ```
 
-**select**（bash 内置）：
+**select** （bash 内置）：
 
 ```bash
 select item in A B Quit; do

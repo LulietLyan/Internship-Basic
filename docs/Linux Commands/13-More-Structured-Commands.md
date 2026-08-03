@@ -48,7 +48,7 @@ until [ condition ]; do   # 条件为假时循环
 done
 ```
 
-**读取文件**：
+**读取文件** ：
 
 ```bash
 while IFS= read -r line; do

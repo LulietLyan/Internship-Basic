@@ -36,7 +36,7 @@ tar -zcf "$backup_dir/data-$date.tar.gz" "$source_dir"
 find $backup_dir -name "*.tar.gz" -mtime +7 -delete
 ```
 
-**要点**：`mktemp` 安全临时目录；`tar -zcf` 一条命令归档；cron 定时。
+**要点** ：`mktemp` 安全临时目录；`tar -zcf` 一条命令归档；cron 定时。
 
 ## 24.2 批量用户
 
@@ -51,19 +51,19 @@ done < users.csv
 
 ## 24.3 系统审计
 
-**登录 Shell 审计**（/etc/passwd 第 7 字段）：
+**登录 Shell 审计** （/etc/passwd 第 7 字段）：
 
 ```bash
 awk -F: '$7 !~ /(bash|false|nologin)$/ {print $1, $7}' /etc/passwd
 ```
 
-**SUID/SGID 文件**：
+**SUID/SGID 文件** ：
 
 ```bash
 sudo find / -perm /6000 -type f 2>/dev/null
 ```
 
-**报告对比**：按时间戳保存报告，`diff old new` 或 `comm` 比较差异。
+**报告对比** ：按时间戳保存报告，`diff old new` 或 `comm` 比较差异。
 
 ## 24.4 健康检查与部署片段
 

@@ -56,7 +56,7 @@ sudo tune2fs -l /dev/sdb1 # ext 超级块信息
 
 ## 8.4 LVM 逻辑卷
 
-层次：**PV（物理卷）→ VG（卷组）→ LV（逻辑卷）**
+层次： **PV（物理卷）→ VG（卷组）→ LV（逻辑卷）**
 
 ```bash
 # 创建
@@ -86,7 +86,7 @@ cat /proc/loadavg
 echo 3 | sudo tee /proc/sys/vm/drop_caches   # 清 page cache（慎用，仅测试）
 ```
 
-**bind 挂载**：同一目录挂到另一路径
+**bind 挂载** ：同一目录挂到另一路径
 
 ```bash
 sudo mount --bind /source /target

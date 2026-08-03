@@ -25,8 +25,8 @@ body::before {
 
 ## 6.1 概念
 
-- **环境变量**：子进程继承的全局变量（`export` 后）
-- **局部变量**：仅当前 Shell 可见
+- **环境变量** ：子进程继承的全局变量（`export` 后）
+- **局部变量** ：仅当前 Shell 可见
 
 ```bash
 echo $HOME $PATH $USER $SHELL $PWD
@@ -44,9 +44,9 @@ export MYVAR=world # 一步完成
 unset MYVAR        # 删除
 ```
 
-**规则**：赋值 **等号两侧无空格**；引用用 `$VAR` 或 `${VAR}`。
+**规则** ：赋值 **等号两侧无空格** ；引用用 `$VAR` 或 `${VAR}`。
 
-**参数扩展（常用）**：
+**参数扩展（常用）** ：
 
 ```bash
 ${VAR:-default}         # VAR 空或未设置 → 用 default（不赋值）
@@ -81,25 +81,25 @@ export PATH
 
 ## 6.5 启动文件加载顺序
 
-**登录 Shell**：
+**登录 Shell** ：
 
 1. `/etc/profile`（全局）
 2. `~/.bash_profile` / `~/.bash_login` / `~/.profile`（按存在顺序，读第一个）
 
-**交互非登录 Shell**：
+**交互非登录 Shell** ：
 
 - `~/.bashrc`（通常 source `/etc/bashrc`）
 
-**非交互 Shell**：
+**非交互 Shell** ：
 
 - 读 `BASH_ENV` 或 `~/.bashrc`（视配置而定）
 
-**持久化技巧**：
+**持久化技巧** ：
 
 - 全局：`/etc/profile.d/*.sh`
 - 用户：别名/函数 → `~/.bashrc`；环境变量 → `~/.bash_profile` 或 `~/.bashrc`
 
-**cron 注意**：cron 环境极简，脚本里应写 **绝对路径** 或脚本内 `export PATH=...`。
+**cron 注意** ：cron 环境极简，脚本里应写 **绝对路径** 或脚本内 `export PATH=...`。
 
 ## 6.6 数组
 

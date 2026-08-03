@@ -25,12 +25,12 @@ body::before {
 
 ## 9.1 基础概念
 
-- **仓库（repository）**：远程/本地软件包源
-- **依赖**：安装前自动解析并安装依赖包
+- **仓库（repository）** ：远程/本地软件包源
+- **依赖** ：安装前自动解析并安装依赖包
 
 ## 9.2 Debian / Ubuntu — apt
 
-底层 **dpkg**；前端 **apt** / **apt-get** / **apt-cache**。
+底层 **dpkg** ；前端 **apt** / **apt-get** / **apt-cache** 。
 
 ```bash
 sudo apt update                    # 更新索引
@@ -48,7 +48,7 @@ dpkg -L pkg                        # 包内文件
 
 ## 9.3 Red Hat / Fedora — dnf（原 yum）
 
-底层 **rpm**。
+底层 **rpm** 。
 
 ```bash
 sudo dnf install pkg
@@ -98,4 +98,4 @@ pip install -r requirements.txt
 npm install / go mod download
 ```
 
-**容器**：应用运行环境见 Docker 专栏；宿主机上用 `docker` / `docker compose` 管理即可。
+**容器** ：应用运行环境见 Docker 专栏；宿主机上用 `docker` / `docker compose` 管理即可。

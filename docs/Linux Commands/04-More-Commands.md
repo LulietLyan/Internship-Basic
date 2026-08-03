@@ -21,7 +21,7 @@ body::before {
 
 # 第 4 章 更多 Bash 命令
 
-> 开发者日常排查：**谁占 CPU/内存、端口被谁占用、磁盘/log 怎么看**——本章 4.1–4.8 重点展开。
+> 开发者日常排查： **谁占 CPU/内存、端口被谁占用、磁盘/log 怎么看** ——本章 4.1–4.8 重点展开。
 
 ## 4.1 ps — 进程快照
 
@@ -35,7 +35,7 @@ ps --forest      # 树形看父子关系
 ps -u user       # 某用户进程
 ```
 
-**ps aux 列含义**：
+**ps aux 列含义** ：
 
 | 列 | 含义 |
 |----|------|
@@ -48,9 +48,9 @@ ps -u user       # 某用户进程
 | START / TIME | 启动时间 / 累计 CPU 时间 |
 | COMMAND | 命令行 |
 
-**STAT 附加字符**：`<` 高优先级，`N` 低优先级，`l` 多线程，`+` 前台进程。
+**STAT 附加字符** ：`<` 高优先级，`N` 低优先级，`l` 多线程，`+` 前台进程。
 
-**配合 grep 查服务**：
+**配合 grep 查服务** ：
 
 ```bash
 ps aux | grep nginx
@@ -62,11 +62,11 @@ pidof nginx             # 仅 PID
 
 ## 4.2 top — 实时进程监控（重点）
 
-`top` 默认 **每 3 秒刷新**，按 **%CPU** 降序排列，是线上排查「卡死 / 飙 CPU / 内存泄漏」的第一工具。
+`top` 默认 **每 3 秒刷新** ，按 **%CPU** 降序排列，是线上排查「卡死 / 飙 CPU / 内存泄漏」的第一工具。
 
 ### 4.2.1 输出区域解读
 
-**第 1 行 — 系统概况**：
+**第 1 行 — 系统概况** ：
 
 ```text
 top - 14:32:01 up 3 days,  2:15,  2 users,  load average: 0.52, 0.58, 0.61
@@ -76,20 +76,20 @@ top - 14:32:01 up 3 days,  2:15,  2 users,  load average: 0.52, 0.58, 0.61
 |------|------|
 | up | 系统运行时长 |
 | users | 当前登录用户数 |
-| load average | 1 / 5 / 15 分钟 **平均负载**（可运行+等待 IO 的进程数均值） |
+| load average | 1 / 5 / 15 分钟 **平均负载** （可运行+等待 IO 的进程数均值） |
 
-负载是否过高取决于 **CPU 核数**：4 核机器 load 长期 > 4 才需警惕；对比自身基线比绝对值更重要。
+负载是否过高取决于 **CPU 核数** ：4 核机器 load 长期 > 4 才需警惕；对比自身基线比绝对值更重要。
 
-**第 2 行 — Tasks**：
+**第 2 行 — Tasks** ：
 
 ```text
 Tasks: 312 total,   2 running, 310 sleeping,   0 stopped,   0 zombie
 ```
 
-- **zombie > 0**：子进程已退出但父进程未 wait，需找父进程处理
-- **running 长期接近核数且 load 高**：CPU 瓶颈
+- **zombie > 0** ：子进程已退出但父进程未 wait，需找父进程处理
+- **running 长期接近核数且 load 高** ：CPU 瓶颈
 
-**第 3 行 — %Cpu(s)**：
+**第 3 行 — %Cpu(s)** ：
 
 ```text
 %Cpu(s): 12.3 us,  2.1 sy,  0.0 ni, 84.2 id,  1.2 wa,  0.0 hi,  0.2 si
@@ -100,25 +100,25 @@ Tasks: 312 total,   2 running, 310 sleeping,   0 stopped,   0 zombie
 | us | 用户态 CPU |
 | sy | 内核态 CPU |
 | id | 空闲 |
-| wa | **等待 IO**（wa 高 → 磁盘/网络 IO 瓶颈） |
+| wa | **等待 IO** （wa 高 → 磁盘/网络 IO 瓶颈） |
 | st | 被虚拟机「偷走」的 CPU（云主机常见） |
 
-**第 4–5 行 — 内存 / Swap**：
+**第 4–5 行 — 内存 / Swap** ：
 
 ```text
 MiB Mem : 16384.0 total,  2048.0 free,  8192.0 used,  6144.0 buff/cache
 MiB Swap:  8192.0 total,  8192.0 free,     0.0 used.  7680.0 avail Mem
 ```
 
-- 看 **available / avail Mem**，不要只看 free（buff/cache 可回收）
+- 看 **available / avail Mem** ，不要只看 free（buff/cache 可回收）
 - **Swap 持续 used** → 物理内存压力，可能触发 OOM
 
-**进程列表列**：
+**进程列表列** ：
 
 | 列 | 含义 |
 |----|------|
 | VIRT | 虚拟内存总量 |
-| RES | **实际物理内存**（排查内存占用看这项） |
+| RES | **实际物理内存** （排查内存占用看这项） |
 | SHR | 共享内存（多进程共享库） |
 | S | 状态（同 ps） |
 | %CPU | 单进程 CPU 占比（多核可 >100%） |
@@ -136,7 +136,7 @@ MiB Swap:  8192.0 total,  8192.0 free,     0.0 used.  7680.0 avail Mem
 | **M** | 按 **RES 内存** 排序 |
 | **P** | 按 **%CPU** 排序（默认） |
 | **T** | 按累计 TIME 排序 |
-| **k** | 输入 PID **杀进程**（默认 SIGTERM） |
+| **k** | 输入 PID **杀进程** （默认 SIGTERM） |
 | **r** | **renice** 改优先级 |
 | **f** | 选择显示/隐藏列 |
 | **o** | 添加筛选条件（如 `COMMAND=java`） |
@@ -156,10 +156,10 @@ top -u nginx               # 只显示某用户进程
 
 ### 4.2.4 典型排查流程
 
-1. **CPU 飙高**：`top` → **P** 排序 → 看 COMMAND → `k` 或 `kill` / 进服务日志
-2. **内存不足**：**M** 排序 → 看 RES / %MEM → `ps -p PID -o cmd` 确认
-3. **load 高但 CPU idle 低 wa**：磁盘或网络 IO 问题 → `iostat`、`iotop`
-4. **僵尸进程**：Tasks 行 zombie > 0 → `ps aux | grep Z` → 重启或修复父进程
+1. **CPU 飙高** ：`top` → **P** 排序 → 看 COMMAND → `k` 或 `kill` / 进服务日志
+2. **内存不足** ： **M** 排序 → 看 RES / %MEM → `ps -p PID -o cmd` 确认
+3. **load 高但 CPU idle 低 wa** ：磁盘或网络 IO 问题 → `iostat`、`iotop`
+4. **僵尸进程** ：Tasks 行 zombie > 0 → `ps aux | grep Z` → 重启或修复父进程
 
 ---
 
@@ -198,7 +198,7 @@ free -h                    # 人类可读
 free -h -s 3               # 每 3 秒刷新
 ```
 
-关注 **available**；`used` 含 cache，不等于「已用尽」。
+关注 **available** ；`used` 含 cache，不等于「已用尽」。
 
 ### vmstat — 系统整体吞吐
 
@@ -214,7 +214,7 @@ vmstat 1 5                 # 每 1 秒采样，共 5 次
 | si / so | swap 换入/换出 |
 | us / sy / id / wa | CPU 分项（同 top） |
 
-**经验**：`wa` 持续高 → IO 瓶颈；`si/so` 持续 > 0 → 内存换页严重。
+**经验** ：`wa` 持续高 → IO 瓶颈；`si/so` 持续 > 0 → 内存换页严重。
 
 ### uptime
 
@@ -232,7 +232,7 @@ iotop                      # 类似 top，按进程看 IO（需 root）
 lsof +D /path              # 谁占用了某目录下文件
 ```
 
-`iostat` 中 **%util** 接近 100% 表示磁盘饱和；**await** 高表示 IO 延迟大。
+`iostat` 中 **%util** 接近 100% 表示磁盘饱和； **await** 高表示 IO 延迟大。
 
 ---
 
@@ -264,7 +264,7 @@ lsof +L1                   # 已删除但仍被进程占用的文件（磁盘空
 lsof -u user               # 某用户打开的文件
 ```
 
-**端口被占用**：
+**端口被占用** ：
 
 ```bash
 lsof -i :3000
@@ -308,7 +308,7 @@ strace -e open,read,write ./app
 strace -c ./app            # 汇总统计各 syscall 耗时
 ```
 
-适合：**程序卡死、权限错误、找不到文件** 时看它在调什么内核接口。
+适合： **程序卡死、权限错误、找不到文件** 时看它在调什么内核接口。
 
 ---
 
@@ -351,7 +351,7 @@ du -h --max-depth=1 /var    # 一层子目录汇总
 ncdu                       # 交互式浏览（需安装）
 ```
 
-**挂载**：
+**挂载** ：
 
 ```bash
 mount | column -t
