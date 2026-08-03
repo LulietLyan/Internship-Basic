@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="680" viewBox="0 0 1080 680" role="img" aria-labelledby="title desc">
+  <title id="title">TLS 1.3 握手流程</title>
+  <desc id="desc">TLS 1.3 一次 RTT 握手流程，包含 ClientHello、ServerHello、证书和 Finished 消息。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0L10 5L0 10z" fill="#2f4858"/>
+    </marker>
+    <style>
+      .txt{font-family:"Microsoft YaHei",Arial,sans-serif;fill:#243b53}
+      .lane{stroke:#c9d6df;stroke-width:3;stroke-dasharray:10 9}
+      .msg{stroke:#2f4858;stroke-width:3;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect width="1080" height="680" fill="#fbfcff"/>
+  <text x="540" y="54" text-anchor="middle" class="txt" font-size="30" font-weight="700">TLS 1.3 握手流程</text>
+  <text x="540" y="88" text-anchor="middle" class="txt" font-size="16" fill="#52616b">相比 TLS 1.2，主流程通常 1-RTT 完成，并移除了 RSA 静态密钥交换</text>
+
+  <g class="txt">
+    <rect x="110" y="124" width="190" height="62" rx="12" fill="#e8f3ff" stroke="#5b9bd5" stroke-width="2"/>
+    <text x="205" y="161" text-anchor="middle" font-size="21" font-weight="700">Client</text>
+    <rect x="780" y="124" width="190" height="62" rx="12" fill="#eaf8ef" stroke="#58a46b" stroke-width="2"/>
+    <text x="875" y="161" text-anchor="middle" font-size="21" font-weight="700">Server</text>
+  </g>
+
+  <line x1="205" y1="202" x2="205" y2="610" class="lane"/>
+  <line x1="875" y1="202" x2="875" y2="610" class="lane"/>
+
+  <g class="txt" font-size="16">
+    <line x1="220" y1="238" x2="858" y2="238" class="msg"/>
+    <rect x="355" y="205" width="370" height="52" rx="10" fill="#fff" stroke="#d6e4f0"/>
+    <text x="540" y="226" text-anchor="middle" font-weight="700">ClientHello</text>
+    <text x="540" y="248" text-anchor="middle" font-size="13">支持版本、Cipher Suites、Key Share、SNI、ALPN</text>
+
+    <line x1="860" y1="328" x2="222" y2="328" class="msg"/>
+    <rect x="348" y="286" width="384" height="74" rx="10" fill="#fff7df" stroke="#d39b29"/>
+    <text x="540" y="308" text-anchor="middle" font-weight="700">ServerHello + Encrypted Extensions</text>
+    <text x="540" y="330" text-anchor="middle" font-size="13">选择参数，返回 Key Share，双方可计算握手密钥</text>
+    <text x="540" y="350" text-anchor="middle" font-size="13">随后多数握手消息开始加密</text>
+
+    <line x1="860" y1="430" x2="222" y2="430" class="msg"/>
+    <rect x="365" y="386" width="350" height="76" rx="10" fill="#f3edff" stroke="#8d68c9"/>
+    <text x="540" y="410" text-anchor="middle" font-weight="700">Certificate + CertificateVerify</text>
+    <text x="540" y="433" text-anchor="middle" font-size="13">发送证书链并证明私钥持有</text>
+    <text x="540" y="453" text-anchor="middle" font-size="13">客户端校验证书、域名、有效期、信任链</text>
+
+    <line x1="860" y1="516" x2="222" y2="516" class="msg"/>
+    <rect x="398" y="492" width="284" height="48" rx="10" fill="#ffecee" stroke="#d36b7d"/>
+    <text x="540" y="522" text-anchor="middle" font-weight="700">Server Finished</text>
+
+    <line x1="220" y1="586" x2="858" y2="586" class="msg"/>
+    <rect x="400" y="562" width="280" height="48" rx="10" fill="#e8f3ff" stroke="#5b9bd5"/>
+    <text x="540" y="592" text-anchor="middle" font-weight="700">Client Finished，开始传输应用数据</text>
+  </g>
+
+  <rect x="122" y="628" width="836" height="34" rx="10" fill="#ffffff" stroke="#d6e4f0"/>
+  <text x="540" y="650" text-anchor="middle" class="txt" font-size="14">面试抓手：TLS 保护的是传输安全，不等于业务一定安全；证书被错误信任仍可能被中间人攻击。</text>
+</svg>
