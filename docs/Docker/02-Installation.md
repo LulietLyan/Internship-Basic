@@ -129,7 +129,7 @@ $ eval $(docker-machine env default)
 
 !!! note "注意"
     使用Docker Desktop时务必注意以下事项：
-    
+
     - 本书的范例假设Docker运行在主机上。如果你使用Docker Desktop，可能需要把提到localhost的地方一概换成虚拟机的IP地址
     - 本地操作系统与Docker容器之间的映射数据卷必须同时挂载于虚拟机上
 

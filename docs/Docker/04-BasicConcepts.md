@@ -44,17 +44,17 @@ body::before {
 
 Docker平台拥有两个不同部分：
 
-1. **Docker引擎**：负责创建与运行容器的引擎
-2. **Docker Hub**：用来发布容器的云服务
+1. **Docker引擎** ：负责创建与运行容器的引擎
+2. **Docker Hub** ：用来发布容器的云服务
 
 ### 底层技术
 
 Docker使用以下核心技术：
 
-- **Linux容器（LXC）**：把CGroups、内核命名空间以及chroot等技术融合，提供了一套完整的容器方案
-- **联合文件系统（Union File System）**：允许多个文件系统叠加，并表现为一个单一的文件系统
-- **CGroups**：Linux内核功能，用于限制、记录和隔离进程组的资源使用
-- **命名空间（Namespaces）**：Linux内核功能，用于隔离进程的可见资源
+- **Linux容器（LXC）** ：把CGroups、内核命名空间以及chroot等技术融合，提供了一套完整的容器方案
+- **联合文件系统（Union File System）** ：允许多个文件系统叠加，并表现为一个单一的文件系统
+- **CGroups** ：Linux内核功能，用于限制、记录和隔离进程组的资源使用
+- **命名空间（Namespaces）** ：Linux内核功能，用于隔离进程的可见资源
 
 ## 什么是镜像
 
@@ -79,19 +79,19 @@ Docker为了加快镜像构建的速度，也会将每一个镜像层缓存下�
 
 常用的基础镜像：
 
-- **alpine**：极小的镜像，大小仅仅5MB多一点，但仍提供了一个包管理器
-- **debian/ubuntu**：更完整的镜像，提供了完整的Linux发行版
-- **scratch**：完全空白的文件系统，只适合放入静态编译的二进制文件
+- **alpine** ：极小的镜像，大小仅仅5MB多一点，但仍提供了一个包管理器
+- **debian/ubuntu** ：更完整的镜像，提供了完整的Linux发行版
+- **scratch** ：完全空白的文件系统，只适合放入静态编译的二进制文件
 
 ## 容器：万物互联
 
 容器可以处于以下几种状态之一：
 
-- **已创建（created）**：容器已通过`docker create`命令初始化，但未曾启动
-- **重启中（restarting）**：容器正在重启
-- **运行中（running）**：容器正在运行
-- **已暂停（paused）**：容器已被暂停
-- **已退出（exited）**：容器中没有正在运行的进程
+- **已创建（created）** ：容器已通过`docker create`命令初始化，但未曾启动
+- **重启中（restarting）** ：容器正在重启
+- **运行中（running）** ：容器正在运行
+- **已暂停（paused）** ：容器已被暂停
+- **已退出（exited）** ：容器中没有正在运行的进程
 
 容器的主进程退出时，容器也会退出。"已退出"的容器可以用`docker start`重启。
 
@@ -198,10 +198,10 @@ Docker使用联合文件系统（有时也称为"联合挂载"）。联合文件
 
 Docker支持多种不同的联合文件系统实现，包括：
 
-- **AUFS**：Another Union File System
-- **Overlay**：Overlay文件系统
-- **devicemapper**：设备映射
-- **BTRFS**：B-tree文件系统
-- **ZFS**：Z文件系统
+- **AUFS** ：Another Union File System
+- **Overlay** ：Overlay文件系统
+- **devicemapper** ：设备映射
+- **BTRFS** ：B-tree文件系统
+- **ZFS** ：Z文件系统
 
 具体使用哪种实现取决于你所用的系统，可以通过`docker info`命令，查看输出结果中"Storage Driver"的值得知。

@@ -56,7 +56,7 @@ $ docker pull nginx
 $ docker run -d -p 8080:80 --name mynginx nginx
 ```
 
-**命令说明**：
+**命令说明** ：
 
 - `-d`：让容器在后台运行（detached mode）
 - `-p 8080:80`：将主机的8080端口映射到容器的80端口
@@ -80,7 +80,7 @@ $ docker run -d -p 8080:80 \
   --name mywebsite nginx
 ```
 
-**命令说明**：
+**命令说明** ：
 
 - `-v ~/mywebsite:/usr/share/nginx/html`：将主机的`~/mywebsite`目录挂载到容器的`/usr/share/nginx/html`目录
 
@@ -88,7 +88,7 @@ $ docker run -d -p 8080:80 \
 
 !!! tip "数据卷挂载格式"
     数据卷挂载的格式是：`-v 主机路径:容器路径`
-    
+
     - 主机路径必须是绝对路径
     - 如果容器路径不存在，Docker会自动创建
     - 如果容器路径已存在，挂载会覆盖原有内容
@@ -129,7 +129,7 @@ $ docker run -d --name myredis \
   -p 6379:6379 redis redis-server --appendonly yes
 ```
 
-**命令说明**：
+**命令说明** ：
 
 - `-v redis-data:/data`：将名为`redis-data`的数据卷挂载到容器的`/data`目录
 - `--appendonly yes`：启用Redis的AOF持久化
@@ -385,7 +385,7 @@ COPY --from=builder /app/myapp .
 CMD ["./myapp"]
 ```
 
-**多阶段构建的优势**：
+**多阶段构建的优势** ：
 
 - 最终镜像只包含运行时需要的文件
 - 大大减小镜像大小

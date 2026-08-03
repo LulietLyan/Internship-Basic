@@ -383,6 +383,7 @@ $ docker-compose up -d
 ```
 
 现在你可以：
+
 - 访问 `http://localhost:8080` 查看你的PHP应用
 - 访问 `http://localhost:8081` 使用phpMyAdmin管理数据库
 - 通过端口3306连接MySQL数据库
@@ -469,12 +470,12 @@ $ docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
 
 ## 最佳实践
 
-1. **使用版本控制**：将`docker-compose.yml`文件纳入Git版本控制
+1. **使用版本控制** ：将`docker-compose.yml`文件纳入Git版本控制
 2. **使用`.env`文件**：不要将敏感信息硬编码在YAML文件中
-3. **使用命名卷**：对于需要持久化的数据，使用命名卷而不是绑定挂载
-4. **设置资源限制**：在生产环境中设置CPU和内存限制
-5. **使用健康检查**：确保服务正常启动后再依赖它
-6. **清理未使用的资源**：定期运行`docker-compose down -v`清理资源
+3. **使用命名卷** ：对于需要持久化的数据，使用命名卷而不是绑定挂载
+4. **设置资源限制** ：在生产环境中设置CPU和内存限制
+5. **使用健康检查** ：确保服务正常启动后再依赖它
+6. **清理未使用的资源** ：定期运行`docker-compose down -v`清理资源
 
 ## 总结
 
