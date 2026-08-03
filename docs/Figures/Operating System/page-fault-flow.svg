@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="270" viewBox="0 0 920 270">
+  <defs>
+    <style>
+      .box { fill: #f8fbff; stroke: #2563eb; stroke-width: 2; rx: 12; }
+      .warn { fill: #fff7ed; stroke: #f97316; stroke-width: 2; rx: 12; }
+      .ok { fill: #f0fdf4; stroke: #16a34a; stroke-width: 2; rx: 12; }
+      .text { font: 15px "Microsoft YaHei", Arial, sans-serif; fill: #111827; }
+      .title { font: 18px "Microsoft YaHei", Arial, sans-serif; font-weight: 700; fill: #111827; }
+      .small { font: 13px "Microsoft YaHei", Arial, sans-serif; fill: #374151; }
+      .arrow { stroke: #475569; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#475569"/>
+    </marker>
+  </defs>
+  <text x="30" y="34" class="title">缺页异常处理路径</text>
+  <rect x="35" y="70" width="150" height="70" class="box"/>
+  <text x="65" y="100" class="text">访问虚拟地址</text>
+  <text x="62" y="123" class="small">CPU / MMU 查页表</text>
+  <path d="M185 105 H255" class="arrow"/>
+  <rect x="255" y="70" width="160" height="70" class="warn"/>
+  <text x="287" y="100" class="text">页表项无效</text>
+  <text x="280" y="123" class="small">触发 page fault</text>
+  <path d="M415 105 H485" class="arrow"/>
+  <rect x="485" y="70" width="165" height="70" class="box"/>
+  <text x="524" y="100" class="text">内核检查 VMA</text>
+  <text x="506" y="123" class="small">地址范围 / 权限 / 类型</text>
+  <path d="M650 105 H720" class="arrow"/>
+  <rect x="720" y="45" width="155" height="60" class="ok"/>
+  <text x="757" y="78" class="text">minor fault</text>
+  <text x="736" y="97" class="small">建映射或 COW</text>
+  <rect x="720" y="145" width="155" height="60" class="warn"/>
+  <text x="757" y="178" class="text">major fault</text>
+  <text x="738" y="197" class="small">从磁盘 / swap 读入</text>
+  <path d="M650 112 C685 112,685 75,720 75" class="arrow"/>
+  <path d="M650 128 C685 128,685 175,720 175" class="arrow"/>
+  <path d="M795 105 V135" class="arrow"/>
+  <rect x="315" y="185" width="290" height="52" class="ok"/>
+  <text x="365" y="216" class="text">更新页表和 TLB，返回用户态继续执行</text>
+  <path d="M720 175 C655 210,650 211,605 211" class="arrow"/>
+  <path d="M720 75 C650 150,650 211,605 211" class="arrow"/>
+</svg>
