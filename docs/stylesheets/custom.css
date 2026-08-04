@@ -400,8 +400,8 @@
       0 22px 58px rgba(55, 139, 134, 0.1),
       0 8px 24px rgba(18, 73, 68, 0.06),
       inset 0 1px 0 rgba(255, 255, 255, 0.84);
-    --hex-matrix-color: #d7f8ea;
-    --hex-matrix-stroke: #63ffab;
+    --hex-matrix-color: #a8f7d4;
+    --hex-matrix-stroke: #37ff91;
   }
 
   [data-md-color-scheme="slate"] {
@@ -412,8 +412,8 @@
       0 22px 58px rgba(0, 0, 0, 0.24),
       0 8px 24px rgba(184, 242, 250, 0.08),
       inset 0 1px 0 rgba(255, 255, 255, 0.08);
-    --hex-matrix-color: #d7f8ea;
-    --hex-matrix-stroke: #7dffb8;
+    --hex-matrix-color: #bffbe1;
+    --hex-matrix-stroke: #69ffad;
   }
 
   body {
@@ -487,7 +487,7 @@
     fill: currentColor;
     opacity: 0;
     stroke: var(--hex-matrix-stroke);
-    stroke-width: 1;
+    stroke-width: 1.25;
     stroke-opacity: 0;
     animation: site-hexagon-matrix-cycle var(--hex-duration) infinite both;
     animation-delay: var(--hex-delay);
@@ -570,12 +570,12 @@
 
     74% {
       opacity: var(--hex-peak-opacity);
-      stroke-opacity: 0.62;
+      stroke-opacity: 0.88;
     }
 
     80% {
       opacity: var(--hex-mid-opacity);
-      stroke-opacity: 0.28;
+      stroke-opacity: 0.44;
     }
 
     84%,
@@ -588,8 +588,8 @@
   @media (prefers-reduced-motion: reduce) {
     .hexagon-matrix-background__block {
       animation: none;
-      opacity: 0.08;
-      stroke-opacity: 0.16;
+      opacity: 0.14;
+      stroke-opacity: 0.26;
     }
   }
 

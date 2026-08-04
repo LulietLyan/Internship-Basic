@@ -36,8 +36,8 @@
 
     block.style.setProperty("--hex-delay", `${delay}s`);
     block.style.setProperty("--hex-duration", `${duration}s`);
-    block.style.setProperty("--hex-peak-opacity", `${0.055 + opacitySeed / 1800}`);
-    block.style.setProperty("--hex-mid-opacity", `${0.018 + opacitySeed / 3200}`);
+    block.style.setProperty("--hex-peak-opacity", `${0.14 + opacitySeed / 900}`);
+    block.style.setProperty("--hex-mid-opacity", `${0.052 + opacitySeed / 1800}`);
     block.style.setProperty("--hex-rest-opacity", "0");
 
     return block;
