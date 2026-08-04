@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="300" viewBox="0 0 920 300">
+  <defs>
+    <style>
+      .box { fill: #f8fbff; stroke: #2563eb; stroke-width: 2; rx: 12; }
+      .log { fill: #fff7ed; stroke: #f97316; stroke-width: 2; rx: 12; }
+      .ok { fill: #f0fdf4; stroke: #16a34a; stroke-width: 2; rx: 12; }
+      .text { font: 15px "Microsoft YaHei", Arial, sans-serif; fill: #111827; }
+      .title { font: 18px "Microsoft YaHei", Arial, sans-serif; font-weight: 700; fill: #111827; }
+      .small { font: 13px "Microsoft YaHei", Arial, sans-serif; fill: #475569; }
+      .arrow { stroke: #475569; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#475569"/>
+    </marker>
+  </defs>
+  <text x="32" y="34" class="title">MySQL redo log 与 binlog 两阶段提交</text>
+  <rect x="45" y="75" width="145" height="72" class="box"/>
+  <text x="78" y="106" class="text">执行事务</text>
+  <text x="70" y="130" class="small">修改 Buffer Pool</text>
+  <path d="M190 111 H260" class="arrow"/>
+  <rect x="260" y="75" width="150" height="72" class="log"/>
+  <text x="296" y="106" class="text">redo prepare</text>
+  <text x="292" y="130" class="small">InnoDB 可恢复</text>
+  <path d="M410 111 H480" class="arrow"/>
+  <rect x="480" y="75" width="150" height="72" class="log"/>
+  <text x="520" y="106" class="text">写 binlog</text>
+  <text x="512" y="130" class="small">Server 层归档</text>
+  <path d="M630 111 H700" class="arrow"/>
+  <rect x="700" y="75" width="150" height="72" class="ok"/>
+  <text x="738" y="106" class="text">redo commit</text>
+  <text x="726" y="130" class="small">事务提交完成</text>
+  <rect x="145" y="205" width="630" height="48" class="box"/>
+  <text x="178" y="235" class="text">崩溃恢复时，用 redo 状态与 binlog 完整性共同判断事务提交或回滚，避免主从和恢复不一致</text>
+</svg>
