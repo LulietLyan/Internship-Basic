@@ -3,11 +3,13 @@
   const ROOT_CLASS = "hexagon-matrix-background";
   const SVG_CLASS = "hexagon-matrix-background__svg";
   const BLOCK_CLASS = "hexagon-matrix-background__block";
+  const PAUSED_CLASS = "hexagon-matrix-background--paused";
   const CELL_ID = "site-hexagon-matrix-cell";
   const ROW_COUNT = 15;
   const LINE_COUNT = 15;
   const HEX_WIDTH = 86.5;
   const HEX_HEIGHT = 74.5;
+  let visibilityListenerBound = false;
 
   function createSvgElement(name, attrs) {
     const element = document.createElementNS(SVG_NS, name);
@@ -19,7 +21,6 @@
 
   function createBlock(line, row) {
     const index = line * ROW_COUNT + row;
-    const seed = (index * 37 + line * 17 + row * 11) % 113;
     const delaySeed = (index * 83 + line * 29 + row * 47) % 997;
     const durationSeed = (index * 53 + line * 71 + row * 19) % 401;
     const opacitySeed = (index * 61 + line * 13 + row * 89) % 101;
@@ -38,9 +39,20 @@
     block.style.setProperty("--hex-peak-opacity", `${0.055 + opacitySeed / 1800}`);
     block.style.setProperty("--hex-mid-opacity", `${0.018 + opacitySeed / 3200}`);
     block.style.setProperty("--hex-rest-opacity", "0");
-    block.style.setProperty("--hex-dash-from", seed % 2 ? "-100" : "100");
 
     return block;
+  }
+
+  function syncVisibilityState() {
+    document.querySelectorAll(`.${ROOT_CLASS}`).forEach((node) => {
+      node.classList.toggle(PAUSED_CLASS, document.visibilityState === "hidden");
+    });
+  }
+
+  function bindVisibilityListener() {
+    if (visibilityListenerBound) return;
+    visibilityListenerBound = true;
+    document.addEventListener("visibilitychange", syncVisibilityState);
   }
 
   function buildMatrix() {
@@ -76,10 +88,12 @@
     svg.appendChild(fragment);
     root.appendChild(svg);
     document.body.prepend(root);
+    syncVisibilityState();
   }
 
   function init() {
     if (document.body) {
+      bindVisibilityListener();
       buildMatrix();
     }
   }
