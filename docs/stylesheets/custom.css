@@ -564,15 +564,15 @@
 
   @keyframes site-hexagon-matrix-cycle {
     0%,
-    44% {
+    26% {
       opacity: var(--hex-rest-opacity);
     }
 
-    62% {
+    56% {
       opacity: var(--hex-mid-opacity);
     }
 
-    74% {
+    72% {
       opacity: var(--hex-peak-opacity);
     }
 

@@ -33,7 +33,7 @@
       y: HEX_HEIGHT * line,
     });
 
-    const duration = 18 + durationSeed / 80;
+    const duration = 11 + durationSeed / 120;
     const delay = -(delaySeed / 997) * duration;
 
     block.style.setProperty("--hex-delay", `${delay}s`);
