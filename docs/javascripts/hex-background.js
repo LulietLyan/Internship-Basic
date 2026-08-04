@@ -36,9 +36,9 @@
 
     block.style.setProperty("--hex-delay", `${delay}s`);
     block.style.setProperty("--hex-duration", `${duration}s`);
-    block.style.setProperty("--hex-peak-opacity", `${0.42 + opacitySeed / 500}`);
-    block.style.setProperty("--hex-mid-opacity", `${0.18 + opacitySeed / 850}`);
-    block.style.setProperty("--hex-rest-opacity", "0.015");
+    block.style.setProperty("--hex-peak-opacity", `${0.32 + opacitySeed / 650}`);
+    block.style.setProperty("--hex-mid-opacity", `${0.12 + opacitySeed / 1200}`);
+    block.style.setProperty("--hex-rest-opacity", "0.008");
 
     return block;
   }
