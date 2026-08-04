@@ -135,6 +135,8 @@ select 是最早的 I/O 多路复用技术，但受到文件描述符数量和�
 
 ## 讲一讲 client-server 通信双方 API 调用过程？
 
+![Socket API 调用过程](../Figures/Operating%20System/socket-api-sequence.png)
+
 Client-server 通信是 **客户端与服务器之间进行数据交互** 的一种常见方式。客户端和服务器分别调用各自的 API 来建立连接、发送请求、接收响应以及关闭连接。以下是典型的 Client-server 通信过程中的 API 调用：
 
 ### 服务器端 API 调用过程
@@ -259,6 +261,8 @@ Proactor 模式的主要优点是充分利用了操作系统的异步 I/O 功能
 早期 DMA 只存在在主板上，如今由于 I/O 设备越来越多，数据传输的需求也不尽相同，所以每个 I/O 设备里面都有自己的 DMA 控制器。
 
 ## Linux 零拷贝的原理？
+
+![sendfile 零拷贝流程](../Figures/Operating%20System/zero-copy-sendfile.png)
 
 零拷贝是一种 **避免 CPU 将数据从一块存储拷贝到另外一块存储的技术** 。通过减少用户态与内核态上下文切换和减少内存拷贝次数实现，通常实现方式有 3 种： **mmap+write、sendfile、sendfile+DMA scatter/gather** ：
 

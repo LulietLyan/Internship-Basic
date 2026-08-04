@@ -74,6 +74,8 @@ body::before {
 
 ## 讲一讲 Inode 文件系统结构？
 
+![Inode 文件系统结构](../Figures/Operating%20System/inode-file-system.png)
+
 Inode(索引节点)是 Unix 和类 Unix 文件系统中的一个重要概念。Inode 是文件系统中的一个数据结构，用于 **存储文件或目录的元数据(metadata)** ，例如文件大小、时间戳、权限、所有者等。Inode 还包含了指向实际文件数据块(data block)的指针，这些数据块存储了文件的内容。
 
 在 Unix 和类 Unix 文件系统中， **每个文件或目录都有一个唯一的 Inode 号(Inode number)** ，用于唯一标识文件系统中的对象。文件名只是一个用户友好的引用，实际上是指向 Inode 号的指针。这种设计允许文件系统以更高效的方式管理和访问文件，同时提供了硬链接等高级功能。以下是 Inode 文件系统结构的几个关键组成部分：
@@ -137,6 +139,8 @@ Rsync 算法基于 **滚动哈希(rolling hash)和数据块签名** 的方法来
 Rsync 算法已经被广泛应用于各种文件同步和备份工具中，如 Linux 中的 rsync 命令。这些工具提供了丰富的选项和功能，可以实现文件传输的续传、增量备份、压缩传输等高级功能。
 
 ## 进程写文件时，进程发生了崩溃，已写入的数据会丢失吗？
+
+![Page Cache 写回流程](../Figures/Operating%20System/page-cache-writeback.png)
 
 不会。因为进程在执行 write（使用缓冲 IO）系统调用的时候，实际上是将文件数据写到了内核的 **page cache** ，它是文件系统中用于缓存文件数据的缓冲，所以即使进程崩溃了，文件数据还是保留在内核的 page cache，我们读数据的时候，也是从内核的 page cache 读取，因此还是依然读的进程崩溃前写入的数据。
 

@@ -54,7 +54,7 @@ body::before {
 
 ## 缺页异常的处理流程是什么？
 
-![缺页异常处理路径](../Figures/Operating%20System/page-fault-flow.svg)
+![缺页异常处理路径](../Figures/Operating%20System/page-fault-flow.png)
 
 缺页异常是 CPU 访问虚拟地址时发现页表项无效、页面不在内存，或访问权限不满足而陷入内核。大致流程如下。
 
@@ -226,7 +226,7 @@ body::before {
 
 ## 进程的内存分布？
 
-![进程的内存分布](../Figures/OperatingSystem/进程的内存分布.jpg)
+![进程的内存分布](../Figures/Operating%20System/process-virtual-memory-layout.png)
 
 进程是操作系统中一个运行中的程序实例。在操作系统中，每个进程都拥有独立的虚拟内存空间，以便存储其代码、数据和运行时所需的信息。进程的内存空间通常分为以下几个区域：
 
