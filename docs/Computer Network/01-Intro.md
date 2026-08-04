@@ -156,6 +156,8 @@ body::before {
 
 ## OSI、TCP/IP、五层模型如何对应？
 
+![网络模型对应关系](../Figures/Computer%20Network/network-model-mapping.png)
+
 面试时常用五层模型来解释实际协议：
 
 | OSI 七层 | TCP/IP 四层 | 五层模型 | 常见协议/设备 |
@@ -170,6 +172,8 @@ body::before {
 
 ## 数据在网络协议栈中如何封装和解封装？
 
+![网络协议栈封装与解封装](../Figures/Computer%20Network/packet-encapsulation.png)
+
 发送方向从上到下逐层封装：
 
 1. 应用层产生数据，例如 HTTP 请求
@@ -181,6 +185,8 @@ body::before {
 接收方向从下到上逐层解封装：网卡收到帧后校验 MAC 和 FCS，IP 层判断目的 IP 和上层协议，TCP/UDP 根据端口找到对应 Socket，最后应用层读取数据。
 
 ## 从输入 URL 到页面展示，哪些地方最容易被追问？
+
+![输入 URL 到页面展示流程](../Figures/Computer%20Network/url-to-page-flow.png)
 
 可以按链路顺序展开：
 

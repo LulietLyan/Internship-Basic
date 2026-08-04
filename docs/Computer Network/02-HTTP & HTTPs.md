@@ -619,6 +619,8 @@ HTTP 长连接是指多个 HTTP 请求/响应复用同一条 TCP 连接。HTTP/1
 
 ## HTTP/2 的二进制分帧、Stream、Frame、Message 是什么？
 
+![HTTP/2 多路复用](../Figures/Computer%20Network/http2-multiplexing.png)
+
 HTTP/2 不再使用纯文本报文直接传输，而是把 HTTP 消息拆成二进制帧。
 
 - **Frame** ：HTTP/2 最小传输单位，常见类型有 `HEADERS`、`DATA`、`PRIORITY`、`SETTINGS`、`PUSH_PROMISE`

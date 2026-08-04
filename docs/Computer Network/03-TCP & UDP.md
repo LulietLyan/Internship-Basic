@@ -181,6 +181,8 @@ Duplicate SACK 又称 `D-SACK`，其主要 **使用 SACK 来告诉「发送方�
 
 ## TCP 滑动窗口
 
+![TCP 滑动窗口](../Figures/Computer%20Network/tcp-sliding-window.png)
+
 ### 引入窗口概念的原因
 
 TCP 每发送一个数据，都要进行一次确认应答。当上一个数据包收到了应答了，再发送下一个。这种方式的缺点是效率比较低，数据包的往返时间越长，通信的效率就越低。
@@ -619,6 +621,8 @@ TCP 不关心应用层一次写入的是一条消息还是多条消息，它只�
 
 ## TCP 流量控制和拥塞控制有什么区别？
 
+![TCP 流量控制与拥塞控制](../Figures/Computer%20Network/tcp-flow-vs-congestion-control.png)
+
 - **流量控制** ：保护接收方，避免发送方发太快导致接收缓冲区被打满。核心是接收窗口 `rwnd`
 - **拥塞控制** ：保护网络，避免链路和路由器过载。核心是拥塞窗口 `cwnd`
 - 实际发送窗口通常取 `min(rwnd, cwnd)`
@@ -718,4 +722,3 @@ QUIC 使用 Connection ID 标识连接。只要客户端和服务端仍保留连
 - UDP 被限速、丢弃或被中间设备拦截
 
 排查时可以结合 `ss/netstat`、抓包、连接队列指标、重传率、RTT、丢包率、应用日志一起看。
-
