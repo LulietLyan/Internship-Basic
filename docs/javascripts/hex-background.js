@@ -3,6 +3,7 @@
   const ROOT_CLASS = "hexagon-matrix-background";
   const SVG_CLASS = "hexagon-matrix-background__svg";
   const BLOCK_CLASS = "hexagon-matrix-background__block";
+  const ACTIVE_BLOCK_CLASS = `${BLOCK_CLASS}--active`;
   const PAUSED_CLASS = "hexagon-matrix-background--paused";
   const CELL_ID = "site-hexagon-matrix-cell";
   const ROW_COUNT = 15;
@@ -24,8 +25,9 @@
     const delaySeed = (index * 83 + line * 29 + row * 47) % 997;
     const durationSeed = (index * 53 + line * 71 + row * 19) % 401;
     const opacitySeed = (index * 61 + line * 13 + row * 89) % 101;
+    const isActive = (index + line * 2 + row * 3) % 3 === 0;
     const block = createSvgElement("use", {
-      class: BLOCK_CLASS,
+      class: isActive ? `${BLOCK_CLASS} ${ACTIVE_BLOCK_CLASS}` : BLOCK_CLASS,
       href: `#${CELL_ID}`,
       x: line % 2 ? HEX_WIDTH * row : HEX_WIDTH * row + 43.3,
       y: HEX_HEIGHT * line,
@@ -36,9 +38,9 @@
 
     block.style.setProperty("--hex-delay", `${delay}s`);
     block.style.setProperty("--hex-duration", `${duration}s`);
-    block.style.setProperty("--hex-peak-opacity", `${0.32 + opacitySeed / 650}`);
-    block.style.setProperty("--hex-mid-opacity", `${0.12 + opacitySeed / 1200}`);
-    block.style.setProperty("--hex-rest-opacity", "0.008");
+    block.style.setProperty("--hex-peak-opacity", `${0.22 + opacitySeed / 850}`);
+    block.style.setProperty("--hex-mid-opacity", `${0.075 + opacitySeed / 1800}`);
+    block.style.setProperty("--hex-rest-opacity", "0.006");
 
     return block;
   }
