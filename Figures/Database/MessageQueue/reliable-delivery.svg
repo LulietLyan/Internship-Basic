@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="330" viewBox="0 0 940 330">
+  <defs>
+    <style>
+      .box { fill: #f8fbff; stroke: #2563eb; stroke-width: 2; rx: 12; }
+      .warn { fill: #fff7ed; stroke: #f97316; stroke-width: 2; rx: 12; }
+      .ok { fill: #f0fdf4; stroke: #16a34a; stroke-width: 2; rx: 12; }
+      .text { font: 15px "Microsoft YaHei", Arial, sans-serif; fill: #111827; }
+      .title { font: 18px "Microsoft YaHei", Arial, sans-serif; font-weight: 700; fill: #111827; }
+      .small { font: 13px "Microsoft YaHei", Arial, sans-serif; fill: #475569; }
+      .arrow { stroke: #475569; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#475569"/>
+    </marker>
+  </defs>
+  <text x="32" y="34" class="title">消息队列可靠投递链路</text>
+  <rect x="45" y="80" width="150" height="72" class="box"/>
+  <text x="87" y="112" class="text">生产者</text>
+  <text x="68" y="136" class="small">Outbox / 重试</text>
+  <path d="M195 116 H295" class="arrow"/>
+  <rect x="295" y="80" width="150" height="72" class="warn"/>
+  <text x="330" y="112" class="text">Broker</text>
+  <text x="313" y="136" class="small">确认 / 持久化 / 副本</text>
+  <path d="M445 116 H545" class="arrow"/>
+  <rect x="545" y="80" width="150" height="72" class="ok"/>
+  <text x="586" y="112" class="text">消费者</text>
+  <text x="566" y="136" class="small">成功后 ack / offset</text>
+  <path d="M695 116 H795" class="arrow"/>
+  <rect x="795" y="80" width="110" height="72" class="box"/>
+  <text x="821" y="112" class="text">业务库</text>
+  <text x="807" y="136" class="small">唯一键 / 状态机</text>
+  <rect x="210" y="215" width="520" height="55" class="box"/>
+  <text x="242" y="249" class="text">MQ 通常保证投递语义，端到端“只生效一次”要由消费端幂等和补偿闭环兜底</text>
+</svg>

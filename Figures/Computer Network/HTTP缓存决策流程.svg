@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="700" viewBox="0 0 1100 700" role="img" aria-labelledby="title desc">
+  <title id="title">HTTP 缓存决策流程</title>
+  <desc id="desc">HTTP 强缓存和协商缓存的判断流程。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0L10 5L0 10z" fill="#34495e"/>
+    </marker>
+    <style>
+      .label{font-family:"Microsoft YaHei",Arial,sans-serif;fill:#263238}
+      .box{rx:14;stroke-width:2}
+      .line{fill:none;stroke:#34495e;stroke-width:3;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect width="1100" height="700" fill="#fbfcff"/>
+  <text x="550" y="55" text-anchor="middle" class="label" font-size="30" font-weight="700">HTTP 缓存决策流程</text>
+  <text x="550" y="88" text-anchor="middle" class="label" font-size="16" fill="#5d6975">先判断强缓存，再走协商缓存；命中 304 时复用本地缓存</text>
+
+  <g class="label" font-size="18" text-anchor="middle">
+    <rect class="box" x="445" y="120" width="210" height="64" fill="#e8f3ff" stroke="#4c8ed9"/>
+    <text x="550" y="158" font-weight="700">发起资源请求</text>
+
+    <path d="M550 218 L672 288 L550 358 L428 288 Z" fill="#fff7df" stroke="#d39b29" stroke-width="2"/>
+    <text x="550" y="282" font-weight="700">强缓存有效？</text>
+    <text x="550" y="307" font-size="14">Cache-Control / Expires</text>
+
+    <rect class="box" x="120" y="256" width="210" height="64" fill="#eaf8ef" stroke="#4aa764"/>
+    <text x="225" y="294" font-weight="700">直接使用本地缓存</text>
+
+    <rect class="box" x="760" y="256" width="230" height="64" fill="#f1edff" stroke="#8062c7"/>
+    <text x="875" y="283" font-weight="700">携带条件请求</text>
+    <text x="875" y="306" font-size="14">If-None-Match / If-Modified-Since</text>
+
+    <path d="M875 390 L997 460 L875 530 L753 460 Z" fill="#fff1f2" stroke="#d36b7d" stroke-width="2"/>
+    <text x="875" y="454" font-weight="700">服务端资源变更？</text>
+    <text x="875" y="479" font-size="14">ETag 优先于 Last-Modified</text>
+
+    <rect class="box" x="460" y="428" width="230" height="64" fill="#eaf8ef" stroke="#4aa764"/>
+    <text x="575" y="456" font-weight="700">返回 304</text>
+    <text x="575" y="479" font-size="14">继续使用本地缓存</text>
+
+    <rect class="box" x="760" y="590" width="230" height="64" fill="#e8f3ff" stroke="#4c8ed9"/>
+    <text x="875" y="618" font-weight="700">返回 200 + 新资源</text>
+    <text x="875" y="641" font-size="14">更新缓存副本</text>
+  </g>
+
+  <path class="line" d="M550 184 V218"/>
+  <path class="line" d="M428 288 H330"/>
+  <path class="line" d="M672 288 H760"/>
+  <path class="line" d="M875 320 V390"/>
+  <path class="line" d="M753 460 H690"/>
+  <path class="line" d="M875 530 V590"/>
+
+  <g class="label" font-size="15" fill="#455a64">
+    <text x="374" y="274">是</text>
+    <text x="710" y="274">否</text>
+    <text x="708" y="446">否</text>
+    <text x="890" y="566">是</text>
+  </g>
+
+  <rect x="98" y="614" width="520" height="40" rx="10" fill="#ffffff" stroke="#d6e4f0"/>
+  <text x="358" y="640" text-anchor="middle" class="label" font-size="14">常见坑：no-cache 不是“不缓存”，而是使用前必须重新验证。</text>
+</svg>

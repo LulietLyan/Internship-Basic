@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="310" viewBox="0 0 920 310">
+  <defs>
+    <style>
+      .box { fill: #f8fbff; stroke: #2563eb; stroke-width: 2; rx: 12; }
+      .cache { fill: #fff7ed; stroke: #f97316; stroke-width: 2; rx: 12; }
+      .db { fill: #f0fdf4; stroke: #16a34a; stroke-width: 2; rx: 12; }
+      .text { font: 15px "Microsoft YaHei", Arial, sans-serif; fill: #111827; }
+      .title { font: 18px "Microsoft YaHei", Arial, sans-serif; font-weight: 700; fill: #111827; }
+      .small { font: 13px "Microsoft YaHei", Arial, sans-serif; fill: #475569; }
+      .arrow { stroke: #475569; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#475569"/>
+    </marker>
+  </defs>
+  <text x="32" y="34" class="title">Cache Aside：先更新数据库，再删除缓存</text>
+  <rect x="65" y="75" width="140" height="70" class="box"/>
+  <text x="104" y="108" class="text">写请求</text>
+  <path d="M205 110 H300" class="arrow"/>
+  <rect x="300" y="75" width="160" height="70" class="db"/>
+  <text x="336" y="108" class="text">更新数据库</text>
+  <path d="M460 110 H555" class="arrow"/>
+  <rect x="555" y="75" width="160" height="70" class="cache"/>
+  <text x="594" y="108" class="text">删除缓存</text>
+  <path d="M635 145 V205" class="arrow"/>
+  <rect x="555" y="205" width="160" height="58" class="box"/>
+  <text x="581" y="239" class="text">下次读回源加载</text>
+  <rect x="85" y="205" width="360" height="58" class="box"/>
+  <text x="113" y="239" class="small">删除失败要靠重试、消息队列、binlog 订阅或短 TTL 兜底</text>
+</svg>

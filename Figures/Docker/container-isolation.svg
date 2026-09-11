@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="320" viewBox="0 0 920 320">
+  <defs>
+    <style>
+      .host { fill: #f8fafc; stroke: #334155; stroke-width: 2; rx: 14; }
+      .layer { fill: #eff6ff; stroke: #2563eb; stroke-width: 2; rx: 10; }
+      .limit { fill: #f0fdf4; stroke: #16a34a; stroke-width: 2; rx: 10; }
+      .fs { fill: #fff7ed; stroke: #f97316; stroke-width: 2; rx: 10; }
+      .text { font: 15px "Microsoft YaHei", Arial, sans-serif; fill: #111827; }
+      .title { font: 18px "Microsoft YaHei", Arial, sans-serif; font-weight: 700; fill: #111827; }
+      .small { font: 13px "Microsoft YaHei", Arial, sans-serif; fill: #475569; }
+    </style>
+  </defs>
+  <text x="32" y="34" class="title">Docker 容器隔离与资源控制</text>
+  <rect x="35" y="55" width="850" height="235" class="host"/>
+  <text x="60" y="86" class="title">宿主机 Linux Kernel</text>
+  <rect x="75" y="115" width="210" height="120" class="layer"/>
+  <text x="118" y="150" class="text">Namespace</text>
+  <text x="95" y="178" class="small">PID / NET / MNT / IPC</text>
+  <text x="112" y="202" class="small">UTS / USER / CGROUP</text>
+  <rect x="355" y="115" width="210" height="120" class="limit"/>
+  <text x="415" y="150" class="text">Cgroup</text>
+  <text x="385" y="178" class="small">CPU / Memory / IO</text>
+  <text x="402" y="202" class="small">限制、统计、隔离</text>
+  <rect x="635" y="115" width="210" height="120" class="fs"/>
+  <text x="696" y="150" class="text">Overlay2</text>
+  <text x="665" y="178" class="small">lowerdir 只读镜像层</text>
+  <text x="665" y="202" class="small">upperdir 容器可写层</text>
+  <text x="375" y="270" class="text">容器 = 受 namespace 视图隔离、受 cgroup 资源约束、使用 rootfs/overlay2 的宿主机进程</text>
+</svg>

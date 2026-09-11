@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="620" viewBox="0 0 1080 620" role="img" aria-labelledby="title desc">
+  <title id="title">DNS 递归查询流程</title>
+  <desc id="desc">浏览器、本地 DNS、根域名服务器、顶级域名服务器、权威域名服务器之间的递归解析流程。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2f4858"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#1f2933" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <rect width="1080" height="620" fill="#f8fbff"/>
+  <text x="540" y="58" text-anchor="middle" font-family="Microsoft YaHei, Arial, sans-serif" font-size="30" font-weight="700" fill="#1f2933">DNS 递归查询流程</text>
+  <text x="540" y="94" text-anchor="middle" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" fill="#52616b">客户端只问本地 DNS，本地 DNS 负责逐级询问并缓存最终结果</text>
+
+  <g font-family="Microsoft YaHei, Arial, sans-serif" filter="url(#shadow)">
+    <rect x="60" y="214" width="160" height="94" rx="12" fill="#e8f3ff" stroke="#5b9bd5" stroke-width="2"/>
+    <text x="140" y="252" text-anchor="middle" font-size="19" font-weight="700" fill="#16324f">浏览器/主机</text>
+    <text x="140" y="280" text-anchor="middle" font-size="14" fill="#38566b">example.com?</text>
+
+    <rect x="286" y="214" width="170" height="94" rx="12" fill="#e9f7ef" stroke="#58a46b" stroke-width="2"/>
+    <text x="371" y="252" text-anchor="middle" font-size="19" font-weight="700" fill="#1f4d2e">本地 DNS</text>
+    <text x="371" y="280" text-anchor="middle" font-size="14" fill="#386343">递归解析 + 缓存</text>
+
+    <rect x="530" y="136" width="160" height="94" rx="12" fill="#fff5df" stroke="#d99b2b" stroke-width="2"/>
+    <text x="610" y="174" text-anchor="middle" font-size="19" font-weight="700" fill="#6d4511">根服务器</text>
+    <text x="610" y="202" text-anchor="middle" font-size="14" fill="#7c5b21">返回 .com 地址</text>
+
+    <rect x="770" y="214" width="170" height="94" rx="12" fill="#f3edff" stroke="#8d68c9" stroke-width="2"/>
+    <text x="855" y="252" text-anchor="middle" font-size="19" font-weight="700" fill="#49306f">顶级域 DNS</text>
+    <text x="855" y="280" text-anchor="middle" font-size="14" fill="#60488a">返回权威 DNS</text>
+
+    <rect x="530" y="396" width="180" height="94" rx="12" fill="#ffecee" stroke="#d36b7d" stroke-width="2"/>
+    <text x="620" y="434" text-anchor="middle" font-size="19" font-weight="700" fill="#733140">权威 DNS</text>
+    <text x="620" y="462" text-anchor="middle" font-size="14" fill="#873f50">返回 A/AAAA 记录</text>
+  </g>
+
+  <g fill="none" stroke="#2f4858" stroke-width="3" marker-end="url(#arrow)">
+    <path d="M 220 246 C 244 226, 262 226, 286 246"/>
+    <path d="M 456 224 C 486 178, 501 174, 530 176"/>
+    <path d="M 690 194 C 734 202, 749 221, 770 246"/>
+    <path d="M 855 308 C 836 366, 776 426, 710 438"/>
+    <path d="M 530 454 C 430 452, 388 362, 374 308"/>
+    <path d="M 286 278 C 260 299, 240 301, 220 282"/>
+  </g>
+
+  <g font-family="Microsoft YaHei, Arial, sans-serif" font-size="14" fill="#243b53">
+    <text x="247" y="224">1 查询</text>
+    <text x="464" y="169">2 问根</text>
+    <text x="723" y="188">3 问 TLD</text>
+    <text x="775" y="374">4 问权威</text>
+    <text x="408" y="428">5 得到 IP 并缓存</text>
+    <text x="244" y="314">6 返回 IP</text>
+  </g>
+
+  <rect x="86" y="534" width="908" height="48" rx="10" fill="#ffffff" stroke="#d6e4f0"/>
+  <text x="540" y="565" text-anchor="middle" font-family="Microsoft YaHei, Arial, sans-serif" font-size="15" fill="#334e68">面试抓手：递归查询发生在“客户端 ↔ 本地 DNS”，迭代查询发生在“本地 DNS ↔ 各级 DNS”。</text>
+</svg>
