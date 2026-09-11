@@ -34,7 +34,9 @@ comments: true
     ## Know what matters.
 
     Filter the noise.
+   
     Keep what matters.
+   
     Build on what remains.
 
     <span style="text-align: right; display: block;">Concat me: :material-email: lulietlyan@gmail.com </span>
