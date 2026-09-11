@@ -31,19 +31,11 @@ comments: true
 -  :material-notebook-edit-outline:{ .lg .middle } __SYSU-CS-Basic__
 
     ---
-    ⚡ 还能再「快」一点
+    ## Know what matters.
 
-    求职重担，如临高山🏔
-
-    资料繁冗、琐碎，令人却步💢
-
-    我们沉迷过琐碎日常💭
-
-    也都被迫快速上手，快速掌握，快速出发🤗
-
-    我们致力于搭建一座精炼高效的知识库🏫
-
-    愿它成为后来者的明灯💡
+    Filter the noise.
+    Keep what matters.
+    Build on what remains.
 
     <span style="text-align: right; display: block;">Concat me: :material-email: lulietlyan@gmail.com </span>
 
